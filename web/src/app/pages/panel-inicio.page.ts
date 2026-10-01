@@ -103,7 +103,7 @@ export class PanelInicioPage {
     this.ocupado.set(true);
     const ok = await this.svc.publicar(publicar);
     this.ocupado.set(false);
-    if (ok) this.avisos.ok(publicar ? 'Tu landing ya está publicada' : 'Tu landing se ocultó');
+    if (ok) this.avisos.ok(publicar ? 'Tu landing ya está publicada. Puede tardar hasta 30 segundos en verse.' : 'Tu landing se ocultó. Dejará de verse en unos 30 segundos.');
     else this.avisos.error('No se pudo actualizar. Intenta de nuevo.');
   }
 

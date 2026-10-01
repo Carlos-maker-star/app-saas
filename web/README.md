@@ -38,7 +38,7 @@ src/app/
 - `/`, `/n/:slug` y `/demo/:rubro` se generan **en el servidor** en cada petición (`src/app/app.routes.server.ts`); login, panel, editor y admin se dibujan en el navegador.
 - Cada landing publicada sale con título, descripción, `canonical`, Open Graph, Twitter Card y JSON-LD de negocio local (`core/seo.ts`, `core/seo.service.ts`). Demos, errores y páginas no disponibles llevan `noindex`.
 - Una landing inexistente o suspendida responde **404**; un fallo de Supabase, **503** (no se guarda en caché).
-- `src/server.ts` (Express) sirve `/robots.txt`, `/sitemap.xml` (requiere `supabase/11_sitemap.sql`), cabeceras de seguridad y caché corta (`s-maxage=60`) para las páginas públicas.
+- `src/server.ts` (Express) sirve `/robots.txt`, `/sitemap.xml` (requiere `supabase/11_sitemap.sql`), cabeceras de seguridad y caché corta (`s-maxage=30`, sin servir copias viejas) para las páginas públicas: publicar o suspender tarda hasta 30 s en verse.
 - Los datos viajan del servidor al navegador con `TransferState` (no se piden dos veces).
 - Cómo se reconoce el negocio: subdominio (`cliente.<dominioBase>`), `?s=cliente` o `/n/cliente`. `dominioBase` está en `core/env.ts`.
 

@@ -150,11 +150,11 @@ export class AdminClientesPage {
   protected async suspender(): Promise<void> {
     const c = this.pendiente();
     this.pendiente.set(null);
-    if (c) await this.cambiar(c, 'suspendido', 'Landing suspendida');
+    if (c) await this.cambiar(c, 'suspendido', 'Landing suspendida. Dejará de verse en unos 30 segundos.');
   }
 
   protected reactivar(c: Cliente): Promise<void> {
-    return this.cambiar(c, 'activo', 'Landing reactivada');
+    return this.cambiar(c, 'activo', 'Landing reactivada. Volverá a verse en unos 30 segundos.');
   }
 
   private async cambiar(c: Cliente, estado: 'activo' | 'suspendido', ok: string): Promise<void> {

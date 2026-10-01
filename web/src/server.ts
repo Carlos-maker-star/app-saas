@@ -79,11 +79,13 @@ app.use(async (req, res, next) => {
     const respuesta = await angularApp.handle(req);
     if (!respuesta) { next(); return; }
 
-    // Caché corta en el CDN para páginas públicas (los cambios aparecen en ~1 minuto); errores nunca se guardan
+    // Caché corta en el CDN para páginas públicas: un cambio (publicar, suspender) tarda como máximo
+    // 30 s en verse. Sin "stale-while-revalidate": después de ese tiempo nunca se sirve una copia vieja.
+    // Los errores nunca se guardan.
     const headers = new Headers(respuesta.headers);
     const publica = req.path === '/' || req.path.startsWith('/n/');
     if (respuesta.status >= 400) headers.set('Cache-Control', 'no-store');
-    else if (publica) headers.set('Cache-Control', 'public, max-age=0, s-maxage=60, stale-while-revalidate=300');
+    else if (publica) headers.set('Cache-Control', 'public, max-age=0, s-maxage=30');
     headers.set('Vary', 'Host');
 
     await writeResponseToNodeResponse(

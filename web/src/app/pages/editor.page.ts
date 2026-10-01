@@ -208,7 +208,7 @@ export class EditorPage {
     const error = await this.store.publicar();
     if (error) { this.avisos.error(error); return; }
     const url = env.dominioBase ? `${this.store.slug()}.${env.dominioBase}` : `/n/${this.store.slug()}`;
-    this.avisos.ok('¡Listo! Tu landing está publicada en ' + url);
+    this.avisos.ok('¡Listo! Tu landing está publicada en ' + url + '. Puede tardar hasta 30 segundos en verse.');
   }
 
   protected volver(): void {
