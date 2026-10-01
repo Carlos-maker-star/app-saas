@@ -13,6 +13,13 @@ import { LandingPage } from './landing.page';
       <app-landing [slug]="slug" />
     } @else {
       <main class="mx-auto max-w-3xl px-6 py-16">
+        <nav class="mb-10 flex flex-wrap items-center justify-between gap-3" aria-label="Cuenta">
+          <span class="text-lg font-bold">Vitrina</span>
+          <span class="flex gap-2">
+            <a routerLink="/login" class="rounded-lg border border-neutral-300 bg-white px-4 py-2 text-sm font-semibold transition hover:bg-neutral-50">Iniciar sesión</a>
+            <a routerLink="/registro" class="rounded-lg bg-neutral-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-neutral-700">Crear mi página</a>
+          </span>
+        </nav>
         <h1 class="text-3xl font-bold">Plantillas de demostración</h1>
         <p class="mt-2 text-neutral-600">Así se ve cada rubro con datos de ejemplo.</p>
         <ul class="mt-8 grid gap-3 sm:grid-cols-2">
