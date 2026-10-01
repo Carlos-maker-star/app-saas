@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bocetos — Plantillas por rubro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Oswald:wght@500;700&family=Cormorant+Garamond:wght@400;500;600&family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,sans-serif;background:#e5e5e5;color:#111}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;padding:.85rem 1.4rem;background:var(--brand);color:var(--on-brand);border-radius:var(--radius);transition:transform .2s,filter .2s}
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+  .btn-sm{padding:.55rem 1rem;font-size:.85rem}
+  .ph{background:var(--ph);position:relative;overflow:hidden}
+  .ph::after{content:attr(data-l);position:absolute;inset:auto 0 .6rem 0;text-align:center;font-size:.7rem;letter-spacing:.08em;opacity:.55;text-transform:uppercase}
+  .tema{overflow-x:hidden;display:none;background:var(--bg);color:var(--ink);font-family:var(--fb)}
+  .tema.on{display:block}
+  .tema h1,.tema h2,.tema h3,.tema .fd{font-family:var(--fd)}
+  .tema a:focus-visible,.tema button:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+  .wa{position:fixed;right:18px;bottom:18px;z-index:50;background:#25D366;color:#073b1b;font-weight:700;padding:.8rem 1.1rem;border-radius:999px;box-shadow:0 8px 24px #0004;display:flex;gap:.5rem;align-items:center}
+  .tab{padding:.5rem 1rem;border-radius:999px;font-weight:600;font-size:.9rem;border:1px solid #0003;background:#fff}
+  .tab[aria-selected=true]{background:#111;color:#fff;border-color:#111}
+  /* ---------- Movimiento (cada rubro tiene su propio estilo) ---------- */
+  .reveal{opacity:0;transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1),filter .7s}
+  .tema .reveal.in{opacity:1;transform:none;filter:none}
+  .tema .lift.reveal{transition:opacity .7s,filter .7s,transform .3s,box-shadow .3s}
+  .tema .lift.reveal.in:hover{transform:translateY(-6px);box-shadow:0 14px 30px #0002}
+  [data-t=cafe]   .reveal{transform:translateY(22px)}
+  [data-t=barber] .reveal{transform:translateX(-34px)}
+  [data-t=perf]   .reveal{transform:translateY(8px);filter:blur(8px)}
+  [data-t=salud]  .reveal{transform:scale(.94) translateY(10px)}
+
+  @keyframes floaty{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(1.5deg)}}
+  @keyframes vapor{0%{transform:translateY(8px);opacity:0}30%{opacity:1}100%{transform:translateY(-14px);opacity:0}}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+  @keyframes stripes{to{transform:translateX(-56.57px)}}
+  @keyframes pulsewa{0%{box-shadow:0 0 0 0 #25D366aa,0 8px 24px #0004}100%{box-shadow:0 0 0 18px #25D36600,0 8px 24px #0004}}
+  @keyframes shine{0%{transform:translateX(-120%) skewX(-20deg)}60%,100%{transform:translateX(220%) skewX(-20deg)}}
+  @keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-18px,14px) scale(1.08)}}
+  .floaty{animation:floaty 6s ease-in-out infinite}
+  .drift{animation:drift 9s ease-in-out infinite}
+  .vapor path{animation:vapor 3.2s ease-in-out infinite;transform-box:fill-box}
+  .vapor path:nth-child(2){animation-delay:.9s}.vapor path:nth-child(3){animation-delay:1.8s}
+  .wa{animation:pulsewa 2.4s infinite}
+  .marq{overflow:hidden;white-space:nowrap}
+  .marq>div{display:inline-flex;gap:3rem;animation:marquee 22s linear infinite;padding-right:3rem}
+  .marq:hover>div{animation-play-state:paused}
+  /* tarjetas y fotos: elevación y zoom al pasar el cursor */
+  .lift{transition:transform .3s,box-shadow .3s}
+  .lift:hover{transform:translateY(-6px);box-shadow:0 14px 30px #0002}
+  .ph{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  article:hover>.ph,.ph.zoomable:hover{transform:scale(1.03)}
+  .rowhover{transition:background .25s,padding-left .25s}
+  .rowhover:hover{padding-left:1rem;background:#ffffff0a}
+  /* botón con brillo que cruza (barbería y perfumes) */
+  .btn.shine{position:relative;overflow:hidden}
+  .btn.shine::after{content:"";position:absolute;top:0;bottom:0;width:40%;background:linear-gradient(90deg,transparent,#ffffff66,transparent);animation:shine 3.2s infinite}
+  .u-link{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .3s}
+  .u-link:hover{background-size:100% 1px}
+  details>p{animation:fadein .35s ease}
+  @keyframes fadein{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1!important;transform:none!important;filter:none!important}}
+
+  /* ============ CAFETERÍA ============ */
+  [data-t=cafe]{--bg:#FBF6EF;--surface:#F3E9DB;--ink:#2B1D14;--mute:#6b5646;--line:#d9c7b0;--brand:#6F4E37;--on-brand:#fff;--accent:#C8A27A;--radius:12px;--fd:'Playfair Display',serif;--fb:Inter,sans-serif;--ph:linear-gradient(135deg,#d9b68f,#a9795a)}
+  .leader{display:flex;align-items:baseline;gap:.5rem}
+  .leader i{flex:1;border-bottom:2px dotted var(--line)}
+
+  /* ============ BARBERÍA ============ */
+  [data-t=barber]{--bg:#0D0D0D;--surface:#171717;--ink:#F2F2F2;--mute:#a3a3a3;--line:#2a2a2a;--brand:#C9A227;--on-brand:#111;--radius:2px;--fd:'Oswald',sans-serif;--fb:Inter,sans-serif;--ph:linear-gradient(135deg,#2a2a2a,#111)}
+  .pole{height:8px;position:relative;overflow:hidden}
+  .pole::before{content:"";position:absolute;top:0;bottom:0;left:0;right:-60px;background:repeating-linear-gradient(-45deg,#C9A227 0 10px,#0D0D0D 10px 20px,#e5e5e5 20px 30px,#0D0D0D 30px 40px);animation:stripes 1.2s linear infinite}
+  .diag{clip-path:polygon(0 0,100% 0,100% 88%,0 100%)}
+
+  /* ============ PERFUMES ============ */
+  [data-t=perf]{--bg:#FAF8F5;--surface:#fff;--ink:#1F1B24;--mute:#6a6470;--line:#e4ded5;--brand:#1F1B24;--on-brand:#FAF8F5;--gold:#B08D57;--radius:2px;--fd:'Cormorant Garamond',serif;--fb:Inter,sans-serif;--ph:linear-gradient(160deg,#efe9df,#d8cfc0)}
+  .chip{padding:.4rem .9rem;border:1px solid var(--line);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;background:transparent;cursor:pointer}
+  .chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+  /* ============ SALUD ============ */
+  [data-t=salud]{--bg:#F6FBFB;--surface:#fff;--ink:#12333A;--mute:#496169;--line:#d7e8ea;--brand:#0E7C86;--on-brand:#fff;--soft:#DDF1F2;--radius:16px;--fd:'Poppins',sans-serif;--fb:Inter,sans-serif;--ph:linear-gradient(135deg,#bfe3e5,#8fcfd2)}
+  details>summary{list-style:none;cursor:pointer}
+  details>summary::-webkit-details-marker{display:none}
+  details[open] .plus{transform:rotate(45deg)}
+</style>
+</head>
+<body>
+
+<!-- Barra para cambiar de plantilla (no forma parte del diseño) -->
+<div class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-black/10">
+  <div class="mx-auto max-w-6xl px-4 py-3 flex flex-wrap items-center gap-2">
+    <strong class="mr-2 text-sm">Boceto de plantillas:</strong>
+    <div role="tablist" class="flex flex-wrap gap-2">
+      <button class="tab" role="tab" data-go="cafe"   aria-selected="true">☕ Cafetería</button>
+      <button class="tab" role="tab" data-go="barber" aria-selected="false">✂️ Barbería</button>
+      <button class="tab" role="tab" data-go="perf"   aria-selected="false">🧴 Perfumes</button>
+      <button class="tab" role="tab" data-go="salud"  aria-selected="false">🩺 Salud</button>
+    </div>
+    <span class="ml-auto text-xs text-neutral-600">Todo el contenido es de relleno · el cliente lo reemplaza</span>
+  </div>
+</div>
+
+<main class="mx-auto max-w-[1280px] bg-white shadow-xl">
+
+<!-- =====================================================================
+     1. CAFETERÍA  — "Café cálido"
+     Hero partido (texto + disco de foto) · carta tipo menú con puntos guía · motivo: vapor
+     ===================================================================== -->
+<div class="tema on" data-t="cafe" id="t-cafe">
+  <header class="flex items-center justify-between px-6 py-4 border-b" style="border-color:var(--line)">
+    <span class="fd text-2xl font-bold" style="color:var(--brand)">Café Aroma</span>
+    <nav class="hidden md:flex gap-6 text-sm" style="color:var(--mute)"><a href="#">Carta</a><a href="#">Espacio</a><a href="#">Horarios</a><a href="#">Ubicación</a></nav>
+    <a class="btn btn-sm" href="#">Pedir</a>
+  </header>
+
+  <section class="grid md:grid-cols-2 gap-8 items-center px-6 md:px-12 py-14 md:py-20">
+    <div>
+      <p class="text-sm tracking-widest uppercase" style="color:var(--mute)">Tostado artesanal · Lima</p>
+      <h1 class="fd text-5xl md:text-6xl font-bold leading-[1.05] mt-3">Tu café de cada día, hecho con calma.</h1>
+      <p class="mt-4 max-w-md" style="color:var(--mute)">Granos de altura, postres horneados cada mañana y una mesa esperándote.</p>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a class="btn" href="#">Hacer pedido por WhatsApp</a>
+        <a class="btn" style="background:transparent;color:var(--brand);border:2px solid var(--brand)" href="#">Ver carta</a>
+      </div>
+    </div>
+    <div class="relative mx-auto w-full max-w-md">
+      <div class="ph floaty aspect-square rounded-full" data-l="Foto: taza de café"></div>
+      <!-- motivo vapor (animado) -->
+      <svg class="vapor absolute -top-6 left-1/2 -translate-x-1/2" width="90" height="70" viewBox="0 0 90 70" fill="none" stroke="#C8A27A" stroke-width="4" stroke-linecap="round" aria-hidden="true">
+        <path d="M20 65c-10-12 10-20 0-32s10-20 0-30"/><path d="M45 65c-10-12 10-20 0-32s10-20 0-30"/><path d="M70 65c-10-12 10-20 0-32s10-20 0-30"/></svg>
+      <div class="absolute -bottom-3 -left-2 px-4 py-3 rounded-xl shadow-lg text-sm" style="background:var(--bg);border:1px solid var(--line)"><b>4.9 ★</b> · <span data-count="320">320</span> reseñas</div>
+    </div>
+  </section>
+
+  <section class="px-6 md:px-12 py-14" style="background:var(--surface)">
+    <h2 class="fd text-4xl font-bold text-center">Nuestra carta</h2>
+    <p class="text-center mt-2" style="color:var(--mute)">Toca un plato para pedirlo por WhatsApp</p>
+    <div class="mt-10 grid md:grid-cols-2 gap-x-14 gap-y-10 max-w-5xl mx-auto">
+      <div>
+        <h3 class="fd text-2xl mb-4" style="color:var(--brand)">Cafés</h3>
+        <ul class="space-y-4">
+          <li><a href="#" class="block lift rounded-lg p-2 -m-2"><div class="leader"><b>Espresso doble</b><i></i><b>S/ 8</b></div><p class="text-sm" style="color:var(--mute)">Grano de Chanchamayo, notas a cacao.</p></a></li>
+          <li><a href="#" class="block"><div class="leader"><b>Latte de vainilla</b><i></i><b>S/ 12</b></div><p class="text-sm" style="color:var(--mute)">Leche cremosa y vainilla natural.</p></a></li>
+          <li><a href="#" class="block"><div class="leader"><b>Cold brew</b><i></i><b>S/ 13</b></div><p class="text-sm" style="color:var(--mute)">Infusionado 18 horas, servido con hielo.</p></a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="fd text-2xl mb-4" style="color:var(--brand)">Postres</h3>
+        <ul class="space-y-4">
+          <li><a href="#" class="block"><div class="leader"><b>Cheesecake de maracuyá</b><i></i><b>S/ 14</b></div><p class="text-sm" style="color:var(--mute)">Base de galleta, hecho cada mañana.</p></a></li>
+          <li><a href="#" class="block"><div class="leader"><b>Croissant de almendras</b><i></i><b>S/ 9</b></div><p class="text-sm" style="color:var(--mute)">Hojaldre mantecoso, crema de almendra.</p></a></li>
+          <li><a href="#" class="block"><div class="leader"><b>Brownie tibio</b><i></i><b>S/ 11</b></div><p class="text-sm" style="color:var(--mute)">Con helado de crema.</p></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 md:px-12 py-14 grid md:grid-cols-3 gap-4">
+    <div class="ph aspect-[4/5] rounded-xl" data-l="Foto: barra"></div>
+    <div class="ph aspect-[4/5] rounded-xl md:mt-8" data-l="Foto: terraza"></div>
+    <div class="ph aspect-[4/5] rounded-xl" data-l="Foto: postres"></div>
+  </section>
+
+  <section class="px-6 md:px-12 pb-14 grid md:grid-cols-2 gap-8">
+    <div class="rounded-xl p-7" style="background:var(--surface)">
+      <h3 class="fd text-2xl">Horarios</h3>
+      <div class="mt-4 space-y-2"><div class="leader"><span>Lun – Vie</span><i></i><b>7:00 – 21:00</b></div><div class="leader"><span>Sáb – Dom</span><i></i><b>8:00 – 22:00</b></div></div>
+      <p class="mt-5 text-sm" style="color:var(--mute)">Av. Larco 123, Miraflores</p>
+    </div>
+    <div class="ph rounded-xl min-h-[200px]" data-l="Mapa de Google"></div>
+  </section>
+
+  <section class="px-6 py-14 text-center" style="background:var(--brand);color:#fff">
+    <h2 class="fd text-4xl font-bold">¿Reservamos tu mesa?</h2>
+    <p class="mt-2 opacity-90">Escríbenos y te atendemos de inmediato.</p>
+    <a class="btn mt-6" style="background:#fff;color:var(--brand)" href="#">Reservar por WhatsApp</a>
+  </section>
+  <footer class="px-6 py-6 text-sm text-center" style="color:var(--mute)">© Café Aroma · Instagram · Facebook</footer>
+</div>
+
+<!-- =====================================================================
+     2. BARBERÍA — "Barber clásico"
+     Hero oscuro a sangre con corte diagonal y titular gigante · lista numerada de servicios · motivo: barra de barbero
+     ===================================================================== -->
+<div class="tema" data-t="barber" id="t-barber">
+  <header class="flex items-center justify-between px-6 py-4" style="border-bottom:1px solid var(--line)">
+    <span class="fd text-2xl tracking-[.2em] uppercase" style="color:var(--brand)">Barbería Don Filo</span>
+    <nav class="hidden md:flex gap-7 text-sm uppercase tracking-widest" style="color:var(--mute)"><a href="#">Servicios</a><a href="#">Equipo</a><a href="#">Trabajos</a><a href="#">Horarios</a></nav>
+    <a class="btn btn-sm uppercase tracking-wider" href="#">Agendar</a>
+  </header>
+  <div class="pole"></div>
+
+  <section class="relative diag px-6 md:px-12 pt-16 pb-32 overflow-hidden" style="background:linear-gradient(120deg,#1a1a1a,#0D0D0D)">
+    <div class="absolute right-0 top-0 bottom-0 w-1/2 hidden md:block opacity-40 ph" data-l="Foto: corte de barba" style="--ph:linear-gradient(135deg,#3a3a3a,#111)"></div>
+    <div class="relative max-w-2xl">
+      <p class="uppercase tracking-[.3em] text-sm" style="color:var(--brand)">Desde 2015 · Arequipa</p>
+      <h1 class="fd uppercase font-bold leading-[.95] mt-4 text-6xl md:text-8xl">Estilo<br>y precisión</h1>
+      <p class="mt-5 max-w-md" style="color:var(--mute)">Cortes clásicos, barba y afeitado a navaja. Reserva tu turno y evita la fila.</p>
+      <a class="btn shine mt-8 uppercase tracking-wider" href="#">Agendar cita por WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- cinta animada -->
+  <div class="marq -mt-14 mb-6 relative py-3 fd uppercase text-xl tracking-[.3em]" style="background:var(--brand);color:#111;transform:rotate(-1.2deg)">
+    <div><span>Corte clásico</span><span>✦</span><span>Barba</span><span>✦</span><span>Afeitado a navaja</span><span>✦</span><span>Fade</span><span>✦</span>
+         <span>Corte clásico</span><span>✦</span><span>Barba</span><span>✦</span><span>Afeitado a navaja</span><span>✦</span><span>Fade</span><span>✦</span></div>
+  </div>
+
+  <section class="px-6 md:px-12 py-16 -mt-10 relative">
+    <h2 class="fd uppercase text-4xl tracking-wide">Servicios y precios</h2>
+    <ol class="mt-8 max-w-3xl">
+      <li class="rowhover flex items-center gap-5 py-5" style="border-top:1px solid var(--line)"><span class="fd text-3xl w-12" style="color:var(--brand)">01</span><div class="flex-1"><h3 class="fd text-xl uppercase">Corte clásico</h3><p class="text-sm" style="color:var(--mute)">Tijera o máquina, con acabado a navaja. 40 min.</p></div><b class="fd text-2xl">S/ 25</b><a href="#" class="btn btn-sm uppercase">Reservar</a></li>
+      <li class="flex items-center gap-5 py-5" style="border-top:1px solid var(--line)"><span class="fd text-3xl w-12" style="color:var(--brand)">02</span><div class="flex-1"><h3 class="fd text-xl uppercase">Arreglo de barba</h3><p class="text-sm" style="color:var(--mute)">Perfilado, toalla caliente y aceites. 30 min.</p></div><b class="fd text-2xl">S/ 18</b><a href="#" class="btn btn-sm uppercase">Reservar</a></li>
+      <li class="flex items-center gap-5 py-5" style="border-top:1px solid var(--line)"><span class="fd text-3xl w-12" style="color:var(--brand)">03</span><div class="flex-1"><h3 class="fd text-xl uppercase">Corte + barba</h3><p class="text-sm" style="color:var(--mute)">El combo completo. 60 min.</p></div><b class="fd text-2xl">S/ 38</b><a href="#" class="btn btn-sm uppercase">Reservar</a></li>
+      <li class="flex items-center gap-5 py-5" style="border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><span class="fd text-3xl w-12" style="color:var(--brand)">04</span><div class="flex-1"><h3 class="fd text-xl uppercase">Corte infantil</h3><p class="text-sm" style="color:var(--mute)">Menores de 12 años. 30 min.</p></div><b class="fd text-2xl">S/ 20</b><a href="#" class="btn btn-sm uppercase">Reservar</a></li>
+    </ol>
+  </section>
+
+  <section class="px-6 md:px-12 py-14" style="background:var(--surface)">
+    <h2 class="fd uppercase text-4xl tracking-wide">Nuestros barberos</h2>
+    <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div><div class="ph aspect-[4/5]" data-l="Foto"></div><h3 class="fd uppercase mt-3 text-lg">Filo Ramírez</h3><p class="text-sm" style="color:var(--mute)">Maestro barbero</p></div>
+      <div><div class="ph aspect-[4/5]" data-l="Foto"></div><h3 class="fd uppercase mt-3 text-lg">Diego Paz</h3><p class="text-sm" style="color:var(--mute)">Fade y diseño</p></div>
+      <div><div class="ph aspect-[4/5]" data-l="Foto"></div><h3 class="fd uppercase mt-3 text-lg">Marco Silva</h3><p class="text-sm" style="color:var(--mute)">Barba clásica</p></div>
+      <div><div class="ph aspect-[4/5]" data-l="Foto"></div><h3 class="fd uppercase mt-3 text-lg">Luis Cano</h3><p class="text-sm" style="color:var(--mute)">Corte infantil</p></div>
+    </div>
+  </section>
+
+  <section class="px-6 md:px-12 py-14">
+    <h2 class="fd uppercase text-4xl tracking-wide">Trabajos</h2>
+    <div class="mt-8 grid grid-cols-3 md:grid-cols-6 gap-2">
+      <div class="ph aspect-square" data-l=""></div><div class="ph aspect-square" data-l=""></div><div class="ph aspect-square" data-l=""></div>
+      <div class="ph aspect-square" data-l=""></div><div class="ph aspect-square" data-l=""></div><div class="ph aspect-square" data-l=""></div>
+    </div>
+  </section>
+
+  <section class="px-6 md:px-12 py-14 grid md:grid-cols-2 gap-8" style="background:var(--surface)">
+    <div><h3 class="fd uppercase text-2xl">Horarios</h3>
+      <div class="mt-4 space-y-2"><div class="flex justify-between"><span>Lun – Sáb</span><b>10:00 – 20:00</b></div><div class="flex justify-between"><span>Domingo</span><b style="color:var(--mute)">Cerrado</b></div></div>
+      <p class="mt-5 text-sm" style="color:var(--mute)">Calle Mercaderes 456, Arequipa</p></div>
+    <div class="ph min-h-[160px]" data-l="Mapa"></div>
+  </section>
+
+  <section class="relative px-6 py-16 text-center" style="background:var(--brand);color:#111">
+    <h2 class="fd uppercase text-5xl font-bold">Reserva tu turno</h2>
+    <p class="mt-2 font-medium">Elige tu horario por WhatsApp.</p>
+    <a class="btn mt-6 uppercase tracking-wider" style="background:#111;color:var(--brand)" href="#">Agendar ahora</a>
+  </section>
+  <div class="pole"></div>
+</div>
+
+<!-- =====================================================================
+     3. PERFUMES — "Perfumería elegante"
+     Hero editorial centrado con tipografía enorme y frasco lineal · catálogo con filtros · motivo: filetes finos
+     ===================================================================== -->
+<div class="tema" data-t="perf" id="t-perf">
+  <header class="px-6 py-5 flex items-center justify-between" style="border-bottom:1px solid var(--line)">
+    <nav class="hidden md:flex gap-6 text-xs uppercase tracking-[.2em]" style="color:var(--mute)"><a href="#">Catálogo</a><a href="#">Marcas</a></nav>
+    <span class="fd text-3xl tracking-[.25em] uppercase mx-auto md:mx-0">Essence</span>
+    <a class="btn btn-sm text-xs uppercase tracking-[.15em]" href="#">Consultar</a>
+  </header>
+
+  <section class="px-6 py-20 text-center">
+    <p class="text-xs uppercase tracking-[.4em]" style="color:var(--gold)">Perfumes originales</p>
+    <h1 class="fd text-6xl md:text-8xl font-medium leading-none mt-5">Fragancias<br><em>que dejan huella</em></h1>
+    <!-- frasco lineal -->
+    <svg class="floaty mx-auto mt-10" width="120" height="170" viewBox="0 0 120 170" fill="none" stroke="#B08D57" stroke-width="1.5" aria-hidden="true">
+      <rect x="44" y="6" width="32" height="22" rx="2"/><rect x="52" y="28" width="16" height="12"/>
+      <path d="M22 62c0-14 12-22 38-22s38 8 38 22v82c0 12-12 20-38 20s-38-8-38-20z"/><path d="M36 90c14 8 34 8 48 0" opacity=".6"/><circle cx="60" cy="118" r="10" opacity=".6"/></svg>
+    <div class="mt-8"><a class="btn shine text-xs uppercase tracking-[.2em]" href="#">Consultar por WhatsApp</a></div>
+  </section>
+
+  <!-- marcas en movimiento -->
+  <div class="marq py-4 fd text-3xl italic" style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:var(--mute)">
+    <div><span>Chanel</span><span>·</span><span>Dior</span><span>·</span><span>Tom Ford</span><span>·</span><span>Creed</span><span>·</span><span>Armani</span><span>·</span><span>Lancôme</span><span>·</span>
+         <span>Chanel</span><span>·</span><span>Dior</span><span>·</span><span>Tom Ford</span><span>·</span><span>Creed</span><span>·</span><span>Armani</span><span>·</span><span>Lancôme</span><span>·</span></div>
+  </div>
+
+  <section class="px-6 md:px-12 py-14">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <h2 class="fd text-5xl font-medium">Catálogo</h2>
+      <div class="flex flex-wrap gap-2" id="filtros-perf">
+        <button class="chip" aria-pressed="true" data-f="todos">Todos</button>
+        <button class="chip" aria-pressed="false" data-f="ella">Ella</button>
+        <button class="chip" aria-pressed="false" data-f="el">Él</button>
+        <button class="chip" aria-pressed="false" data-f="unisex">Unisex</button>
+      </div>
+    </div>
+    <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-10" id="grid-perf">
+      <article data-g="ella"><div class="ph aspect-[4/5]" data-l="Foto"></div><p class="text-xs uppercase tracking-[.2em] mt-4" style="color:var(--mute)">Chanel</p><h3 class="fd text-2xl">Coco Mademoiselle</h3><div class="flex items-center justify-between mt-1"><b>S/ 480</b><a href="#" class="text-sm u-link">Consultar</a></div></article>
+      <article data-g="el"><div class="ph aspect-[4/5]" data-l="Foto"></div><p class="text-xs uppercase tracking-[.2em] mt-4" style="color:var(--mute)">Dior</p><h3 class="fd text-2xl">Sauvage EDT</h3><div class="flex items-center justify-between mt-1"><b>S/ 420</b><a href="#" class="text-sm underline underline-offset-4">Consultar</a></div></article>
+      <article data-g="unisex"><div class="ph aspect-[4/5]" data-l="Foto"></div><p class="text-xs uppercase tracking-[.2em] mt-4" style="color:var(--mute)">Tom Ford</p><h3 class="fd text-2xl">Oud Wood</h3><div class="flex items-center justify-between mt-1"><b>S/ 790</b><a href="#" class="text-sm underline underline-offset-4">Consultar</a></div></article>
+      <article data-g="ella"><div class="ph aspect-[4/5]" data-l="Foto"></div><p class="text-xs uppercase tracking-[.2em] mt-4" style="color:var(--mute)">YSL</p><h3 class="fd text-2xl">Libre</h3><div class="flex items-center justify-between mt-1"><b>S/ 450</b><a href="#" class="text-sm underline underline-offset-4">Consultar</a></div></article>
+      <article data-g="el"><div class="ph aspect-[4/5]" data-l="Foto"></div><p class="text-xs uppercase tracking-[.2em] mt-4" style="color:var(--mute)">Paco Rabanne</p><h3 class="fd text-2xl">1 Million</h3><div class="flex items-center justify-between mt-1"><b>S/ 380</b><a href="#" class="text-sm underline underline-offset-4">Consultar</a></div></article>
+      <article data-g="unisex"><div class="ph aspect-[4/5]" data-l="Foto"></div><p class="text-xs uppercase tracking-[.2em] mt-4" style="color:var(--mute)">Creed</p><h3 class="fd text-2xl">Aventus</h3><div class="flex items-center justify-between mt-1"><b>S/ 1,150</b><a href="#" class="text-sm underline underline-offset-4">Consultar</a></div></article>
+      <article data-g="ella"><div class="ph aspect-[4/5]" data-l="Foto"></div><p class="text-xs uppercase tracking-[.2em] mt-4" style="color:var(--mute)">Lancôme</p><h3 class="fd text-2xl">La Vie Est Belle</h3><div class="flex items-center justify-between mt-1"><b>S/ 430</b><a href="#" class="text-sm underline underline-offset-4">Consultar</a></div></article>
+      <article data-g="el"><div class="ph aspect-[4/5]" data-l="Foto"></div><p class="text-xs uppercase tracking-[.2em] mt-4" style="color:var(--mute)">Armani</p><h3 class="fd text-2xl">Acqua di Giò</h3><div class="flex items-center justify-between mt-1"><b>S/ 360</b><a href="#" class="text-sm underline underline-offset-4">Consultar</a></div></article>
+    </div>
+  </section>
+
+  <section class="px-6 md:px-12 py-14 grid md:grid-cols-3 gap-10 text-center" style="border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div><h3 class="fd text-3xl">100% originales</h3><p class="mt-2 text-sm" style="color:var(--mute)">Garantía de autenticidad en cada frasco.</p></div>
+    <div><h3 class="fd text-3xl">Envíos a todo el país</h3><p class="mt-2 text-sm" style="color:var(--mute)">Coordina tu entrega por WhatsApp.</p></div>
+    <div><h3 class="fd text-3xl">Asesoría personal</h3><p class="mt-2 text-sm" style="color:var(--mute)">Te ayudamos a elegir tu fragancia ideal.</p></div>
+  </section>
+
+  <section class="px-6 py-20 text-center">
+    <h2 class="fd text-5xl font-medium">¿Buscas una fragancia?</h2>
+    <p class="mt-3" style="color:var(--mute)">Cuéntanos qué te gusta y te recomendamos.</p>
+    <a class="btn mt-7 text-xs uppercase tracking-[.2em]" href="#">Pedir recomendación</a>
+  </section>
+  <footer class="px-6 py-6 text-xs text-center uppercase tracking-[.2em]" style="color:var(--mute);border-top:1px solid var(--line)">© Essence · Instagram</footer>
+</div>
+
+<!-- =====================================================================
+     4. SALUD — "Salud confiable"
+     Hero en cuadrícula bento con tarjetas suaves · servicios con iconos · FAQ desplegable · motivo: manchas suaves y cruz
+     ===================================================================== -->
+<div class="tema" data-t="salud" id="t-salud">
+  <header class="flex items-center justify-between px-6 py-4" style="background:var(--surface);border-bottom:1px solid var(--line)">
+    <span class="fd text-xl font-semibold flex items-center gap-2" style="color:var(--brand)">
+      <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="9" fill="#0E7C86"/><path d="M12 7h4v5h5v4h-5v5h-4v-5H7v-4h5z" fill="#fff"/></svg>Clínica Vida</span>
+    <nav class="hidden md:flex gap-6 text-sm" style="color:var(--mute)"><a href="#">Servicios</a><a href="#">Equipo</a><a href="#">Preguntas</a><a href="#">Ubicación</a></nav>
+    <a class="btn btn-sm" href="#">Agendar cita</a>
+  </header>
+
+  <section class="px-6 md:px-12 py-12 grid md:grid-cols-6 gap-4">
+    <div class="md:col-span-4 rounded-[28px] p-8 md:p-12 relative overflow-hidden" style="background:var(--soft)">
+      <div class="drift absolute -right-16 -top-16 w-64 h-64 rounded-full" style="background:#0E7C8622"></div>
+      <div class="drift absolute right-24 bottom-4 w-24 h-24 rounded-full" style="background:#5BC0BE33;animation-delay:-4s"></div>
+      <p class="text-sm font-medium" style="color:var(--brand)">Consultorio médico · Trujillo</p>
+      <h1 class="fd text-4xl md:text-5xl font-semibold leading-tight mt-3">Tu salud, nuestra prioridad.</h1>
+      <p class="mt-4 max-w-md" style="color:var(--mute)">Atención profesional y cercana. Agenda tu cita en un minuto por WhatsApp.</p>
+      <a class="btn mt-7" href="#">Agendar cita por WhatsApp</a>
+    </div>
+    <div class="md:col-span-2 grid gap-4">
+      <div class="ph rounded-[28px] min-h-[150px]" data-l="Foto: doctora"></div>
+      <div class="rounded-[28px] p-6 text-white" style="background:var(--brand)"><b class="fd text-4xl">+<span data-count="12">12</span></b><p class="text-sm mt-1 opacity-90">años de experiencia</p></div>
+    </div>
+  </section>
+
+  <section class="px-6 md:px-12 py-10">
+    <h2 class="fd text-3xl font-semibold">Especialidades y servicios</h2>
+    <div class="mt-6 grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <article class="lift rounded-2xl p-6" style="background:var(--surface);border:1px solid var(--line)"><div class="w-12 h-12 rounded-xl grid place-items-center" style="background:var(--soft)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0E7C86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></div><h3 class="fd font-semibold mt-4">Cardiología</h3><p class="text-sm mt-1" style="color:var(--mute)">Chequeo cardiológico y electrocardiograma.</p><a href="#" class="text-sm font-semibold mt-3 inline-block" style="color:var(--brand)">Consultar →</a></article>
+      <article class="rounded-2xl p-6" style="background:var(--surface);border:1px solid var(--line)"><div class="w-12 h-12 rounded-xl grid place-items-center" style="background:var(--soft)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0E7C86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div><h3 class="fd font-semibold mt-4">Pediatría</h3><p class="text-sm mt-1" style="color:var(--mute)">Control de niño sano y vacunas.</p><a href="#" class="text-sm font-semibold mt-3 inline-block" style="color:var(--brand)">Consultar →</a></article>
+      <article class="rounded-2xl p-6" style="background:var(--surface);border:1px solid var(--line)"><div class="w-12 h-12 rounded-xl grid place-items-center" style="background:var(--soft)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0E7C86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 4-4 14-4-14z"/></svg></div><h3 class="fd font-semibold mt-4">Odontología</h3><p class="text-sm mt-1" style="color:var(--mute)">Limpieza, ortodoncia y blanqueamiento.</p><a href="#" class="text-sm font-semibold mt-3 inline-block" style="color:var(--brand)">Consultar →</a></article>
+    </div>
+  </section>
+
+  <section class="px-6 md:px-12 py-10">
+    <h2 class="fd text-3xl font-semibold">Nuestro equipo</h2>
+    <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="rounded-2xl overflow-hidden" style="background:var(--surface);border:1px solid var(--line)"><div class="ph aspect-[4/5]" data-l="Foto"></div><div class="p-4"><h3 class="fd font-semibold">Dra. Ana Torres</h3><p class="text-sm" style="color:var(--mute)">Cardióloga</p></div></div>
+      <div class="rounded-2xl overflow-hidden" style="background:var(--surface);border:1px solid var(--line)"><div class="ph aspect-[4/5]" data-l="Foto"></div><div class="p-4"><h3 class="fd font-semibold">Dr. Luis Vega</h3><p class="text-sm" style="color:var(--mute)">Pediatra</p></div></div>
+      <div class="rounded-2xl overflow-hidden" style="background:var(--surface);border:1px solid var(--line)"><div class="ph aspect-[4/5]" data-l="Foto"></div><div class="p-4"><h3 class="fd font-semibold">Dra. Rosa Quispe</h3><p class="text-sm" style="color:var(--mute)">Odontóloga</p></div></div>
+      <div class="rounded-2xl overflow-hidden" style="background:var(--surface);border:1px solid var(--line)"><div class="ph aspect-[4/5]" data-l="Foto"></div><div class="p-4"><h3 class="fd font-semibold">Dr. Jorge Paz</h3><p class="text-sm" style="color:var(--mute)">Medicina general</p></div></div>
+    </div>
+  </section>
+
+  <section class="px-6 md:px-12 py-10">
+    <h2 class="fd text-3xl font-semibold">Lo que dicen nuestros pacientes</h2>
+    <div class="mt-6 grid md:grid-cols-3 gap-4">
+      <blockquote class="rounded-2xl p-6" style="background:var(--soft)">“Me atendieron puntual y con mucha amabilidad.”<footer class="text-sm mt-3 font-semibold">— Carmen R.</footer></blockquote>
+      <blockquote class="rounded-2xl p-6" style="background:var(--soft)">“Agendé por WhatsApp en minutos. Muy práctico.”<footer class="text-sm mt-3 font-semibold">— Julio M.</footer></blockquote>
+      <blockquote class="rounded-2xl p-6" style="background:var(--soft)">“Mi hijo ya no le teme al doctor. Gracias.”<footer class="text-sm mt-3 font-semibold">— Patricia L.</footer></blockquote>
+    </div>
+  </section>
+
+  <section class="px-6 md:px-12 py-10 max-w-3xl">
+    <h2 class="fd text-3xl font-semibold">Preguntas frecuentes</h2>
+    <div class="mt-6 space-y-3">
+      <details class="rounded-2xl p-5" style="background:var(--surface);border:1px solid var(--line)"><summary class="flex justify-between font-semibold fd">¿Cómo agendo una cita?<span class="plus transition-transform">+</span></summary><p class="mt-3 text-sm" style="color:var(--mute)">Escríbenos por WhatsApp y coordinamos tu horario.</p></details>
+      <details class="rounded-2xl p-5" style="background:var(--surface);border:1px solid var(--line)"><summary class="flex justify-between font-semibold fd">¿Aceptan seguros?<span class="plus transition-transform">+</span></summary><p class="mt-3 text-sm" style="color:var(--mute)">Consúltanos tu seguro y te confirmamos cobertura.</p></details>
+      <details class="rounded-2xl p-5" style="background:var(--surface);border:1px solid var(--line)"><summary class="flex justify-between font-semibold fd">¿Atienden emergencias?<span class="plus transition-transform">+</span></summary><p class="mt-3 text-sm" style="color:var(--mute)">Atendemos citas programadas. Para emergencias acude al hospital más cercano.</p></details>
+    </div>
+  </section>
+
+  <section class="px-6 md:px-12 py-10 grid md:grid-cols-2 gap-4">
+    <div class="rounded-2xl p-7" style="background:var(--surface);border:1px solid var(--line)"><h3 class="fd text-xl font-semibold">Horarios de atención</h3>
+      <div class="mt-4 space-y-2 text-sm"><div class="flex justify-between"><span>Lun – Vie</span><b>8:00 – 18:00</b></div><div class="flex justify-between"><span>Sábado</span><b>8:00 – 13:00</b></div></div>
+      <p class="mt-4 text-sm" style="color:var(--mute)">Jr. Pizarro 789, Trujillo</p></div>
+    <div class="ph rounded-2xl min-h-[160px]" data-l="Mapa"></div>
+  </section>
+
+  <section class="mx-6 md:mx-12 my-10 rounded-[28px] px-6 py-14 text-center" style="background:var(--brand);color:#fff">
+    <h2 class="fd text-3xl md:text-4xl font-semibold">Agenda tu cita hoy</h2>
+    <p class="mt-2 opacity-90">Estamos para ayudarte.</p>
+    <a class="btn mt-6" style="background:#fff;color:var(--brand)" href="#">Escribir por WhatsApp</a>
+  </section>
+  <footer class="px-6 py-6 text-sm text-center" style="color:var(--mute)">© Clínica Vida</footer>
+</div>
+
+</main>
+
+<a class="wa" href="#" aria-label="Escribir por WhatsApp">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.3z"/></svg>
+  WhatsApp
+</a>
+
+<script>
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Contadores animados (0 -> valor)
+  function contar(el){
+    const fin=+el.dataset.count; if(reduce){el.textContent=fin;return}
+    const t0=performance.now(), dur=1400;
+    (function paso(t){
+      const p=Math.min((t-t0)/dur,1), e=1-Math.pow(1-p,3);
+      el.textContent=Math.round(fin*e);
+      if(p<1) requestAnimationFrame(paso);
+    })(t0);
+  }
+
+  // Aparición al hacer scroll, escalonada por orden entre hermanos
+  const revs=[...document.querySelectorAll('.tema section > *, .tema article, .tema li, .tema blockquote, .tema details, .tema footer, .tema header')];
+  revs.forEach(el=>{
+    el.classList.add('reveal');
+    const i=[...el.parentElement.children].indexOf(el);
+    el.style.transitionDelay=(Math.min(i,6)*90)+'ms';
+  });
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting && !e.target.classList.contains('in')){
+      e.target.classList.add('in');
+      e.target.querySelectorAll('[data-count]').forEach(contar);
+    }
+  }),{threshold:.12});
+  revs.forEach(el=>io.observe(el));
+
+  // Cambio de plantilla (reinicia las animaciones de entrada)
+  const tabs=[...document.querySelectorAll('.tab')], temas=[...document.querySelectorAll('.tema')];
+  tabs.forEach(t=>t.addEventListener('click',()=>{
+    tabs.forEach(x=>x.setAttribute('aria-selected',x===t));
+    revs.forEach(el=>el.classList.remove('in'));
+    temas.forEach(p=>p.classList.toggle('on',p.dataset.t===t.dataset.go));
+    window.scrollTo({top:0});
+  }));
+  // Filtros del catálogo de perfumes
+  const chips=[...document.querySelectorAll('#filtros-perf .chip')];
+  chips.forEach(c=>c.addEventListener('click',()=>{
+    chips.forEach(x=>x.setAttribute('aria-pressed',x===c));
+    document.querySelectorAll('#grid-perf article').forEach(a=>{
+      a.style.display=(c.dataset.f==='todos'||a.dataset.g===c.dataset.f)?'':'none';
+    });
+  }));
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Dependencias y compilados (cada subproyecto tiene además su propio .gitignore)
+node_modules/
+dist/
+.angular/
+
+# Herramientas locales
+.claude/
+.vercel/
+
+# Variables y claves: nunca al repositorio
+.env
+.env.*
+*.pem
+
+# Sistema
+.DS_Store
+Thumbs.db
