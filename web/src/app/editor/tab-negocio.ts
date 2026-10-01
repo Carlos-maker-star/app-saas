@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { EditorStore } from '../core/editor.store';
+import { urlIconoRubro } from '../core/icono';
 import { NombreRed, normalizarRed, REDES } from '../core/redes';
 import { CampoTexto } from '../shared/campo';
 import { ImagenCampo } from '../shared/imagen-campo';
@@ -15,6 +16,9 @@ import { ImagenCampo } from '../shared/imagen-campo';
         <h3 class="m-0 text-base font-semibold">Tu negocio</h3>
         <app-imagen-campo label="Logo" [valor]="n().logo_url" (valorChange)="store.setNegocio({ logo_url: $event })" [ladoMax]="600"
                           ayuda="Si no subes uno, se muestra el nombre del negocio." />
+        <app-imagen-campo label="Icono de la pestaña" [icono]="true" [valor]="n().icono_url" (valorChange)="store.setNegocio({ icono_url: $event })"
+                          [porDefecto]="iconoPorDefecto()"
+                          ayuda="El iconito que sale en la pestaña del navegador y en Google. Se recorta cuadrado. Si no subes uno, usamos un icono de tu rubro con los colores de tu marca." />
         <app-campo label="Nombre del negocio" [valor]="n().nombre" (valorChange)="store.setNegocio({ nombre: '' + $event })" [max]="60" />
       </section>
 
@@ -44,6 +48,8 @@ export class TabNegocio {
   protected readonly store = inject(EditorStore);
   protected readonly n = this.store.negocio;
   protected readonly redes = REDES;
+  /** El icono que se generará solo mientras el cliente no suba uno */
+  protected readonly iconoPorDefecto = computed(() => urlIconoRubro(this.store.rubro(), this.store.tema().colores.primario));
 
   /** Al salir del campo: "@usuario" se convierte en su enlace https */
   protected normalizar(red: NombreRed): void {

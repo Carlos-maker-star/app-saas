@@ -6,6 +6,7 @@ import {
 } from '@angular/ssr/node';
 import express, { Request } from 'express';
 import { join } from 'node:path';
+import { COLOR_PLATAFORMA, colorHex, svgIcono } from './app/core/icono';
 import { env } from './app/core/env';
 import { slugDeHost } from './app/core/seo';
 import { supabase } from './app/core/supabase.client';
@@ -60,6 +61,13 @@ app.get('/sitemap.xml', async (req, res) => {
   });
   res.type('application/xml').set('Cache-Control', 'public, max-age=300')
     .send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`);
+});
+
+/* ---------- icono de pestaña generado por rubro: /icono.svg?r=barberia&c=c9a227&f=111111 ---------- */
+app.get('/icono.svg', (req, res) => {
+  const q = req.query as Record<string, unknown>;
+  res.type('image/svg+xml').set('Cache-Control', 'public, max-age=31536000, immutable')
+    .send(svgIcono(String(q['r'] ?? ''), colorHex(q['c'], COLOR_PLATAFORMA), colorHex(q['f'], '#ffffff')));
 });
 
 /** Archivos estáticos (JS, CSS, imágenes con hash) */

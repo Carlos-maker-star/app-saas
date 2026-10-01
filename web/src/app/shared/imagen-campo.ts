@@ -12,7 +12,9 @@ import { Icono } from './icono';
     <span class="ui-label">{{ label() }}</span>
     <div class="flex items-center gap-3">
       <div class="relative flex size-[72px] shrink-0 items-center justify-center overflow-hidden rounded-xl border border-edge bg-card-2 text-fg-subtle">
-        @if (url(); as u) { <img [src]="u" alt="" class="absolute inset-0 size-full object-cover"> } @else { <app-icono n="palette" [tamanio]="22" /> }
+        @if (url(); as u) { <img [src]="u" alt="" class="absolute inset-0 size-full object-cover"> }
+        @else if (porDefecto(); as d) { <img [src]="d" alt="" class="absolute inset-0 size-full object-cover"> }
+        @else { <app-icono n="palette" [tamanio]="22" /> }
         @if (subiendo()) { <span class="absolute inset-0 flex items-center justify-center bg-black/40 text-white"><span class="ui-spinner"></span></span> }
       </div>
       <div class="flex flex-wrap gap-2">
@@ -30,6 +32,10 @@ export class ImagenCampo {
   readonly valor = model<string | null>(null);
   readonly ayuda = input('');
   readonly ladoMax = input(1400);
+  /** true: se recorta cuadrada y se guarda como PNG de 256 px (para el icono de la pestaña) */
+  readonly icono = input(false);
+  /** Qué mostrar cuando no hay imagen (por ejemplo, el icono que se generará solo) */
+  readonly porDefecto = input<string | null>(null);
   readonly subiendo = signal(false);
   readonly error = signal('');
   /** Para que quien lo use sepa que hubo un cambio (opcional) */
@@ -45,7 +51,7 @@ export class ImagenCampo {
     this.error.set('');
     this.subiendo.set(true);
     try {
-      const url = await this.imagenes.subir(f, this.ladoMax());
+      const url = this.icono() ? await this.imagenes.subirIcono(f) : await this.imagenes.subir(f, this.ladoMax());
       this.valor.set(url);
       this.subida.emit(url);
     } catch (err) {

@@ -43,6 +43,8 @@ export interface LandingPublica {
   rubro: Rubro;
   whatsapp: string | null;
   logo_url: string | null;
+  /** Icono de la pestaña subido por el cliente (si no, se genera uno según el rubro) */
+  icono_url?: string | null;
   email: string | null;
   telefono: string | null;
   direccion: string | null;

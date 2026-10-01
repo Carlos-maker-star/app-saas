@@ -89,7 +89,7 @@ El uso comercial sigue requiriendo el plan Pro de Vercel.
 
 ## Antes de abrir a clientes (lista de control)
 
-- [ ] Scripts SQL `01` a `11` ejecutados en Supabase.
+- [ ] Scripts SQL `01` a `12` ejecutados en Supabase (en orden).
 - [ ] Supabase: **Confirm email** activado y envío de correos propio (SMTP: Resend, Brevo…), no el de prueba.
 - [ ] Supabase: CAPTCHA y límites de intentos activados en Authentication.
 - [ ] Nombre definitivo de la plataforma en `web/src/app/core/marca.ts` (hoy es «Vitrina»).

@@ -56,6 +56,7 @@ export class LandingStore {
     const d = datosDemo(r);
     this.poner(d);
     this.seo.noIndexar(`Demo · ${d.nombre}`); // las demos no se indexan
+    this.seo.iconoNegocio(d);
   }
 
   /**
