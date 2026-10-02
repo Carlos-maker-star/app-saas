@@ -13,10 +13,13 @@ const ERRORES: Record<string, string> = {
   'User already registered': 'Ese correo ya está registrado. Inicia sesión.',
   'Email signups are disabled': 'El registro de cuentas nuevas está desactivado por ahora.',
   'Password should be at least 6 characters': 'La contraseña debe tener al menos 6 caracteres.',
+  'Token has expired or is invalid': 'El código es incorrecto o ya venció. Revisa el último correo o pide uno nuevo.',
 };
 
 function traducir(msg: string): string {
-  return ERRORES[msg] ?? (msg.includes('rate limit') ? 'Demasiados intentos. Espera unos minutos.' : msg);
+  if (msg.includes('rate limit')) return 'Demasiados intentos. Espera unos minutos.';
+  if (msg.includes('you can only request this after')) return 'Espera un momento antes de pedir otro código.';
+  return ERRORES[msg] ?? msg;
 }
 
 /** Sesión y perfil (rol + negocio) del usuario que inició sesión. */
@@ -77,6 +80,24 @@ export class Auth {
     }
     if (data.session) await this.aplicar(data.session);
     return { error: null, confirmar: !data.session };
+  }
+
+  /** Confirma el correo con el código de 6 dígitos que llegó por mail. Devuelve un mensaje de error, o null si salió bien. */
+  async verificarCodigo(email: string, codigo: string): Promise<string | null> {
+    if (!supabase) return 'Supabase no está configurado.';
+    const token = codigo.replace(/\D/g, '');
+    if (token.length < 6) return 'Escribe el código completo (6 dígitos).';
+    const { data, error } = await supabase.auth.verifyOtp({ email: email.trim(), token, type: 'signup' });
+    if (error) return traducir(error.message);
+    await this.aplicar(data.session);
+    return null;
+  }
+
+  /** Vuelve a enviar el código de confirmación. Devuelve un mensaje de error, o null si se envió. */
+  async reenviarCodigo(email: string): Promise<string | null> {
+    if (!supabase) return 'Supabase no está configurado.';
+    const { error } = await supabase.auth.resend({ type: 'signup', email: email.trim() });
+    return error ? traducir(error.message) : null;
   }
 
   async salir(): Promise<void> {
