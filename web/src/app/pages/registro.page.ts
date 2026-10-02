@@ -22,7 +22,7 @@ import { Icono } from '../shared/icono';
         <h1 class="m-0 text-[28px] font-semibold tracking-tight">Crea tu página</h1>
         <p class="mb-8 mt-1.5 text-sm text-fg-muted">Primero tu cuenta. Luego eliges tu rubro y diseño.</p>
 
-        <form class="flex flex-col gap-5" (submit)="enviar($event)">
+        <form class="stagger flex flex-col gap-5" (submit)="enviar($event)">
           <div>
             <label class="ui-label" for="email">Correo electrónico</label>
             <input class="ui-input" id="email" name="email" type="email" autocomplete="email" required autofocus

@@ -5,6 +5,12 @@
 @import "./styles/perfumes.css";
 @import "./styles/salud.css";
 
+/* Todas las transiciones de Tailwind (`transition`, `transition-colors`…) usan la curva fuerte de salida y 160 ms */
+@theme {
+  --default-transition-duration: .16s;
+  --default-transition-timing-function: cubic-bezier(.23, 1, .32, 1);
+}
+
 /* Los colores vienen de variables CSS que pone cada landing (ver core/tema.ts) */
 @theme inline {
   --color-bg: var(--bg);
@@ -82,22 +88,25 @@
 .ui-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 18px;
   border: 1px solid transparent; border-radius: 10px; font: inherit; font-size: 14px; font-weight: 600;
-  cursor: pointer; text-decoration: none; transition: transform .15s ease, background-color .15s, filter .15s, border-color .15s;
+  cursor: pointer; text-decoration: none; transition: transform .16s var(--ease-out), background-color .15s ease, filter .15s ease, border-color .15s ease, opacity .15s ease;
 }
-.ui-btn:active:not(:disabled) { transform: scale(.98); }
+.ui-btn:active:not(:disabled) { transform: scale(.97); }
 .ui-btn:disabled { opacity: .55; cursor: not-allowed; }
 .ui-btn-primary { background: var(--app-primary); color: var(--app-on-primary); }
+@media (hover: hover) and (pointer: fine) {
 .ui-btn-primary:hover:not(:disabled) { filter: brightness(1.1); }
 .ui-btn-outline { background: var(--app-surface); color: var(--app-text); border-color: var(--app-border); }
 .ui-btn-outline:hover:not(:disabled) { background: var(--app-surface-2); }
 .ui-btn-danger { background: var(--app-bad-bg); color: var(--app-bad-fg); }
 .ui-btn-danger:hover:not(:disabled) { filter: brightness(.96); }
+}
 .ui-btn-sm { height: 36px; padding: 0 12px; font-size: 13px; border-radius: 9px; }
 .ui-icon-btn {
   display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px;
-  border: 0; background: transparent; color: var(--app-muted); cursor: pointer; transition: background-color .15s, color .15s;
+  border: 0; background: transparent; color: var(--app-muted); cursor: pointer; transition: background-color .15s ease, color .15s ease, transform .16s var(--ease-out);
 }
-.ui-icon-btn:hover { background: var(--app-surface-2); color: var(--app-text); }
+.ui-icon-btn:active:not(:disabled) { transform: scale(.94); }
+@media (hover: hover) and (pointer: fine) { .ui-icon-btn:hover { background: var(--app-surface-2); color: var(--app-text); } }
 .ui-badge {
   display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap;
 }
@@ -108,10 +117,27 @@
 .ui-spinner { width: 16px; height: 16px; border-radius: 999px; border: 2px solid currentColor; border-right-color: transparent; animation: spin .7s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-.rise { animation: rise .45s cubic-bezier(.2,.7,.2,1) both; }
+.rise { animation: rise .45s var(--ease-out) both; }
+/* Los hijos directos entran uno tras otro (formularios de login y registro) */
+.stagger > * { animation: rise .5s var(--ease-out) both; }
+.stagger > :nth-child(2) { animation-delay: 55ms; }
+.stagger > :nth-child(3) { animation-delay: 110ms; }
+.stagger > :nth-child(4) { animation-delay: 165ms; }
+.stagger > :nth-child(5) { animation-delay: 220ms; }
+.stagger > :nth-child(n+6) { animation-delay: 275ms; }
+/* Avisos: llegan desde su esquina, con un leve escalado (nunca desde 0) */
+@keyframes toast-in { from { opacity: 0; transform: translateY(12px) scale(.97); } to { opacity: 1; transform: none; } }
+.toast-in { animation: toast-in .28s var(--ease-out) both; }
 /* margin:auto: el reinicio de Tailwind lo pone en 0 y el diálogo quedaba en la esquina */
 dialog.ui-dialog { margin: auto; border: 1px solid var(--app-border); border-radius: 16px; padding: 0; background: var(--app-surface); color: var(--app-text); width: min(440px, calc(100vw - 32px)); }
-dialog.ui-dialog::backdrop { background: rgb(0 0 0 / .45); backdrop-filter: blur(2px); }
+dialog.ui-dialog { opacity: 1; transform: none; transition: opacity .2s var(--ease-out), transform .2s var(--ease-out), overlay .2s allow-discrete, display .2s allow-discrete; }
+dialog.ui-dialog::backdrop { background: rgb(0 0 0 / .45); backdrop-filter: blur(2px); transition: background-color .2s ease, overlay .2s allow-discrete, display .2s allow-discrete; }
+@starting-style {
+  dialog.ui-dialog[open] { opacity: 0; transform: scale(.96) translateY(6px); }
+  dialog.ui-dialog[open]::backdrop { background: rgb(0 0 0 / 0); }
+}
+dialog.ui-dialog:not([open]) { opacity: 0; transform: scale(.98); }
+dialog.ui-dialog:not([open])::backdrop { background: rgb(0 0 0 / 0); }
 }
 
 html { scroll-behavior: smooth; }
@@ -218,4 +244,18 @@ details[open] .plus { transform: rotate(45deg); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
+}
+
+/* ---------- pulido del movimiento en toda la app ---------- */
+/* Todo lo que se pulsa responde al instante */
+.app-ui button:not(:disabled):not(.ui-btn):not(.ui-icon-btn):active,
+.app-ui summary:active { transform: scale(.98); }
+.app-ui button, .app-ui summary { transition-property: transform, background-color, color, border-color, opacity, box-shadow; transition-duration: .16s; transition-timing-function: var(--ease-out); }
+
+/* <details> (preguntas frecuentes, productos del editor): el contenido se abre con altura animada
+   donde el navegador lo permite; en los demás, se abre de golpe como siempre */
+@supports (interpolate-size: allow-keywords) {
+  details { interpolate-size: allow-keywords; }
+  details::details-content { block-size: 0; overflow: clip; transition: block-size .28s var(--ease-out), content-visibility .28s allow-discrete; }
+  details[open]::details-content { block-size: auto; }
 }
