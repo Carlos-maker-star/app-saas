@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Salud — 3 diseños</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Figtree:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* =====================================================================
+   A · Clínica turquesa (el que ya existe, con el movimiento afinado)
+   ===================================================================== */
+[data-t=sa]{--bg:#F6FBFB;--surface:#fff;--ink:#12333A;--mute:#496169;--line:#d7e8ea;--brand:#0E7C86;--soft:#DDF1F2;
+  background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;
+  h1,h2,h3,.fd{font-family:Poppins,sans-serif;font-weight:600}
+  .hd{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:var(--surface);border-bottom:1px solid var(--line)}
+  .logo{font:700 1.3rem Poppins;color:var(--brand)}.logo i{font-style:normal;color:var(--ink)}
+  nav{display:flex;gap:1.6rem;font-size:.9rem;color:var(--mute)}
+  nav a{text-decoration:none;transition:color .15s ease}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--brand);color:#fff;border:0;border-radius:12px;text-decoration:none;font:600 .92rem Poppins;padding:.85rem 1.4rem;transition:transform .16s var(--ease-out),background-color .2s ease}
+  .btn:active{transform:scale(.97)}
+  .btn.o{background:none;color:var(--brand);box-shadow:inset 0 0 0 1.5px var(--brand)}
+  .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;padding:2.5rem 2rem}
+  .b{border-radius:22px;padding:1.8rem;background:var(--surface);border:1px solid var(--line)}
+  .b1{grid-column:span 4;background:var(--brand);color:#fff;border:0;padding:2.6rem}
+  .b1 h1{font-size:clamp(2.2rem,5.4cqw,3.5rem);line-height:1.08}
+  .b1 p{margin-top:1rem;max-width:28rem;opacity:.88;line-height:1.65}
+  .b1 .acts{display:flex;gap:.7rem;margin-top:1.6rem;flex-wrap:wrap}
+  .b1 .btn{background:#fff;color:var(--brand)}.b1 .btn.o{background:none;color:#fff;box-shadow:inset 0 0 0 1.5px #ffffffaa}
+  .b2{grid-column:span 2;background:var(--soft);border:0}
+  .b2 b,.b3 b{display:block;font:600 2.8rem/1 Poppins;color:var(--brand)}
+  .b2 span,.b3 span{font-size:.88rem;color:var(--mute)}
+  .b3{grid-column:span 2}
+  .b4{grid-column:span 4;display:flex;align-items:center;gap:1rem}
+  .dot{width:.7rem;height:.7rem;border-radius:50%;background:#2fbf71;animation:late 2s var(--ease-out) infinite}
+  
+  .dot{box-shadow:0 0 0 0 #2fbf7188}
+  .sec{padding:2.5rem 2rem}
+  .sec h2{font-size:1.9rem}.sub{color:var(--mute);margin:.4rem 0 1.6rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1rem}
+  .sv{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.4rem;transition:transform .22s var(--ease-out),box-shadow .22s var(--ease-out),border-color .2s ease}
+  .ic{width:2.8rem;height:2.8rem;border-radius:14px;background:var(--soft);color:var(--brand);display:grid;place-items:center;margin-bottom:1rem;transition:background-color .2s ease,color .2s ease}
+  .sv h3{font-size:1.05rem}.sv p{font-size:.88rem;color:var(--mute);margin-top:.4rem;line-height:1.55}
+  .faq{max-width:46rem}
+  .q{border-bottom:1px solid var(--line)}
+  .q button{width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:0;padding:1.1rem 0;font:600 1rem Poppins;text-align:left;color:inherit}
+  .q button svg{flex:none;transition:transform .25s var(--ease-out)}
+  .q[data-o=true] button svg{transform:rotate(45deg)}
+  .q .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease-out)}
+  .q[data-o=true] .a{grid-template-rows:1fr}
+  .q .a div{overflow:hidden}.q .a p{padding:0 0 1.2rem;color:var(--mute);line-height:1.65;font-size:.92rem;opacity:0;transform:translateY(-4px);transition:opacity .25s ease,transform .3s var(--ease-out)}
+  .q[data-o=true] .a p{opacity:1;transform:none}
+  .cta{margin:1rem 2rem 3rem;border-radius:28px;background:var(--brand);color:#fff;padding:3.2rem 2rem;text-align:center}
+  .cta h2{font-size:2rem}.cta p{opacity:.88;margin:.6rem 0 1.5rem}.cta .btn{background:#fff;color:var(--brand)}
+  footer{padding:1.3rem;text-align:center;font-size:.85rem;color:var(--mute)}
+  @media (hover:hover) and (pointer:fine){
+    nav a:hover{color:var(--ink)}.btn:hover{background:#0a666e}.b1 .btn:hover{background:#eefafa}.cta .btn:hover{background:#eefafa}
+    .sv:hover{transform:translateY(-4px);box-shadow:0 18px 32px #0e7c8618;border-color:#0e7c8655}.sv:hover .ic{background:var(--brand);color:#fff}
+  }
+  @container (max-width:760px){
+    .hd{padding:1rem 1.2rem}nav{display:none}.bento{grid-template-columns:1fr;padding:1.5rem 1.2rem}.b1,.b2,.b3,.b4{grid-column:auto}.b1{padding:2rem 1.6rem}
+    .sec{padding:2rem 1.2rem}.cta{margin:1rem 1.2rem 2.5rem}
+  }
+}
+
+/* =====================================================================
+   B · Cálido — formas orgánicas, serif amable y color tierra
+   ===================================================================== */
+[data-t=sb]{--bg:#FBF4EC;--green:#2F5D50;--coral:#E9765B;--peach:#F7DCC8;--ink:#2A332F;--mute:#66706a;--line:#e6d8c7;
+  background:var(--bg);color:var(--ink);font-family:Figtree,sans-serif;
+  h1,h2,h3,.fd{font-family:Fraunces,serif;font-weight:400}
+  .hd{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2.2rem}
+  .logo{font:600 1.5rem Fraunces;color:var(--green)}.logo span{color:var(--coral)}
+  nav{display:flex;gap:1.8rem;font-weight:500;font-size:.95rem}
+  nav a{text-decoration:none;color:var(--mute);transition:color .15s ease}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--coral);color:#fff;border:0;border-radius:999px;text-decoration:none;font:600 .95rem Figtree;padding:.95rem 1.6rem;transition:transform .16s var(--ease-out),background-color .2s ease}
+  .btn:active{transform:scale(.97)}
+  .btn.g{background:var(--green)}
+  .btn.o{background:none;color:var(--green);box-shadow:inset 0 0 0 1.5px var(--green)}
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;padding:2.5rem 3rem 4rem}
+  .pill{display:inline-flex;align-items:center;gap:.5rem;background:var(--peach);color:#8a4a2e;border-radius:999px;padding:.4rem .9rem;font-weight:600;font-size:.82rem}
+  h1{font-size:clamp(2.8rem,6.6cqw,4.8rem);line-height:1.02;margin-top:1.2rem;letter-spacing:-.015em;color:var(--green)}
+  h1 em{color:var(--coral)}
+  .lead{margin-top:1.2rem;font-size:1.08rem;line-height:1.65;color:var(--mute);max-width:29rem}
+  .acts{display:flex;gap:.7rem;margin-top:1.8rem;flex-wrap:wrap}
+  .arch{position:relative;max-width:24rem;margin:auto;width:100%}
+  .blob{position:absolute;inset:-6% -12% 8% 14%;background:var(--peach);border-radius:60% 40% 55% 45%/50% 55% 45% 50%;animation:morph 14s ease-in-out infinite}
+  
+  .frame{position:relative;aspect-ratio:4/5;border-radius:999px 999px 1.4rem 1.4rem;background:linear-gradient(170deg,#e4efe6,#b9d4c3);overflow:hidden;display:grid;place-items:end center}
+  .frame svg{width:78%}
+  .tick{position:absolute;left:-1.6rem;bottom:2rem;background:#fff;border-radius:1rem;padding:.8rem 1.1rem;box-shadow:0 14px 30px #2f5d5022;font-size:.85rem;display:flex;gap:.7rem;align-items:center}
+  .tick b{display:block;color:var(--green);font-size:1.05rem}
+  .sec{padding:3.5rem 3rem}
+  .sec h2{font-size:clamp(2rem,4.5cqw,3rem);color:var(--green)}
+  .sub{color:var(--mute);margin:.5rem 0 2rem}
+  .esp{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem;align-items:start}
+  .acc .it{border-bottom:1.5px solid var(--line)}
+  .acc button{width:100%;display:flex;align-items:center;justify-content:space-between;background:none;border:0;padding:1.3rem 0;font:400 1.5rem Fraunces;color:var(--ink);text-align:left;transition:color .2s ease}
+  .acc button i{position:relative;width:1.8rem;height:1.8rem;flex:none;border-radius:50%;background:var(--peach);transition:transform .3s var(--ease-out),background-color .2s ease}
+  .acc button i::before,.acc button i::after{content:"";position:absolute;left:50%;top:50%;width:.7rem;height:2px;background:var(--green);translate:-50% -50%}
+  .acc button i::after{rotate:90deg}
+  .acc .it[data-o=true] button{color:var(--coral)}
+  .acc .it[data-o=true] button i{transform:rotate(135deg);background:var(--coral)}
+  .acc .it[data-o=true] button i::before,.acc .it[data-o=true] button i::after{background:#fff}
+  .acc .p{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s var(--ease-out)}
+  .acc .it[data-o=true] .p{grid-template-rows:1fr}
+  .acc .p div{overflow:hidden}
+  .acc .p p{padding-bottom:1.3rem;color:var(--mute);line-height:1.65;opacity:0;transform:translateY(-4px);transition:opacity .25s ease,transform .3s var(--ease-out)}
+  .acc .it[data-o=true] .p p{opacity:1;transform:none}
+  .team{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:1.4rem}
+  .dr .a{aspect-ratio:3/4;border-radius:999px 999px 1rem 1rem;background:linear-gradient(170deg,#f7dcc8,#eebd9f);margin-bottom:1rem;display:grid;place-items:end center;overflow:hidden;transition:transform .35s var(--ease-out)}
+  .dr:nth-child(2) .a{background:linear-gradient(170deg,#dbe9de,#a9c9b6)}
+  .dr:nth-child(3) .a{background:linear-gradient(170deg,#fbe6d8,#f2a98e)}
+  .dr .a svg{width:70%}
+  .dr h3{font-size:1.3rem}.dr p{color:var(--mute);font-size:.9rem}
+  .tst{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.4rem}
+  .bub{position:relative;background:#fff;border-radius:1.4rem 1.4rem 1.4rem .3rem;padding:1.5rem;line-height:1.6;box-shadow:0 10px 24px #2f5d5012;transform-origin:left bottom}
+  .bub cite{display:block;margin-top:.8rem;font-style:normal;font-weight:600;color:var(--green);font-size:.9rem}
+  .cta{margin:1rem 3rem 3.5rem;background:var(--green);color:#fff;border-radius:2rem;padding:3.4rem 2rem;text-align:center;position:relative;overflow:hidden}
+  .cta::before{content:"";position:absolute;width:16rem;height:16rem;border-radius:50%;background:#ffffff0f;right:-4rem;top:-6rem}
+  .cta h2{color:#fff;font-size:clamp(2rem,5cqw,3rem);position:relative}.cta p{opacity:.85;margin:.7rem 0 1.6rem;position:relative}.cta .btn{position:relative}
+  footer{padding:1.3rem;text-align:center;font-size:.85rem;color:var(--mute)}
+  @media (hover:hover) and (pointer:fine){
+    nav a:hover{color:var(--ink)}.btn:hover{background:#dc6648}.btn.g:hover{background:#244b40}.btn.o:hover{background:#2f5d5010}
+    .acc .it:not([data-o=true]) button:hover{color:var(--green)}.acc .it:not([data-o=true]) button:hover i{background:#f1c9ae}
+    .dr:hover .a{transform:translateY(-6px)}
+  }
+  @container (max-width:760px){
+    .hd{padding:1rem 1.2rem}nav{display:none}.hero{grid-template-columns:1fr;padding:1.5rem 1.4rem 3rem}.tick{left:.4rem}
+    .sec{padding:2.5rem 1.4rem}.esp{grid-template-columns:1fr;gap:1.2rem}.cta{margin:1rem 1.2rem 2.5rem}
+  }
+}
+
+/* =====================================================================
+   C · Clínico editorial — agenda interactiva a la vista
+   ===================================================================== */
+[data-t=sc]{--bg:#fff;--panel:#F3F5F8;--navy:#0F1F3D;--mint:#7AE0C3;--mute:#5a6578;--line:#dfe4ec;--ink:#0F1F3D;
+  background:var(--bg);color:var(--ink);font-family:'Inter Tight',sans-serif;
+  h1,h2,h3,.fd{font-family:Newsreader,serif;font-weight:400}
+  .hd{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 2.4rem;border-bottom:1px solid var(--line)}
+  .logo{font:600 1.15rem 'Inter Tight';letter-spacing:-.01em;display:flex;align-items:center;gap:.5rem}
+  .logo i{width:1.5rem;height:1.5rem;border-radius:.45rem;background:var(--navy);display:grid;place-items:center;color:var(--mint)}
+  nav{display:flex;gap:1.8rem;font-size:.9rem;color:var(--mute);font-weight:500}
+  nav a{text-decoration:none;transition:color .15s ease}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:var(--navy);color:#fff;border:0;border-radius:.7rem;text-decoration:none;font:600 .92rem 'Inter Tight';padding:.85rem 1.4rem;transition:transform .16s var(--ease-out),background-color .2s ease,opacity .2s ease}
+  .btn:active{transform:scale(.97)}
+  .btn.m{background:var(--mint);color:var(--navy)}
+  .btn[disabled]{opacity:.45;pointer-events:none}
+  .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:3.5rem;padding:3.6rem 2.4rem 4rem;align-items:start}
+  .kick{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:600;color:var(--mute)}
+  .kick i{width:2rem;height:1px;background:var(--navy)}
+  h1{font-size:clamp(3rem,7.4cqw,5.6rem);line-height:.98;letter-spacing:-.025em;margin-top:1.2rem}
+  h1 em{font-style:italic;background:linear-gradient(transparent 62%,var(--mint) 62% 92%,transparent 92%);padding:0 .06em}
+  .lead{margin-top:1.4rem;font-size:1.08rem;line-height:1.65;color:var(--mute);max-width:30rem}
+  .stats{display:flex;gap:2.4rem;margin-top:2.4rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+  .stats b{display:block;font:400 2.6rem/1 Newsreader}.stats span{font-size:.82rem;color:var(--mute)}
+  .ag{position:sticky;top:5rem;background:var(--panel);border:1px solid var(--line);border-radius:1.2rem;padding:1.5rem}
+  .ag h3{font:600 1.1rem 'Inter Tight'}.ag .s{font-size:.82rem;color:var(--mute);margin:.2rem 0 1rem}
+  .lbl{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:1rem 0 .5rem}
+  .esps,.dias,.slots{display:flex;gap:.4rem;flex-wrap:wrap}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:.6rem;padding:.5rem .8rem;font:500 .85rem 'Inter Tight';transition:background-color .18s ease,color .18s ease,border-color .18s ease,transform .16s var(--ease-out)}
+  .chip:active{transform:scale(.97)}
+  .chip[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .dias{position:relative;flex-wrap:nowrap;gap:.35rem;overflow-x:auto;scrollbar-width:none}
+  .dias .chip{flex:1 0 auto;text-align:center;line-height:1.2;position:relative;z-index:1;background:transparent;border-color:transparent}
+  .dias .chip small{display:block;font-size:.68rem;opacity:.7;font-weight:500}
+  .dias .chip[aria-pressed=true]{background:transparent;color:#fff;border-color:transparent}
+  .dind{position:absolute;top:0;left:0;height:100%;background:var(--navy);border-radius:.6rem;transition:transform .28s var(--ease-io),width .28s var(--ease-io)}
+  .slots .chip{width:calc(33.33% - .3rem);text-align:center;font-variant-numeric:tabular-nums}
+  .slots .chip[disabled]{opacity:.35;text-decoration:line-through;pointer-events:none}
+  .slots .chip.pop{animation:pop .32s var(--ease-out) both;animation-delay:calc(var(--k,0)*35ms)}
+  
+  .res{margin:1.1rem 0 .9rem;padding:.8rem .9rem;background:#fff;border:1px dashed #b9c2d2;border-radius:.7rem;font-size:.86rem;line-height:1.5;min-height:3.9em;transition:opacity .12s ease,filter .12s ease}
+  .res.sw{opacity:0;filter:blur(2px)}
+  .ag .btn{width:100%;background:#25D366;color:#06371a}
+  .sec{padding:3.5rem 2.4rem;border-top:1px solid var(--line)}
+  .sec h2{font-size:clamp(2rem,4.6cqw,3.2rem);letter-spacing:-.02em}
+  .list{margin-top:1.8rem;border-top:1px solid var(--navy)}
+  .li{display:grid;grid-template-columns:3.5rem 1fr 1.2fr auto;gap:1.2rem;align-items:center;padding:1.3rem 0;border-bottom:1px solid var(--line);transition:padding-left .28s var(--ease-out)}
+  .li .n{font:400 1rem Newsreader;font-style:italic;color:var(--mute)}
+  .li h3{font-size:1.7rem}.li p{color:var(--mute);font-size:.92rem;line-height:1.5}
+  .li svg{transition:transform .28s var(--ease-out)}
+  .cta{background:var(--navy);color:#fff;padding:4rem 2.4rem;display:flex;gap:2rem;justify-content:space-between;align-items:center;flex-wrap:wrap}
+  .cta h2{font-size:clamp(2rem,5.6cqw,3.6rem);line-height:1;letter-spacing:-.02em;max-width:30rem}.cta h2 em{color:var(--mint)}
+  footer{padding:1.3rem;text-align:center;font-size:.82rem;color:var(--mute)}
+  @media (hover:hover) and (pointer:fine){
+    nav a:hover{color:var(--ink)}.btn:hover{background:#1c3363}.btn.m:hover{background:#97ebd2}.ag .btn:hover{background:#2fe276}
+    .chip:not([aria-pressed=true]):not([disabled]):hover{border-color:var(--navy)}
+    .li:hover{padding-left:.8rem}.li:hover svg{transform:translateX(5px)}
+  }
+  @container (max-width:760px){
+    .hd{padding:1rem 1.2rem}nav{display:none}.hero{grid-template-columns:1fr;padding:2rem 1.2rem;gap:2rem}.ag{position:static}
+    .sec{padding:2.5rem 1.2rem}.li{grid-template-columns:2rem 1fr auto}.li p{display:none}.cta{padding:3rem 1.2rem}.stats{gap:1.4rem}
+  }
+}
+/* animaciones (a nivel raíz: no pueden ir dentro de reglas anidadas) */
+@keyframes late{70%,100%{box-shadow:0 0 0 .6rem #2fbf7100}}
+@keyframes morph{50%{border-radius:42% 58% 40% 60%/58% 42% 58% 42%;transform:rotate(6deg)}}
+@keyframes pop{from{opacity:0;transform:translateY(6px);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="persona" viewBox="0 0 120 150"><circle cx="60" cy="48" r="26" fill="#fff" opacity=".9"/><path d="M8 150c0-34 22-56 52-56s52 22 52 56Z" fill="#fff" opacity=".9"/><path d="M60 100v22M49 111h22" stroke="#2F5D50" stroke-width="5" stroke-linecap="round" opacity=".55"/></symbol>
+</svg>
+<div class="bar">
+  <a class="back" href="index.html">← Bocetos</a><span class="tit">Salud</span>
+  <div class="tabs" role="tablist"><span class="ind"></span>
+    <button class="tab" role="tab" data-d="a">A · Turquesa</button>
+    <button class="tab" role="tab" data-d="b">B · Cálido</button>
+    <button class="tab" role="tab" data-d="c">C · Editorial + agenda</button>
+  </div>
+  <span class="sp"></span>
+  <button class="alt" id="replay">Repetir animación</button>
+  <button class="alt" id="vista">Vista: escritorio</button>
+</div>
+
+<div class="stage">
+
+<!-- ================= A ================= -->
+<article class="dsg" id="a" hidden>
+<aside class="notes"><b>Movimiento aplicado (Emil)</b><ul>
+  <li>Cifras que cuentan hacia arriba al entrar (<code>ease-out</code>, 1,2 s): ocurre una sola vez, así que puede ser «decorativo».</li>
+  <li>Preguntas frecuentes: el panel se abre con <code>grid-template-rows 0fr→1fr</code> y el texto entra con fundido + 4 px; el «+» gira 45° para convertirse en «×». Cualquier clic recibe respuesta inmediata.</li>
+  <li>Tarjetas de servicio: elevación de 4 px y el icono se rellena de color en 200 ms, solo con puntero fino.</li>
+</ul></aside>
+<div class="tema" data-t="sa">
+  <header class="hd"><span class="logo">Clínica <i>Vida</i></span><nav><a href="#">Servicios</a><a href="#">Equipo</a><a href="#">Preguntas</a></nav><a class="btn" href="#">Agendar cita</a></header>
+  <section class="bento" data-stagger="rv-pop">
+    <div class="b b1"><h1>Tu salud, en manos que escuchan.</h1><p>Medicina general, pediatría y especialidades en un solo lugar. Agenda por WhatsApp y te confirmamos en minutos.</p><div class="acts"><a class="btn" href="#">Agendar por WhatsApp</a><a class="btn o" href="#">Ver servicios</a></div></div>
+    <div class="b b2"><b data-count="2400" data-suf="+">0</b><span>pacientes atendidos</span></div>
+    <div class="b b3"><b data-count="12">0</b><span>especialistas</span></div>
+    <div class="b b4"><span class="dot"></span><div><b style="font:600 1rem Poppins">Atendemos hoy hasta las 8 pm</b><br><span style="font-size:.88rem;color:var(--mute)">Lun a Sáb · Av. Salaverry 1450</span></div></div>
+  </section>
+  <section class="sec"><h2 class="rv">Nuestros servicios</h2><p class="sub rv" style="--i:1">Atención integral para toda la familia.</p>
+    <div class="grid" data-stagger="rv-pop">
+      <div class="sv"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div><h3>Medicina general</h3><p>Chequeos, controles y seguimiento de tu salud.</p></div>
+      <div class="sv"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3-7 7-7s7 3 7 7"/></svg></div><h3>Pediatría</h3><p>Cuidamos a los más pequeños con calma y cariño.</p></div>
+      <div class="sv"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z"/></svg></div><h3>Cardiología</h3><p>Electrocardiograma y control de presión.</p></div>
+      <div class="sv"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3h8l-1 7a3 3 0 0 1-6 0L8 3Zm4 10v8"/></svg></div><h3>Laboratorio</h3><p>Resultados confiables, rápidos y en línea.</p></div>
+    </div>
+  </section>
+  <section class="sec"><h2 class="rv">Preguntas frecuentes</h2>
+    <div class="faq" style="margin-top:1.4rem" id="faqA">
+      <div class="q" data-o="true"><button><span>¿Necesito cita previa?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="a"><div><p>Recomendamos agendar por WhatsApp para evitar esperas, pero también atendemos por orden de llegada.</p></div></div></div>
+      <div class="q" data-o="false"><button><span>¿Atienden con seguro?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="a"><div><p>Trabajamos con las principales aseguradoras. Escríbenos con el nombre de tu seguro y te confirmamos.</p></div></div></div>
+      <div class="q" data-o="false"><button><span>¿En cuánto llegan los resultados?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="a"><div><p>La mayoría de análisis están en 24 horas y te los enviamos por WhatsApp.</p></div></div></div>
+    </div>
+  </section>
+  <section class="cta rv rv-pop"><h2>¿Listo para cuidarte?</h2><p>Agenda hoy y te respondemos en minutos.</p><a class="btn" href="#">Agendar por WhatsApp</a></section>
+  <footer>Clínica Vida · Av. Salaverry 1450</footer>
+</div>
+</article>
+
+<!-- ================= B ================= -->
+<article class="dsg" id="b" hidden>
+<aside class="notes"><b>Movimiento aplicado (Emil)</b><ul>
+  <li>La mancha detrás de la foto «respira» muy lento (14 s, <code>ease-in-out</code>); es decorativa y no compite con el texto.</li>
+  <li>Acordeón de especialidades: el botón <b>«+»</b> gira 135° y cambia de color en 300 ms; el panel se abre con <code>grid-template-rows</code> y el texto entra con un fundido <i>después</i> del espacio, para que nunca se vea cortado.</li>
+  <li>Globos de testimonios: nacen desde su «cola» (<code>transform-origin: left bottom</code>) con <code>scale(.95)</code> y no desde el centro.</li>
+</ul></aside>
+<div class="tema" data-t="sb">
+  <header class="hd"><span class="logo">Casa<span>Salud</span></span><nav><a href="#">Especialidades</a><a href="#">Equipo</a><a href="#">Historias</a></nav><a class="btn g" href="#">Agendar</a></header>
+  <section class="hero">
+    <div data-stagger="">
+      <span class="pill">● Atendemos hoy hasta las 8 pm</span>
+      <h1>Cuidamos de ti y de <em>los tuyos.</em></h1>
+      <p class="lead">Un consultorio pequeño con trato de familia: medicina general, pediatría y nutrición, con el tiempo que mereces en cada consulta.</p>
+      <div class="acts"><a class="btn" href="#">Agendar por WhatsApp</a><a class="btn o" href="#">Conocer al equipo</a></div>
+    </div>
+    <div class="arch rv rv-pop" style="--i:2"><div class="blob"></div><div class="frame"><svg viewBox="0 0 120 150"><use href="#persona"/></svg></div>
+      <div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#E9765B" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z"/></svg><div><b>4.9 / 5</b>+800 reseñas</div></div></div>
+  </section>
+  <section class="sec"><div class="esp">
+    <div><h2 class="rv">Especialidades</h2><p class="sub rv" style="--i:1">Elige una para ver en qué podemos ayudarte.</p><a class="btn g rv" style="--i:2" href="#">Reservar mi cita</a></div>
+    <div class="acc" id="accB" data-stagger="">
+      <div class="it" data-o="true"><button><span>Medicina general</span><i></i></button><div class="p"><div><p>Chequeos anuales, control de presión y azúcar, y seguimiento de enfermedades crónicas.</p></div></div></div>
+      <div class="it" data-o="false"><button><span>Pediatría</span><i></i></button><div class="p"><div><p>Control de crecimiento, vacunas y consultas por fiebre o resfríos, en un ambiente tranquilo para los niños.</p></div></div></div>
+      <div class="it" data-o="false"><button><span>Nutrición</span><i></i></button><div class="p"><div><p>Planes personalizados sin dietas imposibles: comer mejor con lo que ya te gusta.</p></div></div></div>
+      <div class="it" data-o="false"><button><span>Psicología</span><i></i></button><div class="p"><div><p>Un espacio de escucha para adultos y adolescentes, presencial o por videollamada.</p></div></div></div>
+    </div></div></section>
+  <section class="sec"><h2 class="rv">Quiénes te atienden</h2><p class="sub rv" style="--i:1">Un equipo pequeño que te conoce por tu nombre.</p>
+    <div class="team" data-stagger="rv-pop"><div class="dr"><div class="a"><svg viewBox="0 0 120 150"><use href="#persona"/></svg></div><h3>Dra. Elena Ruiz</h3><p>Medicina general</p></div><div class="dr"><div class="a"><svg viewBox="0 0 120 150"><use href="#persona"/></svg></div><h3>Dr. Mateo Salas</h3><p>Pediatría</p></div><div class="dr"><div class="a"><svg viewBox="0 0 120 150"><use href="#persona"/></svg></div><h3>Lic. Ana Torres</h3><p>Nutrición</p></div></div></section>
+  <section class="sec"><h2 class="rv">Lo que dicen</h2>
+    <div class="tst" style="margin-top:1.6rem" data-stagger="rv-pop"><div class="bub">“Mi hija ya no llora cuando vamos al doctor. Eso lo dice todo.”<cite>Patricia L.</cite></div><div class="bub">“Agendé por WhatsApp y me atendieron a la hora exacta.”<cite>Julio M.</cite></div><div class="bub">“Por fin una nutricionista que no me prohíbe todo.”<cite>Carmen R.</cite></div></div></section>
+  <section class="cta rv rv-pop"><h2>Hoy es un buen día para cuidarte</h2><p>Escríbenos y reservamos tu cita.</p><a class="btn" href="#">Agendar por WhatsApp</a></section>
+  <footer>CasaSalud · Lun–Sáb 8:00–20:00</footer>
+</div>
+</article>
+
+<!-- ================= C ================= -->
+<article class="dsg" id="c" hidden>
+<aside class="notes"><b>Movimiento aplicado (Emil)</b><ul>
+  <li><b>Agenda de verdad:</b> el día elegido lo marca una píldora que se desliza (<code>translateX</code> + ancho, <code>ease-in-out</code> 280 ms) en vez de cambiar de color de golpe. Es la técnica de pestañas con indicador deslizante.</li>
+  <li>Al cambiar de día, los horarios reaparecen escalonados 35 ms con subida + desenfoque de 3 px; el resumen cambia con un desenfoque de 2 px para ocultar el salto entre dos textos.</li>
+  <li>Filas de servicios: la flecha avanza 5 px y la fila entera se desplaza 12 px a la derecha; nada de sombras ni rebotes (es una clínica: movimiento sobrio).</li>
+</ul></aside>
+<div class="tema" data-t="sc">
+  <header class="hd"><span class="logo"><i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></i>Clínica Vida</span><nav><a href="#">Especialidades</a><a href="#">Equipo</a><a href="#">Contacto</a></nav><a class="btn" href="#agenda">Agendar cita</a></header>
+  <section class="hero">
+    <div data-stagger="">
+      <span class="kick"><i></i>Medicina familiar · Miraflores</span>
+      <h1>Atención médica que se <em>siente cercana.</em></h1>
+      <p class="lead">Elige especialidad, día y hora en menos de un minuto y confirmamos por WhatsApp. Sin llamadas, sin esperas largas.</p>
+      <div class="stats"><div><b data-count="12">0</b><span>especialistas</span></div><div><b data-count="2400" data-suf="+">0</b><span>pacientes al año</span></div><div><b data-count="15" data-suf=" min">0</b><span>espera media</span></div></div>
+    </div>
+    <aside class="ag rv" id="agenda" style="--i:2">
+      <h3>Agenda tu cita</h3><p class="s">Respuesta por WhatsApp en minutos.</p>
+      <div class="lbl">Especialidad</div>
+      <div class="esps" id="esps"><button class="chip" aria-pressed="true">Medicina general</button><button class="chip" aria-pressed="false">Pediatría</button><button class="chip" aria-pressed="false">Cardiología</button></div>
+      <div class="lbl">Día</div>
+      <div class="dias" id="dias"><span class="dind" id="dind"></span></div>
+      <div class="lbl">Hora</div>
+      <div class="slots" id="slots"></div>
+      <p class="res" id="res">Elige una hora para armar tu mensaje.</p>
+      <button class="btn" id="env" disabled>Enviar por WhatsApp</button>
+    </aside>
+  </section>
+  <section class="sec"><h2 class="rv">Especialidades</h2>
+    <div class="list" data-stagger="">
+      <div class="li"><span class="n">01</span><h3>Medicina general</h3><p>Chequeos, control crónico y orientación.</p><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+      <div class="li"><span class="n">02</span><h3>Pediatría</h3><p>Control de crecimiento y vacunas.</p><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+      <div class="li"><span class="n">03</span><h3>Cardiología</h3><p>Electrocardiograma y prevención.</p><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+      <div class="li"><span class="n">04</span><h3>Laboratorio</h3><p>Resultados en 24 horas por WhatsApp.</p><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+    </div>
+  </section>
+  <section class="cta"><h2 class="rv">Tu salud no <em>espera.</em></h2><a class="btn m rv" style="--i:1" href="#agenda">Agendar mi cita</a></section>
+  <footer>Clínica Vida · Av. Salaverry 1450 · Lun–Sáb 8–20 h</footer>
+</div>
+</article>
+
+</div>
+
+<a class="wa" href="#">WhatsApp</a>
+<script src="base.js"></script>
+<script>
+(() => {
+  const V = window.V, { $, $$ } = V;
+  const out = (t) => 1 - Math.pow(1 - t, 4);
+
+  /* contadores: cuentan una vez cuando entran en pantalla */
+  const contar = (el) => {
+    const fin = +el.dataset.count, suf = el.dataset.suf || '';
+    if (V.reducido) { el.textContent = fin + suf; return; }
+    const t0 = performance.now();
+    const paso = (t) => { const k = Math.min(1, (t - t0) / 1200); el.textContent = Math.round(fin * out(k)) + suf; if (k < 1) requestAnimationFrame(paso); };
+    requestAnimationFrame(paso);
+  };
+  const cio = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { contar(e.target); cio.unobserve(e.target); } }), { threshold: 0.6 });
+  const armarContadores = () => $$('[data-count]').forEach((c) => { c.textContent = '0'; cio.unobserve(c); cio.observe(c); });
+  ['a', 'c'].forEach((id) => $('#' + id).addEventListener('armed', armarContadores));
+  armarContadores();
+
+  /* acordeones (uno abierto a la vez) */
+  const acordeon = (root, sel) => $$(sel, root).forEach((it) => it.querySelector('button').addEventListener('click', () => {
+    const abrir = it.dataset.o !== 'true';
+    $$(sel, root).forEach((x) => { x.dataset.o = 'false'; });
+    it.dataset.o = String(abrir);
+  }));
+  acordeon($('#faqA'), '.q');
+  acordeon($('#accB'), '.it');
+
+  /* C · agenda */
+  const swap = (el, fn) => { el.classList.add('sw'); setTimeout(() => { fn(); el.classList.remove('sw'); }, 110); };
+  const dias = $('#dias'), dind = $('#dind'), slots = $('#slots'), res = $('#res'), env = $('#env');
+  const NOM = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+  const HORAS = ['09:00', '10:30', '12:00', '15:00', '16:30', '18:00'];
+  let esp = 'Medicina general', dia = null, hora = null;
+  const lista = []; const hoy = new Date();
+  for (let i = 1; lista.length < 6; i++) { const d = new Date(hoy); d.setDate(hoy.getDate() + i); if (d.getDay() !== 0) lista.push(d); }
+  lista.forEach((d, i) => {
+    const b = document.createElement('button');
+    b.className = 'chip'; b.setAttribute('aria-pressed', i === 0);
+    b.innerHTML = `<small>${NOM[d.getDay()]}</small>${d.getDate()}`;
+    b.addEventListener('click', () => elegirDia(i));
+    dias.append(b);
+  });
+  const chipsDia = $$('.chip', dias);
+  const mover = () => { const b = chipsDia.find((x) => x.getAttribute('aria-pressed') === 'true'); dind.style.width = b.offsetWidth + 'px'; dind.style.transform = `translateX(${b.offsetLeft}px)`; };
+  const pintarHoras = () => {
+    slots.innerHTML = '';
+    HORAS.forEach((h, k) => {
+      const b = document.createElement('button');
+      b.className = 'chip pop'; b.style.setProperty('--k', k); b.textContent = h;
+      b.disabled = (dia * 3 + k * 5) % 7 === 0;
+      b.setAttribute('aria-pressed', h === hora);
+      b.addEventListener('click', () => { hora = h; $$('.chip', slots).forEach((x) => x.setAttribute('aria-pressed', x === b)); resumen(); });
+      slots.append(b);
+    });
+  };
+  const resumen = () => {
+    const d = lista[dia];
+    swap(res, () => {
+      res.textContent = hora ? `Hola, quisiera una cita de ${esp.toLowerCase()} el ${NOM[d.getDay()]} ${d.getDate()} a las ${hora}.` : 'Elige una hora para armar tu mensaje.';
+      env.disabled = !hora;
+    });
+  };
+  function elegirDia(i) { dia = i; hora = null; chipsDia.forEach((x, k) => x.setAttribute('aria-pressed', k === i)); mover(); pintarHoras(); resumen(); }
+  $$('#esps .chip').forEach((c) => c.addEventListener('click', () => { esp = c.textContent; $$('#esps .chip').forEach((x) => x.setAttribute('aria-pressed', x === c)); resumen(); }));
+  elegirDia(0);
+  $('#c').addEventListener('armed', mover);
+  addEventListener('resize', mover);
+  document.fonts?.ready.then(mover);
+})();
+</script>
+</body>
+</html>

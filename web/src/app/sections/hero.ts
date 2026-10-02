@@ -3,14 +3,31 @@ import { LandingStore } from '../core/landing.store';
 import { DatosSeccion } from '../core/models';
 import { urlSegura } from '../core/seguridad';
 import { CountUp } from '../shared/reveal';
+import { HeroAgenda } from './disenos/hero-agenda';
+import { HeroCalido } from './disenos/hero-calido';
+import { HeroCalle } from './disenos/hero-calle';
+import { HeroLaboratorio } from './disenos/hero-laboratorio';
+import { HeroMatutino } from './disenos/hero-matutino';
+import { HeroNoir } from './disenos/hero-noir';
+import { HeroPoste } from './disenos/hero-poste';
+import { HeroTostadores } from './disenos/hero-tostadores';
 
-/** Hero: una composición distinta por rubro (partido, a sangre, editorial, bento). */
+/** Hero: una composición distinta por rubro y por diseño (el 'a' de cada rubro está aquí; los demás, en ./disenos). */
 @Component({
   selector: 'app-hero',
-  imports: [CountUp],
+  imports: [CountUp, HeroTostadores, HeroMatutino, HeroPoste, HeroCalle, HeroNoir, HeroLaboratorio, HeroCalido, HeroAgenda],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    @switch (store.rubro()) {
+    @switch (variante()) {
+
+      @case ('cafeteria-b') { <app-hero-tostadores [datos]="datos()" /> }
+      @case ('cafeteria-c') { <app-hero-matutino [datos]="datos()" /> }
+      @case ('barberia-b') { <app-hero-poste [datos]="datos()" /> }
+      @case ('barberia-c') { <app-hero-calle [datos]="datos()" /> }
+      @case ('perfumes-b') { <app-hero-noir [datos]="datos()" /> }
+      @case ('perfumes-c') { <app-hero-laboratorio [datos]="datos()" /> }
+      @case ('salud-b') { <app-hero-calido [datos]="datos()" /> }
+      @case ('salud-c') { <app-hero-agenda [datos]="datos()" /> }
 
       @case ('cafeteria') {
         <div class="mx-auto grid max-w-6xl items-center gap-10 px-6 py-14 md:grid-cols-2 md:py-20">
@@ -102,6 +119,8 @@ export class Hero {
   protected readonly store = inject(LandingStore);
   readonly datos = input.required<DatosSeccion>();
   protected readonly d = computed(() => this.datos());
+  /** El diseño 'a' usa el rubro como clave; los demás, rubro-diseño */
+  protected readonly variante = computed(() => (this.store.diseno() === 'a' ? this.store.rubro() : this.store.estilo()));
   /** La cifra destacada solo se muestra si tiene valor y texto */
   protected readonly stat = computed(() => {
     const s = this.datos()['stat'];

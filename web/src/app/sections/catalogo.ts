@@ -3,14 +3,25 @@ import { LandingStore } from '../core/landing.store';
 import { DatosSeccion, Item } from '../core/models';
 import { precio } from '../core/format';
 import { urlSegura } from '../core/seguridad';
+import { CatalogoLaboratorio } from './disenos/catalogo-laboratorio';
+import { CatalogoMatutino } from './disenos/catalogo-matutino';
+import { CatalogoNoir } from './disenos/catalogo-noir';
+import { CatalogoTicket } from './disenos/catalogo-ticket';
 
 const ETIQUETA_FILTRO: Record<string, string> = { ella: 'Ella', el: 'Él', unisex: 'Unisex' };
 
 /** Carta / catálogo de productos. Cafetería: lista con puntos guía. Resto: cuadrícula con filtros. */
 @Component({
   selector: 'app-catalogo',
+  imports: [CatalogoTicket, CatalogoMatutino, CatalogoNoir, CatalogoLaboratorio],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
+    @switch (store.estilo()) {
+      @case ('cafeteria-b') { <app-catalogo-ticket [datos]="datos()" /> }
+      @case ('cafeteria-c') { <app-catalogo-matutino [datos]="datos()" /> }
+      @case ('perfumes-b') { <app-catalogo-noir [datos]="datos()" /> }
+      @case ('perfumes-c') { <app-catalogo-laboratorio [datos]="datos()" /> }
+      @default {
     @if (items().length) {
       <section class="mx-auto max-w-6xl px-6 py-14">
         <h2 class="h2" [class.text-center]="cafe()">{{ datos()['titulo'] }}</h2>
@@ -58,10 +69,12 @@ const ETIQUETA_FILTRO: Record<string, string> = { ella: 'Ella', el: 'Él', unise
           </div>
         }
       </section>
+    }
+      }
     }`,
 })
 export class Catalogo {
-  private readonly store = inject(LandingStore);
+  protected readonly store = inject(LandingStore);
   readonly datos = input.required<DatosSeccion>();
   protected readonly filtro = signal('todos');
 

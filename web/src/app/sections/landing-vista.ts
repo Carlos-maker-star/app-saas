@@ -24,7 +24,7 @@ import { WaFlotante } from './wa-flotante';
   imports: [Reveal, Header, Hero, Catalogo, Servicios, Equipo, Galeria, Horarios, Contacto, Beneficios, Testimonios, Faq, Footer, WaFlotante],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="landing" [attr.data-rubro]="store.rubro()" [style]="estilo()">
+    <div class="landing" [attr.data-rubro]="store.rubro()" [attr.data-estilo]="store.estilo()" [style]="estilo()">
       <app-header />
       <main>
         @for (s of store.secciones(); track s.id) {
@@ -62,7 +62,7 @@ export class LandingVista {
   protected readonly store = inject(LandingStore);
   protected readonly estilo = computed(() => {
     const t = this.store.datos()?.tema;
-    return t ? estiloTema(t) : {};
+    return t ? estiloTema(t, this.store.rubro()) : {};
   });
 
   protected nombre = (s: Seccion) => nombreSeccion(s.tipo, this.store.rubro());

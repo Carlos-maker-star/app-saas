@@ -37,13 +37,14 @@ export class LandingPage {
   protected readonly store = inject(LandingStore);
   readonly slug = input<string>();
   readonly rubro = input<string>();
+  readonly diseno = input<string>();
 
   constructor() {
     effect(() => {
       const slug = this.slug();
       const rubro = this.rubro();
       if (slug) void this.store.cargarSlug(slug);
-      else if (rubro) this.store.cargarDemo(rubro);
+      else if (rubro) this.store.cargarDemo(rubro, this.diseno());
     });
   }
 }

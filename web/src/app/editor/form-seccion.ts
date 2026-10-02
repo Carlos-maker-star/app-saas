@@ -74,7 +74,8 @@ export class FormSeccion {
   protected readonly subiendo = signal(false);
 
   protected readonly elementos = computed(() =>
-    ESQUEMAS[this.seccion().tipo].elementos.filter((e) => !e.solo || e.solo.includes(this.store.rubro())));
+    ESQUEMAS[this.seccion().tipo].elementos.filter((e) =>
+      (!e.solo || e.solo.includes(this.store.rubro())) && (!e.estilos || e.estilos.includes(this.store.estilo()))));
 
   /* Estrechadores de tipo para la plantilla */
   protected campo = (e: unknown) => e as DefCampo;

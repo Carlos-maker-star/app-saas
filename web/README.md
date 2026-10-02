@@ -13,6 +13,14 @@ npm run build
 |---|---|
 | `/` | Índice de demos (o la landing si hay subdominio / `?s=slug`) |
 | `/demo/:rubro` | Plantilla con datos de ejemplo (`cafeteria`, `barberia`, `perfumes`, `salud`), sin Supabase |
+| `/demo/:rubro/:diseno` | Lo mismo con uno de sus 3 diseños (`a`, `b`, `c`), p. ej. `/demo/salud/c` |
+
+## Diseños por rubro
+Cada rubro tiene **3 diseños** (`core/disenos.ts`): su paleta, tipografías y bordes viven allí y el diseño elegido se guarda en `tema.diseno` (sin él, es el `a`). El cliente lo cambia en el editor, pestaña **Diseño**.
+- La clave de estilo es `rubro-diseno` (`cafeteria-b`): `LandingStore.estilo()`, atributo `data-estilo` de la landing.
+- La portada y las secciones principales de cada diseño están en `sections/disenos/`; el resto de secciones se adapta con CSS (`src/styles/<rubro>.css`).
+- Movimiento compartido (curvas, entradas escalonadas) en `src/styles/base.css`.
+- Para añadir un diseño: preset en `disenos.ts`, componentes en `sections/disenos/`, CSS en `src/styles/`, y su caso en `hero.ts` / `catalogo.ts` / `servicios.ts`.
 | `/n/:slug` | Landing real de un negocio (función SQL `landing_publica`) |
 
 ## Conectar Supabase

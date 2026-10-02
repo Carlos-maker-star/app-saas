@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bocetos — 3 diseños por rubro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+body{background:#efeee9;color:#16161a}
+.wrap{max-width:70rem;margin:0 auto;padding:3rem 1.4rem 5rem}
+h1{font:400 clamp(2.6rem,6vw,4.4rem)/1 'Instrument Serif',serif;letter-spacing:-.02em}
+h1 em{color:#b5532f}
+.lead{max-width:38rem;color:#55555e;line-height:1.65;margin-top:1rem}
+.rubro{margin-top:3.2rem}
+.rubro h2{font:600 .78rem Inter;letter-spacing:.14em;text-transform:uppercase;color:#6b6b74;margin-bottom:.9rem;display:flex;align-items:center;gap:.7rem}
+.rubro h2::after{content:"";flex:1;height:1px;background:#16161a22}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.card{display:block;text-decoration:none;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 0 0 1px #16161a14;transition:transform .22s var(--ease-out),box-shadow .22s var(--ease-out)}
+.card:active{transform:scale(.985)}
+.sw{height:7.2rem;display:flex}
+.sw i{flex:1}
+.card .t{padding:1rem 1.1rem 1.15rem}
+.card b{display:block;font-size:1rem}
+.card span{display:block;font-size:.84rem;color:#6b6b74;margin-top:.25rem;line-height:1.45}
+.tag{font-style:normal;display:inline-block;margin-top:.7rem;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .55rem;border-radius:99px;background:#16161a0f;color:#4a4a52}
+.tag.ex{background:#16161a;color:#fff}
+@media (hover:hover) and (pointer:fine){.card:hover{transform:translateY(-4px);box-shadow:0 0 0 1px #16161a1f,0 18px 36px #16161a1c}}
+.ref{margin-top:3.6rem;background:#16161a;color:#d4d4d8;border-radius:18px;padding:1.8rem 2rem}
+.ref h3{color:#fff;font-size:1.05rem;margin:0 0 .8rem}
+.ref ul{margin:0;padding-left:1.1rem;display:grid;gap:.4rem;line-height:1.55;font-size:.92rem}
+.ref code{background:#ffffff14;padding:.05rem .35rem;border-radius:5px;font-size:.84em}
+@media(max-width:760px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="rv">3 diseños por rubro, <em>con movimiento cuidado.</em></h1>
+  <p class="lead rv" style="--i:1">Cada rubro tiene el diseño actual (A) y dos nuevos (B y C), todos con la guía de movimiento de Emil Kowalski. Abre uno, usa las pestañas de arriba para compararlos, y prueba <b>Repetir animación</b> y <b>Vista móvil</b>. Pasa el cursor, pulsa los botones y toca los elementos: varios son interactivos.</p>
+
+  <section class="rubro"><h2>Cafetería</h2>
+    <div class="row" data-stagger>
+      <a class="card" href="cafeteria.html#a"><div class="sw"><i style="background:#FBF6EF"></i><i style="background:#6F4E37"></i><i style="background:#C8A27A"></i></div><div class="t"><b>A · Clásico cálido</b><span>Crema y café, Playfair, taza flotante con vapor.</span><em class="tag ex">Existente, afinado</em></div></a>
+      <a class="card" href="cafeteria.html#b"><div class="sw"><i style="background:#D9C6A1"></i><i style="background:#1D1A16"></i><i style="background:#B3402A"></i></div><div class="t"><b>B · Tostadores</b><span>Etiqueta de bolsa sobre papel kraft, carta tipo ticket con puntos guía y sello giratorio.</span><em class="tag">Nuevo</em></div></a>
+      <a class="card" href="cafeteria.html#c"><div class="sw"><i style="background:#1F3A2E"></i><i style="background:#E9B44C"></i><i style="background:#E4572E"></i><i style="background:#F6C9A0"></i></div><div class="t"><b>C · Matutino</b><span>Verde bosque y pegatinas, tipografía enorme, vista previa del plato que sigue al cursor, pastilla «abierto ahora».</span><em class="tag">Nuevo</em></div></a>
+    </div></section>
+
+  <section class="rubro"><h2>Barbería</h2>
+    <div class="row" data-stagger>
+      <a class="card" href="barberia.html#a"><div class="sw"><i style="background:#0D0D0D"></i><i style="background:#C9A227"></i><i style="background:#2a2a2a"></i></div><div class="t"><b>A · Black &amp; Gold</b><span>Negro y dorado, Oswald, diagonal y cinta en movimiento.</span><em class="tag ex">Existente, afinado</em></div></a>
+      <a class="card" href="barberia.html#b"><div class="sw"><i style="background:#F3EBDD"></i><i style="background:#14213D"></i><i style="background:#C1272D"></i></div><div class="t"><b>B · Poste clásico</b><span>Poste de barbero animado, tarifario donde marcas servicios y se arma tu mensaje y ticket de turno.</span><em class="tag">Nuevo</em></div></a>
+      <a class="card" href="barberia.html#c"><div class="sw"><i style="background:#EDEBE4"></i><i style="background:#FF4F1F"></i><i style="background:#F2E94E"></i><i style="background:#111"></i></div><div class="t"><b>C · Calle</b><span>Brutalista: bordes gruesos, sombras duras, botones que se hunden al pulsar, tabla que se rellena.</span><em class="tag">Nuevo</em></div></a>
+    </div></section>
+
+  <section class="rubro"><h2>Perfumes</h2>
+    <div class="row" data-stagger>
+      <a class="card" href="perfumes.html#a"><div class="sw"><i style="background:#FAF8F5"></i><i style="background:#1F1B24"></i><i style="background:#B08D57"></i></div><div class="t"><b>A · Marfil dorado</b><span>Ivory y oro, Cormorant, entradas con desenfoque.</span><em class="tag ex">Existente, afinado</em></div></a>
+      <a class="card" href="perfumes.html#b"><div class="sw"><i style="background:#0B0A0C"></i><i style="background:#5A1424"></i><i style="background:#C8A46A"></i></div><div class="t"><b>B · Noir</b><span>Oscuro y burdeos, Bodoni, luz que sigue al cursor, carrusel con notas que se revelan.</span><em class="tag">Nuevo</em></div></a>
+      <a class="card" href="perfumes.html#c"><div class="sw"><i style="background:#E8ECE0"></i><i style="background:#1E2A22"></i><i style="background:#B5532F"></i></div><div class="t"><b>C · Laboratorio</b><span>Ficha técnica en mono, dibujo botánico que se traza, filtros por familia y barras olfativas.</span><em class="tag">Nuevo</em></div></a>
+    </div></section>
+
+  <section class="rubro"><h2>Salud</h2>
+    <div class="row" data-stagger>
+      <a class="card" href="salud.html#a"><div class="sw"><i style="background:#F6FBFB"></i><i style="background:#0E7C86"></i><i style="background:#DDF1F2"></i></div><div class="t"><b>A · Turquesa</b><span>Bento turquesa, Poppins, cifras que cuentan y preguntas frecuentes.</span><em class="tag ex">Existente, afinado</em></div></a>
+      <a class="card" href="salud.html#b"><div class="sw"><i style="background:#FBF4EC"></i><i style="background:#2F5D50"></i><i style="background:#E9765B"></i><i style="background:#F7DCC8"></i></div><div class="t"><b>B · Cálido</b><span>Formas orgánicas y arcos, Fraunces, acordeón de especialidades y testimonios en globos.</span><em class="tag">Nuevo</em></div></a>
+      <a class="card" href="salud.html#c"><div class="sw"><i style="background:#fff;box-shadow:inset 0 0 0 1px #0002"></i><i style="background:#0F1F3D"></i><i style="background:#7AE0C3"></i></div><div class="t"><b>C · Editorial + agenda</b><span>Azul marino y menta, serif editorial, agenda interactiva de día y hora que arma el mensaje.</span><em class="tag">Nuevo</em></div></a>
+    </div></section>
+
+  <aside class="ref rv">
+    <h3>Reglas de movimiento aplicadas en todos</h3>
+    <ul>
+      <li>Curvas propias: <code>cubic-bezier(.23,1,.32,1)</code> para entradas y <code>(.77,0,.175,1)</code> para movimiento en pantalla. Nunca <code>ease-in</code> en la interfaz.</li>
+      <li>Interfaz bajo 300 ms; solo las entradas decorativas de marketing son más largas.</li>
+      <li>Botones y filas pulsables con <code>scale(.97)</code> al pulsar. Hover solo con puntero fino.</li>
+      <li>Nada nace de <code>scale(0)</code>. Entradas escalonadas de 40–80 ms. Solo <code>transform</code>, <code>opacity</code> y <code>clip-path</code>.</li>
+      <li>Cambios de texto con desenfoque corto de 2 px para ocultar el salto. Respeta <code>prefers-reduced-motion</code>.</li>
+    </ul>
+  </aside>
+</div>
+<script src="base.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@ import { DatosSeccion } from '../core/models';
   selector: 'app-contacto',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="bg-brand px-6 py-16 text-center text-on-brand">
+    <section class="contacto bg-brand px-6 py-16 text-center text-on-brand">
       <h2 class="h2">{{ datos()['titulo'] }}</h2>
       @if (datos()['texto']) { <p class="mt-2 opacity-90">{{ datos()['texto'] }}</p> }
       <a class="btn btn-inv shine mt-6" [href]="wa()" target="_blank" rel="noopener">{{ datos()['boton'] ?? 'Escribir por WhatsApp' }}</a>

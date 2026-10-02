@@ -1,4 +1,5 @@
-import { Rubro, Tema, TipoSeccion } from './models';
+import { DISENOS, Paleta } from './disenos';
+import { Rubro, TipoSeccion } from './models';
 
 /* ---------- Esquemas de los formularios de cada sección ---------- */
 
@@ -10,14 +11,15 @@ export interface DefCampo {
   ph?: string;
   max?: number;
   solo?: Rubro[];                  // si se indica, solo esos rubros ven el campo
+  estilos?: string[];              // si se indica, solo esos diseños lo usan (clave "rubro-diseno", p. ej. "cafeteria-b")
 }
 export interface DefLista {
   t: 'lista'; k: string; l: string; item: string;
   campos: DefCampo[]; vacio: Record<string, string>;
-  solo?: Rubro[];
+  solo?: Rubro[]; estilos?: string[];
 }
-export interface DefImagenes { t: 'imagenes'; k: string; l: string; solo?: Rubro[]; }
-export interface DefItems { t: 'items'; tipo: 'producto' | 'servicio' | 'miembro'; l: string; solo?: Rubro[]; }
+export interface DefImagenes { t: 'imagenes'; k: string; l: string; solo?: Rubro[]; estilos?: string[]; }
+export interface DefItems { t: 'items'; tipo: 'producto' | 'servicio' | 'miembro'; l: string; solo?: Rubro[]; estilos?: string[]; }
 export type DefElemento = DefCampo | DefLista | DefImagenes | DefItems;
 
 export interface DefSeccion {
@@ -45,12 +47,20 @@ export const ESQUEMAS: Record<TipoSeccion, DefSeccion> = {
       { k: 'imagen', l: 'Foto principal', t: 'imagen' },
       { k: 'boton.texto', l: 'Texto del botón', t: 'text', max: 40 },
       { k: 'boton.mensaje', l: 'Mensaje de WhatsApp', t: 'area', ayuda: 'Lo que se escribirá al tocar el botón.', max: 160 },
-      { k: 'cinta', l: 'Palabras de la cinta', t: 'text', ph: 'Corte clásico, Barba, Afeitado, Fade', max: 120, solo: ['barberia'],
-        ayuda: 'La franja que se mueve bajo la portada. Sepáralas con comas; si lo dejas vacío usamos el nombre de tus servicios.' },
-      { k: 'rating', l: 'Calificación', t: 'text', ph: '4.9 ★ · 320 reseñas', max: 40, solo: ['cafeteria'] },
-      { k: 'stat.valor', l: 'Cifra destacada', t: 'number', ph: '12', solo: ['salud'] },
-      { k: 'stat.prefijo', l: 'Prefijo de la cifra', t: 'text', ph: '+', max: 3, solo: ['salud'] },
-      { k: 'stat.texto', l: 'Texto de la cifra', t: 'text', ph: 'años de experiencia', max: 40, solo: ['salud'] },
+      { k: 'cinta', l: 'Palabras de la cinta', t: 'text', ph: 'Corte clásico, Barba, Afeitado, Fade', max: 120, estilos: ['barberia-a', 'cafeteria-c'],
+        ayuda: 'La franja que se mueve bajo la portada. Sepáralas con comas; si lo dejas vacío usamos el nombre de tus servicios o productos.' },
+      { k: 'rating', l: 'Calificación', t: 'text', ph: '4.9 ★ · 320 reseñas', max: 40, estilos: ['cafeteria-a', 'salud-b'] },
+      { k: 'stat.valor', l: 'Cifra destacada', t: 'number', ph: '12', estilos: ['salud-a', 'salud-c'] },
+      { k: 'stat.prefijo', l: 'Prefijo de la cifra', t: 'text', ph: '+', max: 3, estilos: ['salud-a', 'salud-c'] },
+      { k: 'stat.texto', l: 'Texto de la cifra', t: 'text', ph: 'años de experiencia', max: 40, estilos: ['salud-a', 'salud-c'] },
+      { k: 'horas', l: 'Horas de la agenda', t: 'text', ph: '09:00, 10:30, 12:00, 15:00, 16:30, 18:00', max: 120, estilos: ['salud-c'],
+        ayuda: 'Las horas que se ofrecen en la agenda de la portada. Sepáralas con comas.' },
+      { k: 'ficha_titulo', l: 'Título de la etiqueta', t: 'text', ph: 'Chanchamayo Honey Caturra', max: 40, estilos: ['cafeteria-b'],
+        ayuda: 'La etiqueta de bolsa de la portada: el grano o la especialidad de la semana.' },
+      { k: 'ficha_subtitulo', l: 'Línea sobre el título', t: 'text', ph: 'Café en grano · 250 g', max: 40, estilos: ['cafeteria-b'] },
+      { t: 'lista', k: 'ficha', l: 'Datos de la etiqueta', item: 'Dato', estilos: ['cafeteria-b'], campos: [
+        { k: 'clave', l: 'Nombre', t: 'text', ph: 'Altura', max: 20 }, { k: 'valor', l: 'Valor', t: 'text', ph: '1 800 msnm', max: 30 },
+      ], vacio: { clave: '', valor: '' } },
     ],
     inicial: {},
   },
@@ -155,6 +165,12 @@ export const FUENTES: { id: string; titulos: string; texto: string; estilo: stri
   { id: 'montserrat', titulos: 'Montserrat', texto: 'Inter', estilo: 'Limpia y geométrica' },
   { id: 'space', titulos: 'Space Grotesk', texto: 'Inter', estilo: 'Técnica y actual' },
   { id: 'lora', titulos: 'Lora', texto: 'Inter', estilo: 'Serif suave' },
+  { id: 'bricolage', titulos: 'Bricolage Grotesque', texto: 'Inter', estilo: 'Gruesa y juguetona' },
+  { id: 'bodoni', titulos: 'Bodoni Moda', texto: 'Inter', estilo: 'Lujo y contraste' },
+  { id: 'instrument', titulos: 'Instrument Serif', texto: 'Inter', estilo: 'Editorial elegante' },
+  { id: 'newsreader', titulos: 'Newsreader', texto: 'Inter', estilo: 'Periodística' },
+  { id: 'alfa', titulos: 'Alfa Slab One', texto: 'Inter', estilo: 'Rotulada, de barbería antigua' },
+  { id: 'archivo', titulos: 'Archivo Black', texto: 'Inter', estilo: 'Pesada y callejera' },
 ];
 
 export const RADIOS: { id: string; valor: string; nombre: string }[] = [
@@ -163,32 +179,12 @@ export const RADIOS: { id: string; valor: string; nombre: string }[] = [
   { id: 'redondo', valor: '20px', nombre: 'Redondo' },
 ];
 
-export interface Paleta { nombre: string; colores: Tema['colores']; }
+export type { Paleta };
 
-/** Paletas sugeridas por rubro (la primera es la de la plantilla original) */
+/** Paletas sugeridas del diseño 'a' de cada rubro (los otros diseños traen las suyas: ver core/disenos.ts) */
 export const PALETAS: Record<Rubro, Paleta[]> = {
-  cafeteria: [
-    { nombre: 'Café cálido', colores: { primario: '#6F4E37', acento: '#C8A27A', fondo: '#FBF6EF', texto: '#2B1D14' } },
-    { nombre: 'Matcha', colores: { primario: '#3F6B4E', acento: '#A8C69F', fondo: '#F6F8F1', texto: '#1E2B22' } },
-    { nombre: 'Terracota', colores: { primario: '#B4532A', acento: '#E9A87C', fondo: '#FFF7F0', texto: '#33180C' } },
-    { nombre: 'Noche de café', colores: { primario: '#D9A066', acento: '#8B5E3C', fondo: '#1C1410', texto: '#F5EBDD' } },
-  ],
-  barberia: [
-    { nombre: 'Negro y oro', colores: { primario: '#C9A227', acento: '#E5C65A', fondo: '#0D0D0D', texto: '#F2F2F2' } },
-    { nombre: 'Rojo clásico', colores: { primario: '#C8352B', acento: '#F0B2AC', fondo: '#111111', texto: '#F5F5F5' } },
-    { nombre: 'Azul marino', colores: { primario: '#E3B45B', acento: '#6B8FBF', fondo: '#0F1B2D', texto: '#EEF2F8' } },
-    { nombre: 'Hueso y negro', colores: { primario: '#111111', acento: '#8A6D3B', fondo: '#F4F0E8', texto: '#161616' } },
-  ],
-  perfumes: [
-    { nombre: 'Elegante', colores: { primario: '#1F1B24', acento: '#B08D57', fondo: '#FAF8F5', texto: '#1F1B24' } },
-    { nombre: 'Rosé', colores: { primario: '#7A2E4A', acento: '#D8A7B1', fondo: '#FFF7F8', texto: '#2A1219' } },
-    { nombre: 'Noche', colores: { primario: '#D4AF6A', acento: '#8E7CC3', fondo: '#14121C', texto: '#F1ECF7' } },
-    { nombre: 'Marfil', colores: { primario: '#3D3A35', acento: '#A89F91', fondo: '#F7F4EF', texto: '#26231F' } },
-  ],
-  salud: [
-    { nombre: 'Turquesa', colores: { primario: '#0E7C86', acento: '#5BC0BE', fondo: '#F6FBFB', texto: '#12333A' } },
-    { nombre: 'Azul confianza', colores: { primario: '#2563EB', acento: '#93C5FD', fondo: '#F6F9FF', texto: '#13224A' } },
-    { nombre: 'Verde vida', colores: { primario: '#15803D', acento: '#86EFAC', fondo: '#F5FBF7', texto: '#12301E' } },
-    { nombre: 'Lavanda', colores: { primario: '#6D4FC2', acento: '#C4B5F5', fondo: '#FAF8FF', texto: '#241A44' } },
-  ],
+  cafeteria: DISENOS.cafeteria[0].paletas,
+  barberia: DISENOS.barberia[0].paletas,
+  perfumes: DISENOS.perfumes[0].paletas,
+  salud: DISENOS.salud[0].paletas,
 };

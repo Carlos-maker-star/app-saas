@@ -7,7 +7,7 @@ import { DatosSeccion } from '../core/models';
   template: `
     @if (items().length) {
       <section class="border-y border-line">
-        <div class="mx-auto grid max-w-6xl gap-10 px-6 py-14 text-center md:grid-cols-3">
+        <div class="ben-grid st mx-auto grid max-w-6xl gap-10 px-6 py-14 text-center md:grid-cols-3">
           @for (b of items(); track b.titulo) {
             <div><h3 class="text-3xl">{{ b.titulo }}</h3><p class="mt-2 text-sm text-mute">{{ b.texto }}</p></div>
           }

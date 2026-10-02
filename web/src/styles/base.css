@@ -1,0 +1,52 @@
+/* =====================================================================
+   Movimiento y piezas compartidas por los diseños de las landings
+   Reglas (emil-design-eng): curvas propias, nada de ease-in en la interfaz, interfaz < 300 ms,
+   botones con scale(.97) al pulsar, hover solo con puntero fino, nada nace de scale(0),
+   entradas escalonadas de 55–70 ms, solo transform/opacity/clip-path/filter.
+   ===================================================================== */
+:root {
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+  --ease-io: cubic-bezier(.77, 0, .175, 1);
+}
+
+@keyframes entra { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes entra-pop { from { opacity: 0; transform: translateY(8px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes marq { to { transform: translateX(-50%); } }
+@keyframes gira { to { transform: rotate(360deg); } }
+@keyframes late { 70%, 100% { box-shadow: 0 0 0 .55rem #5fe08a00; } }
+@keyframes flota { 50% { transform: translateY(-10px); } }
+@keyframes respira { 50% { border-radius: 42% 58% 40% 60% / 58% 42% 58% 42%; transform: rotate(6deg); } }
+@keyframes poste { to { transform: translateY(56.57px); } }
+@keyframes trazo { to { stroke-dashoffset: 0; } }
+@keyframes subraya { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes destapa { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes ficha { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes pop-blur { from { opacity: 0; transform: translateY(6px); filter: blur(3px); } to { opacity: 1; transform: none; filter: none; } }
+
+/* Portada: cada pieza entra sola al cargar (CSS puro: también funciona con el HTML del servidor) */
+.landing .entra { animation: entra .6s var(--ease-out) both; animation-delay: calc(var(--i, 0) * 70ms); }
+
+/* Secciones: sus hijos (filas, tarjetas…) entran escalonados cuando la sección aparece al hacer scroll.
+   `.now` = ya estaba a la vista al cargar: sin animación ni parpadeo. */
+.landing .reveal:not(.in):not(.now) .st > * { opacity: 0; transform: translateY(12px); }
+.landing .reveal.in:not(.now) .st > * { animation: entra .55s var(--ease-out) both; }
+.landing .st > :nth-child(2) { animation-delay: 55ms; }
+.landing .st > :nth-child(3) { animation-delay: 110ms; }
+.landing .st > :nth-child(4) { animation-delay: 165ms; }
+.landing .st > :nth-child(5) { animation-delay: 220ms; }
+.landing .st > :nth-child(6) { animation-delay: 275ms; }
+.landing .st > :nth-child(n+7) { animation-delay: 330ms; }
+
+/* «Abierto ahora» (cafetería Matutino) */
+.pill-abierto { display: inline-flex; align-items: center; gap: .5rem; padding: .35rem .8rem; border-radius: 999px; background: color-mix(in srgb, var(--ink) 10%, transparent); font-size: .78rem; font-weight: 500; white-space: nowrap; }
+.pill-abierto i { width: .55rem; height: .55rem; border-radius: 50%; background: #5fe08a; box-shadow: 0 0 0 0 #5fe08a99; animation: late 2s var(--ease-out) infinite; }
+.pill-abierto.cerrado i { background: #ff7a59; animation: none; }
+@media (max-width: 760px) { .pill-abierto { display: none; } }
+
+/* Un recuadro de color en lugar de foto: las fotos reales se ven igual en todos los diseños */
+.landing .ph img { transition: transform .5s var(--ease-out); }
+
+@media (prefers-reduced-motion: reduce) {
+  .landing .entra, .landing .reveal.in:not(.now) .st > * { animation: none !important; }
+  .landing .reveal:not(.in) .st > * { opacity: 1 !important; transform: none !important; }
+}

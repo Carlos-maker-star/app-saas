@@ -1,4 +1,9 @@
 @import "tailwindcss";
+@import "./styles/base.css";
+@import "./styles/cafeteria.css";
+@import "./styles/barberia.css";
+@import "./styles/perfumes.css";
+@import "./styles/salud.css";
 
 /* Los colores vienen de variables CSS que pone cada landing (ver core/tema.ts) */
 @theme inline {
@@ -134,9 +139,11 @@ body { margin: 0; background: #f5f5f5; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
   font-weight: 600; padding: .85rem 1.4rem; background: var(--brand); color: var(--on-brand);
-  border-radius: var(--radius); transition: transform .2s, filter .2s; cursor: pointer; text-decoration: none;
+  border-radius: var(--radius); transition: transform .16s var(--ease-out), filter .2s ease, background-color .2s ease; cursor: pointer; text-decoration: none;
 }
-.btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.btn:active { transform: scale(.97); }
+/* el hover solo existe con ratón: en pantallas táctiles el «hover» se quedaría pegado tras tocar */
+@media (hover: hover) and (pointer: fine) { .btn:hover { transform: translateY(-2px); filter: brightness(1.08); } .btn:active { transform: scale(.97); } }
 .btn-sm { padding: .55rem 1rem; font-size: .85rem; }
 .btn-ghost { background: transparent; color: var(--brand); border: 2px solid var(--brand); }
 .btn-inv { background: var(--on-brand); color: var(--brand); }
@@ -150,11 +157,13 @@ body { margin: 0; background: #f5f5f5; }
 .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .leader { display: flex; align-items: baseline; gap: .5rem; }
 .leader i { flex: 1; border-bottom: 2px dotted var(--line); }
-.lift { transition: transform .3s, box-shadow .3s; }
-.lift:hover { transform: translateY(-6px); box-shadow: 0 14px 30px #0002; }
-article:hover > .ph, .ph.zoomable:hover { transform: scale(1.03); }
-.u-link { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .3s; }
-.u-link:hover { background-size: 100% 1px; }
+.lift { transition: transform .3s var(--ease-out), box-shadow .3s var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .lift:hover { transform: translateY(-6px); box-shadow: 0 14px 30px #0002; }
+  article:hover > .ph, .ph.zoomable:hover { transform: scale(1.03); }
+}
+.u-link { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .3s var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .u-link:hover { background-size: 100% 1px; } }
 details > p { animation: fadein .35s ease; }
 details > summary { list-style: none; cursor: pointer; }
 details > summary::-webkit-details-marker { display: none; }
@@ -169,7 +178,8 @@ details[open] .plus { transform: rotate(45deg); }
 .marq { overflow: hidden; white-space: nowrap; }
 .marq > div { display: inline-flex; gap: 3rem; animation: marquee 22s linear infinite; padding-right: 3rem; }
 .marq:hover > div { animation-play-state: paused; }
-.chip { padding: .4rem .9rem; border: 1px solid var(--line); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; background: transparent; cursor: pointer; color: var(--ink); }
+.chip { padding: .4rem .9rem; border: 1px solid var(--line); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; background: transparent; cursor: pointer; color: var(--ink); transition: background-color .18s ease, color .18s ease, transform .16s var(--ease-out); }
+.chip:active { transform: scale(.97); }
 .chip[aria-pressed=true] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 
 /* ---------- identidad por rubro: títulos y navegación ---------- */
@@ -183,11 +193,11 @@ details[open] .plus { transform: rotate(45deg); }
 [data-rubro=barberia] .btn, [data-rubro=perfumes] .btn { text-transform: uppercase; letter-spacing: .12em; font-size: .8rem; }
 
 /* ---------- movimiento: cada rubro entra a su manera ---------- */
-.reveal { opacity: 0; transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1), filter .7s; }
+.reveal { opacity: 0; transition: opacity .7s var(--ease-out), transform .7s var(--ease-out), filter .7s var(--ease-out); }
 [data-rubro=cafeteria] .reveal { transform: translateY(22px); }
 [data-rubro=barberia]  .reveal { transform: translateX(-34px); }
 [data-rubro=perfumes]  .reveal { transform: translateY(8px); filter: blur(8px); }
-[data-rubro=salud]     .reveal { transform: scale(.95) translateY(10px); }
+[data-rubro=salud]     .reveal { transform: scale(.97) translateY(10px); }
 .landing .reveal.in { opacity: 1; transform: none; filter: none; }
 
 @keyframes floaty { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-12px) rotate(1.5deg); } }

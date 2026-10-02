@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cafetería — 3 diseños</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=DM+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* =====================================================================
+   A · Clásico cálido (el que ya existe, con el movimiento afinado)
+   ===================================================================== */
+[data-t=ca]{--bg:#FBF6EF;--surface:#F3E9DB;--ink:#2B1D14;--mute:#6b5646;--line:#d9c7b0;--brand:#6F4E37;--accent:#C8A27A;
+  background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;
+  h1,h2,h3,.fd{font-family:'Playfair Display',serif}
+  .hd{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 2rem;border-bottom:1px solid var(--line)}
+  .logo{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700}
+  nav{display:flex;gap:1.6rem;font-size:.92rem;color:var(--mute)}
+  nav a{text-decoration:none;position:relative;transition:color .15s ease}
+  nav a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease-out)}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--brand);color:#fff;border:0;text-decoration:none;font-weight:600;padding:.85rem 1.4rem;border-radius:12px;transition:transform .16s var(--ease-out),background-color .2s ease}
+  .btn:active{transform:scale(.97)}
+  .btn.o{background:none;color:var(--brand);box-shadow:inset 0 0 0 1.5px var(--brand)}
+  .hero{display:grid;grid-template-columns:1.05fr 1fr;gap:3rem;align-items:center;padding:4.5rem 3rem}
+  .eyebrow{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+  h1{font-size:clamp(2.8rem,6.4cqw,4.6rem);line-height:1.04;margin-top:.9rem;font-weight:700}
+  h1 em{color:var(--brand);font-weight:500}
+  .lead{margin-top:1.1rem;max-width:30rem;color:var(--mute);line-height:1.65}
+  .acts{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.8rem}
+  .art{position:relative;max-width:26rem;width:100%;margin:auto}
+  .disc{aspect-ratio:1;border-radius:50%;background:linear-gradient(135deg,#d9b68f,#a9795a);display:grid;place-items:center;animation:flota 7s ease-in-out infinite}
+  .disc svg{width:56%}
+  
+  .vapor{position:absolute;top:-1.4rem;left:50%;translate:-50% 0}
+  .vapor path{animation:vapor 3.4s ease-in-out infinite;transform-box:fill-box;opacity:0}
+  .vapor path:nth-child(2){animation-delay:.5s}.vapor path:nth-child(3){animation-delay:1s}
+  
+  .rating{position:absolute;left:-1rem;bottom:.2rem;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:.7rem 1rem;font-size:.85rem;box-shadow:0 10px 24px #6f4e3722}
+  .sec{padding:4rem 3rem}.sec.s{background:var(--surface)}
+  .sec h2{font-size:2.3rem;font-weight:700}
+  .sub{color:var(--mute);margin-top:.5rem}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.1rem;margin-top:2rem}
+  .card{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:1.4rem;transition:transform .22s var(--ease-out),box-shadow .22s var(--ease-out)}
+  .card .tag{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-weight:600}
+  .card h3{font-size:1.25rem;margin-top:.6rem}
+  .card p{font-size:.9rem;color:var(--mute);margin-top:.4rem;line-height:1.5}
+  .card .pr{margin-top:1rem;font-weight:700;color:var(--brand)}
+  .quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.5rem;margin-top:2rem}
+  blockquote{margin:0;font-family:'Playfair Display',serif;font-size:1.2rem;line-height:1.5}
+  blockquote cite{display:block;margin-top:.8rem;font:500 .85rem Inter,sans-serif;color:var(--mute)}
+  .cta{margin:0 3rem 4rem;border-radius:24px;background:var(--brand);color:#fff;padding:3.5rem 2rem;text-align:center}
+  .cta h2{font-size:2.2rem}.cta p{opacity:.8;margin:.6rem 0 1.6rem}
+  .cta .btn{background:#fff;color:var(--brand)}
+  footer{padding:1.4rem;text-align:center;font-size:.85rem;color:var(--mute);border-top:1px solid var(--line)}
+  @media (hover:hover) and (pointer:fine){
+    nav a:hover{color:var(--ink)}nav a:hover::after{transform:scaleX(1)}
+    .btn:hover{background:#5a3f2c}.btn.o:hover{background:#6F4E3711}.cta .btn:hover{background:#f3e9db}
+    .card:hover{transform:translateY(-4px);box-shadow:0 16px 30px #6f4e3720}
+  }
+  @container (max-width:760px){
+    .hd{padding:1rem 1.2rem}nav{display:none}
+    .hero{grid-template-columns:1fr;padding:2.5rem 1.4rem;gap:2.5rem}
+    .sec{padding:3rem 1.4rem}.cta{margin:0 1.2rem 3rem}
+  }
+}
+
+/* =====================================================================
+   B · Tostadores — etiqueta de bolsa sobre papel kraft
+   ===================================================================== */
+[data-t=cb]{--bg:#D9C6A1;--paper:#EBDDBE;--ink:#1D1A16;--red:#B3402A;--mute:#5d5240;
+  background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;
+  background-image:radial-gradient(#00000010 1px,transparent 1.2px);background-size:5px 5px;
+  h1,h2,h3,.fd{font-family:Fraunces,serif}
+  .hd{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 2rem;border-bottom:2px solid var(--ink)}
+  .logo{font-family:Fraunces,serif;font-weight:800;font-size:1.3rem;letter-spacing:-.01em}
+  .logo small{font:500 .62rem 'DM Mono';letter-spacing:.2em;display:block;color:var(--mute)}
+  nav{display:flex;gap:1.5rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em}
+  nav a{text-decoration:none;background:linear-gradient(currentColor,currentColor) left bottom/0 1.5px no-repeat;transition:background-size .28s var(--ease-out)}
+  .btn{display:inline-flex;align-items:center;gap:.6rem;border:2px solid var(--ink);background:var(--ink);color:var(--paper);padding:.8rem 1.3rem;font:500 .85rem 'DM Mono';text-transform:uppercase;letter-spacing:.08em;text-decoration:none;border-radius:2px;transition:transform .16s var(--ease-out),background-color .2s ease,color .2s ease}
+  .btn:active{transform:scale(.97)}
+  .btn.o{background:none;color:var(--ink)}
+  .btn svg{transition:transform .25s var(--ease-out)}
+  .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;padding:4rem 3rem 4.5rem;align-items:center}
+  .lab{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:500}
+  h1{font-size:clamp(3rem,8cqw,6.2rem);line-height:.92;font-weight:800;letter-spacing:-.035em;margin-top:1rem}
+  h1 em{font-style:italic;font-weight:500;color:var(--red)}
+  .lead{margin-top:1.4rem;max-width:30rem;line-height:1.7;font-size:.92rem;color:var(--mute)}
+  .acts{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.8rem}
+  .label{position:relative;background:var(--paper);border:2px dashed var(--ink);padding:1.6rem 1.5rem;transform:rotate(-2deg);box-shadow:8px 8px 0 #1d1a1622;max-width:24rem;margin:auto;transition:transform .5s var(--ease-out)}
+  .label h3{font-size:1.5rem;font-weight:800;line-height:1}
+  .label .no{font-size:.7rem;letter-spacing:.2em;color:var(--mute);text-transform:uppercase}
+  .kv{display:flex;align-items:baseline;gap:.4rem;font-size:.8rem;margin-top:.8rem;text-transform:uppercase}
+  .kv::after{content:"";order:1;flex:1;border-bottom:2px dotted #1d1a1666;transform:translateY(-3px)}
+  .kv b{order:2;font-weight:500;color:var(--ink)}
+  .kv span{color:var(--mute)}
+  .bars{height:38px;margin-top:1.3rem;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 9px,var(--ink) 9px 12px,transparent 12px 14px)}
+  .stamp{position:absolute;right:-2.2rem;top:-3.2rem;width:6.6rem;color:var(--red);animation:gira 26s linear infinite}
+  .stamp text{font:500 10px 'DM Mono';fill:currentColor}
+  
+  .ticket{margin:0 3rem;background:var(--paper);padding:2.6rem 2.4rem;--z:radial-gradient(circle at 8px 0,transparent 7px,#000 7.5px) 0 0/16px 51% repeat-x,radial-gradient(circle at 8px 100%,transparent 7px,#000 7.5px) 0 100%/16px 51% repeat-x;-webkit-mask:var(--z);mask:var(--z);display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+  .ticket h2{font-size:2rem;font-weight:800;grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline}
+  .ticket h2 small{font:500 .72rem 'DM Mono';letter-spacing:.16em;color:var(--mute);text-transform:uppercase}
+  .tt{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:.4rem}
+  .row{position:relative;display:flex;align-items:baseline;gap:.5rem;padding:.65rem .5rem;margin:0 -.5rem;font-size:.9rem;isolation:isolate;transition:color .2s ease}
+  .row::before{content:"";position:absolute;inset:0;background:var(--ink);z-index:-1;clip-path:inset(0 100% 0 0);transition:clip-path .22s var(--ease-out)}
+  .row .d{flex:1;border-bottom:2px dotted #1d1a1655;transform:translateY(-4px)}
+  .row b{font-weight:500}
+  .row small{display:block;color:var(--mute);font-size:.72rem;transition:color .2s ease}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;padding:4rem 3rem}
+  .steps .n{font:800 4.2rem/1 Fraunces,serif;color:var(--red);letter-spacing:-.04em}
+  .steps h3{font-size:1.3rem;margin-top:.5rem}
+  .steps p{font-size:.85rem;line-height:1.65;color:var(--mute);margin-top:.5rem}
+  .band{background:var(--ink);color:var(--paper);padding:3.2rem 3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+  .band h2{font-size:2.2rem;font-weight:800;letter-spacing:-.02em}
+  .go{display:inline-flex;align-items:center;gap:.7rem;font:500 1rem 'DM Mono';text-transform:uppercase;letter-spacing:.06em;text-decoration:none;position:relative;padding-bottom:.35rem;color:var(--paper)}
+  .go::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--paper);transform-origin:left;transition:transform .35s var(--ease-out)}
+  .go svg{transition:transform .25s var(--ease-out)}
+  .go:active{transform:scale(.97)}
+  footer{padding:1.2rem;text-align:center;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+  @media (hover:hover) and (pointer:fine){
+    nav a:hover{background-size:100% 1.5px}
+    .btn:hover{background:var(--red);border-color:var(--red);color:#fff}.btn.o:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+    .btn:hover svg,.go:hover svg{transform:translateX(5px)}
+    .go:hover::after{transform:scaleX(.3)}
+    .label:hover{transform:rotate(-.6deg)}
+    .row:hover{color:var(--paper)}.row:hover::before{clip-path:inset(0 0 0 0)}.row:hover small{color:#cdbf9f}
+  }
+  @container (max-width:760px){
+    .hd{padding:1rem 1.2rem}nav{display:none}
+    .hero{grid-template-columns:1fr;padding:2.5rem 1.4rem}
+    .ticket{margin:0 1rem;grid-template-columns:1fr;gap:1.4rem;padding:2rem 1.3rem}
+    .steps{grid-template-columns:1fr;padding:3rem 1.4rem}.band{padding:2.4rem 1.4rem}
+    .stamp{right:-.4rem}
+  }
+}
+
+/* =====================================================================
+   C · Matutino — verde bosque, color y pegatinas
+   ===================================================================== */
+[data-t=cc]{--bg:#1F3A2E;--peach:#F6C9A0;--mustard:#E9B44C;--tomato:#E4572E;--cream:#FFF4E0;--ink:#16281F;
+  background:var(--bg);color:var(--cream);font-family:Inter,sans-serif;
+  h1,h2,h3,.fd{font-family:'Bricolage Grotesque',sans-serif}
+  .hd{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 2rem}
+  .logo{font:800 1.5rem 'Bricolage Grotesque';color:var(--peach);letter-spacing:-.03em}
+  nav{display:flex;gap:1.6rem;font-weight:500;font-size:.92rem;align-items:center}
+  nav a{text-decoration:none;opacity:.8;transition:opacity .15s ease}
+  .pill{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .8rem;border-radius:999px;background:#ffffff14;font-size:.8rem;font-weight:500}
+  .pill i{width:.55rem;height:.55rem;border-radius:50%;background:#5fe08a;box-shadow:0 0 0 0 #5fe08a99;animation:late 2s var(--ease-out) infinite}
+  .pill.c i{background:#ff7a59;animation:none}
+  
+  .btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--mustard);color:var(--ink);border:0;text-decoration:none;font-weight:700;padding:1rem 1.6rem;border-radius:999px;transition:transform .16s var(--ease-out),background-color .2s ease}
+  .btn:active{transform:scale(.97)}
+  .btn.t{background:var(--tomato);color:#fff}
+  .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;padding:3rem 3rem 5rem;align-items:center}
+  h1{font-size:clamp(3.2rem,10.5cqw,8rem);line-height:.88;letter-spacing:-.045em;font-weight:800;color:var(--peach)}
+  h1 .hl{position:relative;display:inline-block;color:var(--ink);padding:0 .12em;z-index:0}
+  h1 .hl::before{content:"";position:absolute;inset:.08em 0 .02em;background:var(--mustard);z-index:-1;transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease-io) .45s;border-radius:.1em}
+  .tema.go1 h1 .hl::before,.in h1 .hl::before,.in.hl::before{transform:scaleX(1)}
+  .lead{margin-top:1.6rem;max-width:27rem;line-height:1.65;color:#f6e7d0cc}
+  .acts{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.8rem;align-items:center}
+  .comp{position:relative;aspect-ratio:1;max-width:25rem;width:100%;margin:auto}
+  .comp>*{position:absolute;will-change:transform}
+  .s1{inset:8% 14% 22% 0;background:var(--mustard);border-radius:50%}
+  .s2{inset:30% 0 0 38%;background:var(--tomato);border-radius:2rem}
+  .s3{inset:0 30% 58% 32%;background:var(--cream);border-radius:999px 999px 0 0}
+  .comp svg{inset:22% 18% 18% 18%;width:64%;filter:drop-shadow(0 14px 0 #00000026)}
+  .strip{background:var(--mustard);color:var(--ink);overflow:hidden;padding:.9rem 0;transform:rotate(-1.2deg);margin:-1.5rem -1rem 0}
+  .strip div{display:flex;gap:2rem;width:max-content;font:800 1.5rem 'Bricolage Grotesque';text-transform:uppercase;letter-spacing:-.01em;animation:marq 24s linear infinite}
+  
+  .menu{background:var(--cream);color:var(--ink);padding:5rem 3rem 4rem;position:relative}
+  .menu h2{font-size:clamp(2.2rem,5cqw,3.4rem);letter-spacing:-.035em;font-weight:800}
+  .menu h2 span{color:var(--tomato)}
+  .list{margin-top:2rem;border-top:2px solid var(--ink)}
+  .it{display:flex;align-items:baseline;gap:1rem;padding:1.15rem .3rem;border-bottom:2px solid var(--ink);cursor:default;transition:transform .28s var(--ease-out),color .2s ease}
+  .it h3{font-size:clamp(1.6rem,4cqw,2.6rem);letter-spacing:-.03em;font-weight:800;flex:1}
+  .it p{font-size:.85rem;color:#16281fa0;max-width:15rem}
+  .it b{font:800 1.5rem 'Bricolage Grotesque'}
+  .prev{position:fixed;left:0;top:0;width:11rem;height:11rem;pointer-events:none;border-radius:2rem;opacity:0;transform:translate3d(0,0,0) scale(.92);transition:opacity .18s ease,scale .25s var(--ease-out);z-index:30;display:grid;place-items:center;font:800 1rem 'Bricolage Grotesque';text-align:center;padding:1rem;color:var(--ink)}
+  .prev.on{opacity:1;scale:1}
+  .cta{background:var(--tomato);color:#fff;padding:4rem 3rem;display:flex;gap:2rem;justify-content:space-between;align-items:center;flex-wrap:wrap}
+  .cta h2{font-size:clamp(2.2rem,6cqw,4rem);letter-spacing:-.04em;line-height:.95;font-weight:800;max-width:30rem}
+  .cta .btn{background:var(--cream);color:var(--ink)}
+  footer{background:var(--ink);padding:1.4rem;text-align:center;font-size:.82rem;color:#f6e7d099}
+  @media (hover:hover) and (pointer:fine){
+    nav a:hover{opacity:1}
+    .btn:hover{background:#f5c85f}.btn.t:hover{background:#f0693f}.cta .btn:hover{background:#fff}
+    .list:hover .it{color:#16281f55}.list .it:hover{color:var(--ink);transform:translateX(14px)}
+  }
+  @container (max-width:760px){
+    .hd{padding:1rem 1.2rem}nav a{display:none}
+    .hero{grid-template-columns:1fr;padding:1.5rem 1.4rem 4rem}.comp{max-width:17rem}
+    .menu{padding:3.5rem 1.4rem 3rem}.it p{display:none}.cta{padding:3rem 1.4rem}
+  }
+}
+/* animaciones (a nivel raíz: no pueden ir dentro de reglas anidadas) */
+@keyframes flota{50%{transform:translateY(-10px) rotate(1.2deg)}}
+@keyframes vapor{0%{transform:translateY(8px);opacity:0}30%{opacity:.9}100%{transform:translateY(-14px);opacity:0}}
+@keyframes gira{to{transform:rotate(360deg)}}
+@keyframes late{70%,100%{box-shadow:0 0 0 .5rem #5fe08a00}}
+@keyframes marq{to{transform:translateX(-50%)}}
+</style>
+</head>
+<body>
+<div class="bar">
+  <a class="back" href="index.html">← Bocetos</a><span class="tit">Cafetería</span>
+  <div class="tabs" role="tablist"><span class="ind"></span>
+    <button class="tab" role="tab" data-d="a">A · Clásico cálido</button>
+    <button class="tab" role="tab" data-d="b">B · Tostadores</button>
+    <button class="tab" role="tab" data-d="c">C · Matutino</button>
+  </div>
+  <span class="sp"></span>
+  <button class="alt" id="replay">Repetir animación</button>
+  <button class="alt" id="vista">Vista: escritorio</button>
+</div>
+
+<div class="stage">
+
+<!-- ================= A ================= -->
+<article class="dsg" id="a" hidden>
+<aside class="notes"><b>Movimiento aplicado (Emil)</b><ul>
+  <li>Entradas con escalonado de 60 ms y curva <code>cubic-bezier(.23,1,.32,1)</code>; nada nace de <code>scale(0)</code>.</li>
+  <li>Botones con <code>scale(.97)</code> al pulsar; el hover solo existe con puntero fino (en móvil no «se queda pegado»).</li>
+  <li>El vapor y el plato flotante son decorativos y lentos; las tarjetas suben 4 px en 220 ms, solo <code>transform</code> y sombra.</li>
+</ul></aside>
+<div class="tema" data-t="ca">
+  <header class="hd"><span class="logo">Café Aroma</span><nav><a href="#">Carta</a><a href="#">Nosotros</a><a href="#">Horario</a></nav><a class="btn" href="#">Pedir por WhatsApp</a></header>
+  <section class="hero">
+    <div data-stagger>
+      <p class="eyebrow">Café de especialidad · Arequipa</p>
+      <h1>El café que te <em>abraza</em> por la mañana.</h1>
+      <p class="lead">Granos de altura, tostados cada semana. Pasa por una taza o pídela por WhatsApp y te la tenemos lista.</p>
+      <div class="acts"><a class="btn" href="#">Pedir ahora</a><a class="btn o" href="#">Ver carta</a></div>
+    </div>
+    <div class="art rv rv-pop">
+      <div class="disc"><svg viewBox="0 0 120 120" fill="none"><path d="M24 48h58v26a26 26 0 0 1-26 26h-6a26 26 0 0 1-26-26V48Z" fill="#fff8ee"/><path d="M82 56h8a10 10 0 0 1 0 22h-9" stroke="#fff8ee" stroke-width="7" stroke-linecap="round"/><ellipse cx="53" cy="48" rx="29" ry="6" fill="#4b2e1f"/></svg></div>
+      <svg class="vapor" width="90" height="70" viewBox="0 0 90 70" fill="none" stroke="#C8A27A" stroke-width="4" stroke-linecap="round" aria-hidden="true"><path d="M20 65c-10-12 10-20 0-32s10-20 0-30"/><path d="M45 65c-10-12 10-20 0-32s10-20 0-30"/><path d="M70 65c-10-12 10-20 0-32s10-20 0-30"/></svg>
+      <div class="rating"><b>4.9 ★</b> · 312 reseñas</div>
+    </div>
+  </section>
+  <section class="sec s">
+    <h2 class="rv">Nuestra carta</h2><p class="sub rv" style="--i:1">Lo que más piden por las mañanas.</p>
+    <div class="cards" data-stagger>
+      <div class="card"><span class="tag">Café</span><h3>Flat white</h3><p>Doble ristretto con leche texturizada, sedoso y de poca espuma.</p><p class="pr">S/ 12</p></div>
+      <div class="card"><span class="tag">Café</span><h3>Cold brew de la casa</h3><p>Infusionado 18 horas en frío. Notas de cacao y naranja.</p><p class="pr">S/ 14</p></div>
+      <div class="card"><span class="tag">Panadería</span><h3>Croissant de almendra</h3><p>Hojaldre de mantequilla, relleno de crema de almendra tostada.</p><p class="pr">S/ 9</p></div>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="quotes" data-stagger>
+      <blockquote>“El mejor flat white de la ciudad. Y siempre me saludan por mi nombre.”<cite>— Lucía M.</cite></blockquote>
+      <blockquote>“Pedí por WhatsApp camino a la oficina y ya estaba listo. Cero espera.”<cite>— Diego R.</cite></blockquote>
+    </div>
+  </section>
+  <section class="cta rv"><h2 class="fd">¿Antojo de algo rico?</h2><p>Escríbenos y te lo preparamos.</p><a class="btn" href="#">Pedir por WhatsApp</a></section>
+  <footer>© Café Aroma · Instagram · Facebook</footer>
+</div>
+</article>
+
+<!-- ================= B ================= -->
+<article class="dsg" id="b" hidden>
+<aside class="notes"><b>Movimiento aplicado (Emil)</b><ul>
+  <li>Filas de la carta: un fondo que se «pinta» de izquierda a derecha con <code>clip-path: inset()</code> en 220 ms (sin animar <code>width</code>). Al salir del hover vuelve igual de rápido.</li>
+  <li>El sello gira a 26 s con <code>linear</code> (movimiento constante = linear). La etiqueta se endereza apenas 1.4° al pasar el cursor, con <code>transform</code>.</li>
+  <li>Subrayado del enlace principal: <code>scaleX</code> con <code>transform-origin</code> a la izquierda; la flecha se desplaza 5 px, no la línea entera.</li>
+</ul></aside>
+<div class="tema" data-t="cb">
+  <header class="hd"><span class="logo">Café Aroma<small>Tostadores · Arequipa</small></span><nav><a href="#">Carta</a><a href="#">Granos</a><a href="#">Cómo pedir</a></nav><a class="btn" href="#">Pedir</a></header>
+  <section class="hero">
+    <div data-stagger>
+      <p class="lab">Lote Nº 042 · tueste de esta semana</p>
+      <h1>Tostado <em>ayer.</em> En tu taza hoy.</h1>
+      <p class="lead">Tostamos en lotes pequeños cada lunes. Si el grano tiene más de diez días, no sale a la barra. Pide por WhatsApp y retira sin cola.</p>
+      <div class="acts"><a class="btn" href="#">Pedir <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a><a class="btn o" href="#">Ver granos</a></div>
+    </div>
+    <div class="label rv rv-pop">
+      <svg class="stamp" viewBox="0 0 100 100"><defs><path id="c" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0"/></defs><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="2"/><text><textPath href="#c" textLength="236" lengthAdjust="spacing">ORIGEN ÚNICO · TUESTE MEDIO · LOTE 042 ·</textPath></text></svg>
+      <p class="no">Café en grano · 250 g</p>
+      <h3>Chanchamayo<br>Honey Caturra</h3>
+      <div class="kv"><span>Altura</span><b>1 800 msnm</b></div>
+      <div class="kv"><span>Proceso</span><b>Honey</b></div>
+      <div class="kv"><span>Notas</span><b>Cacao · Naranja</b></div>
+      <div class="kv"><span>Tostado</span><b>Lun 12</b></div>
+      <div class="bars"></div>
+    </div>
+  </section>
+  <section class="ticket rv">
+    <h2>Carta del día <small>Nº 0231 · Mesa / Para llevar</small></h2>
+    <div>
+      <p class="tt">Café</p>
+      <div class="row"><b>Espresso<small>doble ristretto</small></b><span class="d"></span><b>S/ 7</b></div>
+      <div class="row"><b>Flat white<small>leche texturizada</small></b><span class="d"></span><b>S/ 12</b></div>
+      <div class="row"><b>V60 del lote<small>filtrado de origen</small></b><span class="d"></span><b>S/ 15</b></div>
+      <div class="row"><b>Cold brew<small>18 h en frío</small></b><span class="d"></span><b>S/ 14</b></div>
+    </div>
+    <div>
+      <p class="tt">Panadería</p>
+      <div class="row"><b>Croissant<small>mantequilla y almendra</small></b><span class="d"></span><b>S/ 9</b></div>
+      <div class="row"><b>Pan de masa madre<small>con palta y huevo</small></b><span class="d"></span><b>S/ 16</b></div>
+      <div class="row"><b>Brownie<small>cacao 70%</small></b><span class="d"></span><b>S/ 8</b></div>
+      <div class="row"><b>Granos 250 g<small>para llevar</small></b><span class="d"></span><b>S/ 38</b></div>
+    </div>
+  </section>
+  <section class="steps" data-stagger>
+    <div><div class="n">01</div><h3>Elige</h3><p>Mira la carta o el grano de la semana y decide.</p></div>
+    <div><div class="n">02</div><h3>Escríbenos</h3><p>Un mensaje por WhatsApp con tu pedido y la hora de recojo.</p></div>
+    <div><div class="n">03</div><h3>Recoge</h3><p>Entra, di tu nombre y llévate tu pedido caliente.</p></div>
+  </section>
+  <section class="band"><h2 class="rv">¿Listo para tu taza?</h2><a class="go rv" style="--i:1" href="#">Escríbenos por WhatsApp <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a></section>
+  <footer>Café Aroma · Lun–Sáb 7:00–21:00 · Instagram</footer>
+</div>
+</article>
+
+<!-- ================= C ================= -->
+<article class="dsg" id="c" hidden>
+<aside class="notes"><b>Movimiento aplicado (Emil)</b><ul>
+  <li>Vista previa de cada plato sigue al cursor con <b>interpolación tipo resorte</b> (decorativa); aparece con <code>opacity</code> + <code>scale(.92→1)</code> en 250 ms, nunca desde 0.</li>
+  <li>El resaltador de «Buen día» se dibuja con <code>scaleX</code> y la curva <code>ease-in-out</code> (es movimiento en pantalla). Las formas del hero reaccionan al cursor con el mismo resorte, en capas con distinta intensidad.</li>
+  <li>La lista atenúa las demás filas al pasar el cursor y la fila activa avanza 14 px; la pastilla «Abierto ahora» se calcula con la hora real.</li>
+</ul></aside>
+<div class="tema" data-t="cc">
+  <header class="hd"><span class="logo">aroma.</span><nav><a href="#">Carta</a><a href="#">Horario</a><span class="pill" id="abierto"><i></i><span>Abierto ahora</span></span></nav></header>
+  <section class="hero">
+    <div data-stagger>
+      <h1>Buen café. <span class="hl rv" style="--i:3">Buen día.</span></h1>
+      <p class="lead">Café de especialidad, pan de masa madre y desayunos que te ponen de buen humor. En Yanahuara, desde las 7.</p>
+      <div class="acts"><a class="btn" href="#">Pedir por WhatsApp</a><a class="btn t" href="#">Ver carta</a></div>
+    </div>
+    <div class="comp rv rv-pop" id="comp">
+      <div class="s1" data-k="14"></div><div class="s2" data-k="-10"></div><div class="s3" data-k="8"></div>
+      <svg viewBox="0 0 120 120" fill="none" data-k="-18"><path d="M20 44h62v26a28 28 0 0 1-28 28h-6A28 28 0 0 1 20 70V44Z" fill="#fff4e0"/><path d="M82 52h9a11 11 0 0 1 0 24h-10" stroke="#fff4e0" stroke-width="8" stroke-linecap="round"/><ellipse cx="51" cy="44" rx="31" ry="7" fill="#1F3A2E"/></svg>
+    </div>
+  </section>
+  <div class="strip"><div><span>Café de especialidad</span><span>✺</span><span>Pan de masa madre</span><span>✺</span><span>Desayunos todo el día</span><span>✺</span><span>Café de especialidad</span><span>✺</span><span>Pan de masa madre</span><span>✺</span><span>Desayunos todo el día</span><span>✺</span></div></div>
+  <section class="menu">
+    <h2 class="rv">Lo que <span>sale volando</span></h2>
+    <div class="list" data-stagger>
+      <div class="it" data-c="#E9B44C" data-n="Flat white"><h3>Flat white</h3><p>Doble ristretto, leche sedosa.</p><b>S/ 12</b></div>
+      <div class="it" data-c="#E4572E" data-n="Tostada con palta"><h3>Tostada con palta</h3><p>Masa madre, huevo pochado, ají.</p><b>S/ 16</b></div>
+      <div class="it" data-c="#F6C9A0" data-n="Croissant"><h3>Croissant</h3><p>Mantequilla de verdad.</p><b>S/ 9</b></div>
+      <div class="it" data-c="#9BC4A5" data-n="Matcha latte"><h3>Matcha latte</h3><p>Ceremonial, con leche de avena.</p><b>S/ 15</b></div>
+    </div>
+  </section>
+  <section class="cta"><h2 class="rv">Hoy toca un buen café.</h2><a class="btn rv" style="--i:1" href="#">Pedir por WhatsApp</a></section>
+  <footer>aroma. · Calle Jerusalén 214 · @aromacafe</footer>
+  <div class="prev" id="prev"></div>
+</div>
+</article>
+
+</div>
+
+<a class="wa" href="#">WhatsApp</a>
+<script src="base.js"></script>
+<script>
+(() => {
+  const V = window.V, { $, $$ } = V;
+  /* C · pastilla abierto/cerrado con la hora real (7:00–21:00) */
+  const h = new Date().getHours(), ab = h >= 7 && h < 21, p = $('#abierto');
+  p.classList.toggle('c', !ab);
+  p.lastElementChild.textContent = ab ? 'Abierto ahora · cierra 9 pm' : 'Cerrado · abre a las 7 am';
+
+  if (!V.fino || V.reducido) return;
+  /* C · vista previa del plato que sigue al cursor + capas que reaccionan */
+  const prev = $('#prev'), mover = V.resorte((x, y) => { prev.style.transform = `translate3d(${x}px,${y}px,0)`; }, 0.16);
+  $$('#c .it').forEach((it) => {
+    it.addEventListener('pointerenter', () => { prev.style.background = it.dataset.c; prev.textContent = it.dataset.n; prev.classList.add('on'); });
+    it.addEventListener('pointerleave', () => prev.classList.remove('on'));
+    /* .prev es fixed dentro de un contenedor con contención: las coordenadas son relativas a él */
+    it.addEventListener('pointermove', (e) => { const r = $('#c .tema').getBoundingClientRect(); mover(e.clientX - r.left + 24, e.clientY - r.top - 90); });
+  });
+  const comp = $('#comp'), capas = $$('#comp > *');
+  const par = V.resorte((x, y) => capas.forEach((c) => { const k = +c.dataset.k / 100; c.style.transform = `translate3d(${x * k}px,${y * k}px,0)`; }), 0.08);
+  $('#c').addEventListener('pointermove', (e) => { const r = comp.getBoundingClientRect(); par(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2)); });
+})();
+</script>
+</body>
+</html>

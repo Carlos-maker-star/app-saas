@@ -1,7 +1,8 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { Auth } from './auth.service';
+import { defDiseno, disenoDe, estiloDe } from './disenos';
 import { TIPOS_AGREGABLES, ESQUEMAS } from './esquemas';
-import { Item, LandingPublica, Redes, Rubro, Seccion, Tema, TipoSeccion } from './models';
+import { Diseno, Item, LandingPublica, Redes, Rubro, Seccion, Tema, TipoSeccion } from './models';
 import { limpiarRedes } from './redes';
 import { setRuta } from './ruta';
 import { supabase } from './supabase.client';
@@ -29,12 +30,14 @@ export class EditorStore {
   readonly slug = signal('');
   readonly rubro = signal<Rubro>('cafeteria');
   readonly negocio = signal<DatosNegocio>({ nombre: '', whatsapp: '', logo_url: null, icono_url: null, email: '', telefono: '', direccion: '', redes: {} });
-  readonly tema = signal<Tema>({ colores: { primario: '#4338ca', acento: '#818cf8', fondo: '#ffffff', texto: '#111111' }, fuentes: { titulos: 'Inter', texto: 'Inter' }, radio: '12px' });
+  readonly tema = signal<Tema>({ colores: { primario: '#4338ca', acento: '#818cf8', fondo: '#ffffff', texto: '#111111' }, fuentes: { titulos: 'Inter', texto: 'Inter' }, radio: '12px', diseno: 'a' });
   readonly secciones = signal<Seccion[]>([]);
   readonly seo = signal<Seo>({});
   readonly items = signal<Item[]>([]);
   readonly publicada = signal(false);
-  private plantillaTema: Tema | null = null;
+  /** Diseño elegido dentro del rubro y clave que usan los estilos (rubro-diseno) */
+  readonly diseno = computed(() => disenoDe(this.tema()));
+  readonly estilo = computed(() => estiloDe(this.rubro(), this.diseno()));
 
   /** Cuántos productos/servicios se están guardando en este momento */
   readonly itemsPendientes = signal(0);
@@ -76,7 +79,7 @@ export class EditorStore {
 
     const [t, l, it] = await Promise.all([
       supabase.from('tenants').select('slug, rubro, nombre, whatsapp, logo_url, icono_url, email, telefono, direccion, redes').eq('id', id).single(),
-      supabase.from('landings').select('plantilla_id, tema, borrador, publicado, tema_publicado, seo, seo_publicado, publicada').eq('tenant_id', id).single(),
+      supabase.from('landings').select('tema, borrador, publicado, tema_publicado, seo, seo_publicado, publicada').eq('tenant_id', id).single(),
       supabase.from('items').select('*').eq('tenant_id', id).order('tipo').order('orden'),
     ]);
 
@@ -102,11 +105,6 @@ export class EditorStore {
     this.seo.set((l.data.seo ?? {}) as Seo);
     this.items.set((it.data ?? []) as Item[]);
     this.publicada.set(!!l.data.publicada);
-
-    if (l.data.plantilla_id) {
-      const p = await supabase.from('plantillas').select('tema').eq('id', l.data.plantilla_id).maybeSingle();
-      this.plantillaTema = (p.data?.tema as Tema | undefined) ?? null;
-    }
 
     this.snapGuardadoSig.set(this.guardable());
     this.snapPublicadoSig.set(l.data.publicada
@@ -148,8 +146,14 @@ export class EditorStore {
     this.tema.update((t) => ({ ...t, radio }));
   }
 
+  /** Cambia de diseño: se aplican su paleta, tipografías y bordes; el contenido no se toca */
+  setDiseno(d: Diseno): void {
+    this.tema.set(structuredClone(defDiseno(this.rubro(), d).tema));
+  }
+
+  /** Vuelve a los colores, tipografías y bordes originales del diseño actual */
   restablecerTema(): void {
-    if (this.plantillaTema) this.tema.set(structuredClone(this.plantillaTema));
+    this.tema.set(structuredClone(defDiseno(this.rubro(), this.diseno()).tema));
   }
 
   /* ---------------- Secciones ---------------- */

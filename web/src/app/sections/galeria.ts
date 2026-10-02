@@ -12,7 +12,7 @@ import { urlSegura } from '../core/seguridad';
         <h2 class="h2">{{ datos()['titulo'] }}</h2>
         <div class="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3">
           @for (f of fotos(); track $index) {
-            <div class="ph zoomable aspect-[4/5] rounded-[var(--radius)] md:[&:nth-child(3n+2)]:mt-8">
+            <div class="gal-ph ph zoomable aspect-[4/5] rounded-[var(--radius)] md:[&:nth-child(3n+2)]:mt-8">
               @if (f) { <img [src]="f" alt="" loading="lazy"> }
             </div>
           }

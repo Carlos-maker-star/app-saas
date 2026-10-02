@@ -9,6 +9,7 @@ export const routes: Routes = [
   { path: '', component: InicioPage },
   { path: 'n/:slug', component: LandingPage },     // negocio real
   { path: 'demo/:rubro', component: LandingPage }, // plantilla con datos de ejemplo
+  { path: 'demo/:rubro/:diseno', component: LandingPage }, // ...con uno de sus 3 diseños (a, b, c)
   { path: 'vista-previa', loadComponent: () => import('./pages/vista-previa.page').then((m) => m.VistaPreviaPage) }, // iframe del editor
   { path: 'editor', canActivate: [soloCliente], loadComponent: () => import('./pages/editor.page').then((m) => m.EditorPage) },
 

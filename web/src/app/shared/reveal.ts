@@ -15,7 +15,7 @@ export class Reveal {
     afterNextRender(() => {
       if (reducido() || !('IntersectionObserver' in window)) return;
       if (el.getBoundingClientRect().top < innerHeight * 0.95) {
-        el.classList.add('reveal', 'in'); // ya visible: sin animación ni parpadeo
+        el.classList.add('reveal', 'in', 'now'); // ya visible: sin animación ni parpadeo
         return;
       }
       el.classList.add('reveal');

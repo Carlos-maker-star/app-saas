@@ -1,0 +1,143 @@
+/* =====================================================================
+   CAFETERÍA · diseños b (Tostadores) y c (Matutino). El a vive en styles.css.
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   B · Tostadores — papel kraft, etiqueta de bolsa, carta tipo ticket
+   (paleta: --bg kraft, --brand tinta, --accent rojo)
+   --------------------------------------------------------------------- */
+.landing[data-estilo=cafeteria-b] {
+  --paper: color-mix(in srgb, var(--bg) 52%, #fff);
+  background-image: radial-gradient(#00000010 1px, transparent 1.2px);
+  background-size: 5px 5px;
+  font-size: .95rem;
+
+  .h2 { font-weight: 800; letter-spacing: -.02em; }
+  header { border-color: var(--ink) !important; border-bottom-width: 2px; }
+  .nav-link { text-transform: uppercase; letter-spacing: .1em; font-size: .75rem; }
+
+  .btn { border: 2px solid var(--ink); background: var(--ink); color: var(--on-brand); border-radius: 2px; text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; font-weight: 500;
+         transition: transform .16s var(--ease-out), background-color .2s ease, color .2s ease, border-color .2s ease; }
+  .btn:active { transform: scale(.97); }
+  .btn svg { transition: transform .25s var(--ease-out); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 2px solid var(--ink); }
+
+  .tos-lab { font-size: .74rem; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+  .tos-h1 { font-size: clamp(2.8rem, 8vw, 6rem); line-height: .92; font-weight: 800; letter-spacing: -.035em; margin-top: 1rem; }
+  .tos-h1 em { font-style: italic; font-weight: 500; color: var(--accent); }
+  .tos-lead { margin-top: 1.4rem; max-width: 30rem; line-height: 1.7; color: var(--mute); }
+
+  .tos-label { position: relative; background: var(--paper); border: 2px dashed var(--ink); padding: 1.6rem 1.5rem; transform: rotate(-2deg); box-shadow: 8px 8px 0 color-mix(in srgb, var(--ink) 14%, transparent); max-width: 24rem; width: 100%; margin: auto; transition: transform .5s var(--ease-out); }
+  .tos-foto { aspect-ratio: 16/10; margin-bottom: 1rem; }
+  .tos-no { font-size: .7rem; letter-spacing: .2em; color: var(--mute); text-transform: uppercase; }
+  .tos-ft { font-size: 1.6rem; font-weight: 800; line-height: 1; margin-top: .3rem; }
+  .tos-kv { display: flex; align-items: baseline; gap: .4rem; font-size: .8rem; margin-top: .8rem; text-transform: uppercase; }
+  .tos-kv::after { content: ""; order: 1; flex: 1; border-bottom: 2px dotted color-mix(in srgb, var(--ink) 40%, transparent); transform: translateY(-3px); }
+  .tos-kv b { order: 2; font-weight: 500; }
+  .tos-kv span { color: var(--mute); }
+  .tos-bars { height: 38px; margin-top: 1.3rem; background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 4px, var(--ink) 4px 5px, transparent 5px 9px, var(--ink) 9px 12px, transparent 12px 14px); }
+  .tos-stamp { position: absolute; right: -2.2rem; top: -3.2rem; width: 6.6rem; color: var(--accent); animation: gira 26s linear infinite; }
+  .tos-stamp text { font: 500 10px var(--fb); fill: currentColor; }
+
+  .tos-ticket { background: var(--paper); padding: 2.6rem 2.4rem; --z: radial-gradient(circle at 8px 0, transparent 7px, #000 7.5px) 0 0/16px 51% repeat-x, radial-gradient(circle at 8px 100%, transparent 7px, #000 7.5px) 0 100%/16px 51% repeat-x; -webkit-mask: var(--z); mask: var(--z); }
+  .tos-h2 { font-family: var(--fd); font-size: 2rem; font-weight: 800; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+  .tos-h2 small { font: 500 .72rem var(--fb); letter-spacing: .16em; color: var(--mute); text-transform: uppercase; }
+  .tos-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 2.4rem 3rem; }
+  .tos-tt { font-size: .74rem; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: .4rem; }
+  .tos-row { position: relative; display: flex; align-items: baseline; gap: .5rem; padding: .65rem .5rem; margin: 0 -.5rem; font-size: .9rem; isolation: isolate; text-decoration: none; transition: color .2s ease, transform .16s var(--ease-out); }
+  .tos-row:active { transform: scale(.985); }
+  .tos-row::before { content: ""; position: absolute; inset: 0; background: var(--ink); z-index: -1; clip-path: inset(0 100% 0 0); transition: clip-path .22s var(--ease-out); }
+  .tos-row .tos-d { flex: 1; border-bottom: 2px dotted color-mix(in srgb, var(--ink) 35%, transparent); transform: translateY(-4px); }
+  .tos-row b { font-weight: 500; }
+  .tos-row small { display: block; color: var(--mute); font-size: .72rem; font-weight: 400; transition: color .2s ease; }
+
+  /* Cómo pedir: beneficios como pasos con números grandes */
+  .ben-grid { gap: 2rem; text-align: left; }
+  .ben-grid > div { counter-increment: paso; }
+  .ben-grid > div::before { content: "0" counter(paso); display: block; font: 800 4rem/1 var(--fd); color: var(--accent); letter-spacing: -.04em; }
+  .ben-grid h3 { font-size: 1.3rem; margin-top: .5rem; }
+  section:has(.ben-grid) { border-color: transparent; }
+
+  /* Llamado final: banda de tinta */
+  .contacto { background: var(--ink); color: var(--bg); text-align: left; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.6rem; }
+  .contacto .btn-inv { background: transparent; color: var(--bg); border-color: var(--bg); }
+  footer { color: var(--mute); text-transform: uppercase; letter-spacing: .12em; font-size: .72rem; border-color: var(--ink); }
+
+  @media (hover: hover) and (pointer: fine) {
+    .btn:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); transform: none; filter: none; }
+    .btn:active { transform: scale(.97); }
+    .btn-ghost:hover { background: var(--ink); border-color: var(--ink); color: var(--on-brand); }
+    .btn:hover svg { transform: translateX(5px); }
+    .tos-label:hover { transform: rotate(-.6deg); }
+    .tos-row:hover { color: var(--bg); }
+    .tos-row:hover::before { clip-path: inset(0 0 0 0); }
+    .tos-row:hover small { color: color-mix(in srgb, var(--bg) 75%, var(--ink)); }
+    .contacto .btn-inv:hover { background: var(--bg); color: var(--ink); }
+  }
+  @media (max-width: 760px) {
+    .tos-ticket { padding: 2rem 1.3rem; }
+    .tos-stamp { right: -.4rem; }
+  }
+}
+
+/* ---------------------------------------------------------------------
+   C · Matutino — verde bosque, pegatinas y letras enormes
+   (paleta: --bg verde, --brand mostaza, --accent tomate, --ink crema)
+   --------------------------------------------------------------------- */
+.landing[data-estilo=cafeteria-c] {
+  --mat-peach: color-mix(in srgb, var(--accent) 24%, var(--ink));
+  --mat-dark: color-mix(in srgb, var(--bg) 78%, #000);
+
+  .h2 { font-weight: 800; letter-spacing: -.035em; }
+  header { border-color: transparent !important; }
+  .nav-link { font-weight: 500; }
+  .btn { border-radius: 999px; font-weight: 700; padding: 1rem 1.6rem; color: var(--on-brand); transition: transform .16s var(--ease-out), background-color .2s ease, filter .2s ease; }
+  .btn:active { transform: scale(.97); }
+  .btn-ghost, .mat-btn2 { background: var(--accent); color: var(--on-accent); border: 0; }
+  .btn-inv { background: var(--ink); color: var(--mat-dark); }
+
+  .mat-h1 { font-size: clamp(3rem, 9.4vw, 7.4rem); line-height: .88; letter-spacing: -.045em; font-weight: 800; color: var(--mat-peach); }
+  .mat-hl { position: relative; display: inline-block; color: var(--mat-dark); padding: 0 .12em; z-index: 0; }
+  .mat-hl::before { content: ""; position: absolute; inset: .08em 0 .02em; background: var(--brand); z-index: -1; transform-origin: left; border-radius: .1em; animation: subraya .7s var(--ease-io) .45s both; }
+  .mat-lead { margin-top: 1.5rem; max-width: 27rem; line-height: 1.65; color: color-mix(in srgb, var(--ink) 80%, transparent); }
+  .mat-etq { margin-top: .9rem; font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; color: color-mix(in srgb, var(--ink) 60%, transparent); }
+
+  .mat-comp { position: relative; aspect-ratio: 1; max-width: 25rem; width: 100%; margin: auto; }
+  .mat-comp > * { position: absolute; will-change: transform; }
+  .mat-s1 { inset: 8% 14% 22% 0; background: var(--brand); border-radius: 50%; }
+  .mat-s2 { inset: 30% 0 0 38%; background: var(--accent); border-radius: 2rem; }
+  .mat-s3 { inset: 0 30% 58% 32%; background: var(--ink); border-radius: 999px 999px 0 0; }
+  .mat-taza { inset: 22% 18% 18% 18%; width: 64%; color: var(--ink); filter: drop-shadow(0 14px 0 #00000026); }
+  .mat-foto { inset: 18%; border-radius: 1.6rem; box-shadow: 0 14px 0 #00000026; }
+
+  .mat-cinta { background: var(--brand); color: var(--mat-dark); overflow: hidden; padding: .9rem 0; transform: rotate(-1.2deg); margin: -1.5rem -1rem 0; position: relative; z-index: 2; }
+  .mat-cinta div { display: flex; gap: 2rem; width: max-content; font: 800 1.5rem var(--fd); text-transform: uppercase; letter-spacing: -.01em; animation: marq 28s linear infinite; }
+
+  .mat-menu { background: var(--ink); color: var(--mat-dark); padding: 5rem 0 4rem; position: relative; }
+  .mat-h2 { font-size: clamp(2.2rem, 5vw, 3.4rem); letter-spacing: -.035em; font-weight: 800; }
+  .mat-h2 span { color: var(--accent); }
+  .mat-lista { margin-top: 2rem; border-top: 2px solid var(--mat-dark); }
+  .mat-row { display: flex; align-items: baseline; gap: 1rem; padding: 1.15rem .3rem; border-bottom: 2px solid var(--mat-dark); text-decoration: none; transition: transform .28s var(--ease-out), color .2s ease, opacity .2s ease; }
+  .mat-row h3 { font-size: clamp(1.5rem, 4vw, 2.6rem); letter-spacing: -.03em; font-weight: 800; flex: 1; }
+  .mat-row p { font-size: .85rem; opacity: .65; max-width: 15rem; }
+  .mat-row b { font: 800 1.5rem var(--fd); }
+  .mat-prev { position: fixed; left: 0; top: 0; width: 11rem; height: 11rem; pointer-events: none; border-radius: 2rem; opacity: 0; scale: .92; transition: opacity .18s ease, scale .25s var(--ease-out); z-index: 30; display: grid; place-items: center; font: 800 1rem var(--fd); text-align: center; padding: 1rem; color: var(--mat-dark); overflow: hidden; }
+  .mat-prev.on { opacity: 1; scale: 1; }
+  .mat-prev img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+
+  .contacto { background: var(--accent); color: var(--on-accent); text-align: left; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2rem; padding: 4rem 1.5rem; }
+  .contacto .h2 { font-size: clamp(2.2rem, 6vw, 4rem); line-height: .95; max-width: 30rem; }
+  footer { background: var(--mat-dark); color: color-mix(in srgb, var(--ink) 60%, transparent); border: 0; }
+
+  @media (hover: hover) and (pointer: fine) {
+    .btn:hover { filter: brightness(1.07); transform: none; }
+    .btn:active { transform: scale(.97); }
+    .mat-lista:hover .mat-row { opacity: .35; }
+    .mat-lista .mat-row:hover { opacity: 1; transform: translateX(14px); }
+  }
+  @media (max-width: 760px) {
+    .mat-menu { padding: 3.5rem 0 3rem; }
+    .mat-row p { display: none; }
+    .mat-comp { max-width: 17rem; }
+  }
+}

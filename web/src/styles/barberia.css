@@ -1,0 +1,127 @@
+/* =====================================================================
+   BARBERÍA · diseños b (Poste clásico) y c (Calle). El a vive en styles.css.
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   B · Poste clásico — crema, azul marino y rojo; tarifario interactivo
+   (paleta: --bg crema, --brand rojo, --accent y --ink azul marino)
+   --------------------------------------------------------------------- */
+.landing[data-estilo=barberia-b] {
+  .h2 { font-family: var(--fd); font-weight: 400; text-transform: none; letter-spacing: 0; }
+  header { background: var(--accent) !important; color: var(--bg); border-color: transparent !important; }
+  header .nav-link { color: color-mix(in srgb, var(--bg) 80%, transparent); font-family: var(--fx); font-weight: 600; font-size: .95rem; letter-spacing: .12em; text-transform: uppercase; }
+  header .nav-link:hover { color: var(--bg); }
+  header .fd { color: var(--bg); text-transform: none; letter-spacing: 0; }
+  .btn { font-family: var(--fx); font-weight: 600; font-size: 1.05rem; letter-spacing: .1em; text-transform: uppercase; padding: .85rem 1.5rem; transition: transform .16s var(--ease-out), background-color .2s ease; }
+  .btn:active { transform: scale(.97); }
+  .btn-ghost { background: transparent; color: var(--accent); border: 0; box-shadow: inset 0 0 0 2px var(--accent); }
+
+  .pos-rib { height: 10px; background: repeating-linear-gradient(-45deg, var(--brand) 0 12px, #fff 12px 24px, var(--accent) 24px 36px, #fff 36px 48px); }
+  .pos-polo { position: relative; padding: 1.2rem 0; width: 4.8rem; margin: 0 auto; }
+  .pos-cap { position: absolute; left: 50%; width: 4.8rem; height: 1.2rem; translate: -50% 0; background: var(--accent); border-radius: .6rem; z-index: 1; }
+  .pos-cap:first-child { top: 0; }
+  .pos-cap:last-child { bottom: 0; }
+  .pos-tubo { position: relative; width: 4rem; height: 21rem; margin: 0 auto; border-radius: 2rem; overflow: hidden; background: #fff; box-shadow: inset 6px 0 10px #ffffffaa, inset -8px 0 10px color-mix(in srgb, var(--accent) 20%, transparent), 0 0 0 4px var(--accent); }
+  .pos-tubo div { position: absolute; left: 0; right: 0; top: -60px; bottom: 0; background: repeating-linear-gradient(-45deg, var(--brand) 0 10px, #fff 10px 20px, var(--accent) 20px 30px, #fff 30px 40px); animation: poste 2.2s linear infinite; }
+  .pos-lab { font-family: var(--fx); text-transform: uppercase; letter-spacing: .14em; font-weight: 600; color: var(--brand); }
+  .pos-h1 { font-family: var(--fd); font-size: clamp(2.6rem, 7vw, 5.2rem); line-height: 1; margin-top: .7rem; font-weight: 400; text-transform: none; }
+  .pos-h1 em { font-style: normal; color: var(--brand); }
+  .pos-lead { margin-top: 1.2rem; max-width: 30rem; color: var(--mute); line-height: 1.65; }
+  .pos-foto { aspect-ratio: 4/5; border-radius: 999px 999px var(--radius) var(--radius); }
+
+  .pos-tarifa { background: var(--accent); color: var(--bg); }
+  .pos-h2 { font-family: var(--fd); font-size: 2.4rem; line-height: 1.05; font-weight: 400; }
+  .pos-sub { color: color-mix(in srgb, var(--bg) 66%, transparent); margin: .5rem 0 1.4rem; font-size: .92rem; }
+  .pos-sv { display: flex; align-items: baseline; gap: .7rem; width: calc(100% + 1rem); margin: 0 -.5rem; padding: .8rem .5rem; border: 0; background: none; text-align: left; border-radius: 4px; color: inherit; cursor: pointer; transition: background-color .2s ease, transform .16s var(--ease-out); }
+  .pos-sv:active { transform: scale(.985); }
+  .pos-ck { width: 1.35rem; height: 1.35rem; border: 2px solid color-mix(in srgb, var(--bg) 40%, transparent); border-radius: 4px; display: grid; place-items: center; flex: none; align-self: center; transition: background-color .18s ease, border-color .18s ease; }
+  .pos-ck svg { width: .9rem; opacity: 0; transform: scale(.7); transition: opacity .16s ease, transform .2s var(--ease-out); color: #fff; }
+  .pos-sv[aria-pressed=true] { background: color-mix(in srgb, var(--bg) 10%, transparent); }
+  .pos-sv[aria-pressed=true] .pos-ck { background: var(--brand); border-color: var(--brand); }
+  .pos-sv[aria-pressed=true] .pos-ck svg { opacity: 1; transform: none; }
+  .pos-sn { font: 600 1.5rem var(--fx); text-transform: uppercase; letter-spacing: .05em; }
+  .pos-sn small { display: block; font: 400 .8rem var(--fb); text-transform: none; letter-spacing: 0; color: color-mix(in srgb, var(--bg) 62%, transparent); }
+  .pos-d { flex: 1; border-bottom: 2px dotted color-mix(in srgb, var(--bg) 33%, transparent); transform: translateY(-5px); }
+  .pos-sv b { font: 600 1.5rem var(--fx); }
+  .pos-stub { background: var(--bg); color: var(--ink); padding: 1.8rem 1.6rem 1.4rem; border-radius: 10px; display: flex; flex-direction: column; gap: .2rem; --m: radial-gradient(circle 11px at 0 52px, #0000 98%, #000) left/51% 100% no-repeat, radial-gradient(circle 11px at 100% 52px, #0000 98%, #000) right/51% 100% no-repeat; -webkit-mask: var(--m); mask: var(--m); }
+  .pos-lab2 { font: 600 .95rem var(--fx); text-transform: uppercase; letter-spacing: .14em; }
+  .pos-total { font: 400 3.4rem/1 var(--fd); color: var(--brand); }
+  .pos-stub hr { border: 0; border-top: 2px dashed color-mix(in srgb, var(--ink) 27%, transparent); margin: 1rem 0; }
+  .pos-msg { font-size: .88rem; line-height: 1.55; min-height: 4.6em; transition: opacity .12s ease, filter .12s ease; }
+  .pos-msg.sw { opacity: 0; filter: blur(2px); }
+  .pos-wa { margin-top: 1rem; background: #25D366; color: #06371a; }
+  .pos-off { opacity: .45; pointer-events: none; }
+
+  .eq-card { background: transparent; border: 0; text-align: center; }
+  .eq-ph { aspect-ratio: 1 !important; border-radius: 50%; border: 4px solid var(--accent); margin-bottom: 1rem; transition: transform .3s var(--ease-out); }
+  .contacto { background: var(--accent); color: var(--bg); border-top: 10px solid transparent; border-image: repeating-linear-gradient(-45deg, var(--brand) 0 12px, #fff 12px 24px, var(--accent) 24px 36px, #fff 36px 48px) 10; }
+  .contacto .btn-inv { background: var(--brand); color: #fff; }
+  footer { background: var(--accent); color: color-mix(in srgb, var(--bg) 66%, transparent); border: 0; }
+
+  @media (hover: hover) and (pointer: fine) {
+    .btn:hover { filter: brightness(.9); transform: none; }
+    .btn:active { transform: scale(.97); }
+    .pos-sv:hover:not([aria-pressed=true]) { background: color-mix(in srgb, var(--bg) 6%, transparent); }
+    .eq-card:hover .eq-ph { transform: scale(1.03) rotate(-2deg); }
+  }
+  @media (max-width: 760px) { .pos-polo { display: none; } }
+}
+
+/* ---------------------------------------------------------------------
+   C · Calle — brutalismo con carácter
+   (paleta: --bg hormigón, --brand naranja, --accent amarillo, --ink negro)
+   --------------------------------------------------------------------- */
+.landing[data-estilo=barberia-c] {
+  .h2 { font-family: var(--fd); font-weight: 400; text-transform: uppercase; letter-spacing: -.03em; }
+  header { background: var(--accent) !important; border-bottom: 3px solid var(--ink) !important; }
+  header .fd { text-transform: uppercase; letter-spacing: -.02em; color: var(--ink); font-weight: 400; }
+  .nav-link { text-transform: uppercase; font-weight: 700; font-size: .78rem; color: var(--ink) !important; }
+  .btn { background: var(--brand); color: var(--ink); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); border-radius: 0; font: 700 .85rem var(--fb); text-transform: uppercase; letter-spacing: .02em; padding: .9rem 1.4rem; transition: transform .14s var(--ease-out), box-shadow .14s var(--ease-out); }
+  .btn:active { transform: translate(4px, 4px); box-shadow: 2px 2px 0 var(--ink); }
+  .btn-sm { padding: .5rem .8rem; box-shadow: 4px 4px 0 var(--ink); }
+  .btn-ghost { background: #fff; color: var(--ink); }
+  header .btn { background: #fff; }
+
+  .cal-h1 { font-family: var(--fd); text-transform: uppercase; }
+  .cal-w { display: block; font-size: clamp(3.2rem, 12vw, 9rem); line-height: .86; letter-spacing: -.045em; animation: destapa .7s var(--ease-io) both; animation-delay: calc(var(--i, 0) * 90ms); transition: color .16s ease; }
+  .cal-w1 { color: transparent; -webkit-text-stroke: 3px var(--ink); }
+  .cal-w2 { color: var(--brand); }
+  .cal-side { padding-bottom: 1rem; }
+  .cal-side p { font-size: .92rem; line-height: 1.7; }
+  .cal-side .btn { margin-top: 1.6rem; }
+  .cal-sticker { display: inline-block; background: var(--accent); border: 3px solid var(--ink); padding: .3rem .7rem; font-weight: 700; font-size: .78rem; text-transform: uppercase; transform: rotate(-3deg); margin-bottom: 1rem; box-shadow: 4px 4px 0 var(--ink); }
+  .cal-foto { aspect-ratio: 4/3; margin-top: 1rem; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+
+  /* lista de servicios como tabla */
+  .sv-lista { max-width: none !important; border: 3px solid var(--ink); background: #fff; box-shadow: 8px 8px 0 var(--ink); }
+  .sv-fila { position: relative; isolation: isolate; border-top: 3px solid var(--ink) !important; padding: 1.05rem 1.3rem !important; transition: color .18s ease, transform .16s var(--ease-out) !important; background: transparent !important; }
+  .sv-fila:first-child { border-top: 0 !important; }
+  .sv-fila::before { content: ""; position: absolute; inset: 0; background: var(--ink); z-index: -1; clip-path: inset(0 100% 0 0); transition: clip-path .22s var(--ease-out); }
+  .sv-n { color: var(--brand) !important; font-family: var(--fb) !important; font-weight: 700; font-size: 1.1rem !important; }
+  .sv-h { font-family: var(--fd); text-transform: uppercase; letter-spacing: -.02em; font-size: 1.5rem !important; }
+  .sv-pr { font-family: var(--fd) !important; }
+  .sv-fila p { color: color-mix(in srgb, var(--ink) 65%, transparent); }
+
+  .gal-ph { border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); border-radius: 0 !important; transition: transform .25s var(--ease-out); }
+  .gal-ph:nth-child(3n+1) { --ph: repeating-linear-gradient(45deg, var(--brand) 0 12px, #ffffff55 12px 24px); }
+  .gal-ph:nth-child(3n+2) { --ph: repeating-linear-gradient(45deg, var(--accent) 0 12px, #ffffff55 12px 24px); }
+  .gal-ph:nth-child(3n) { --ph: repeating-linear-gradient(45deg, var(--ink) 0 12px, #ffffff33 12px 24px); }
+  .eq-card { border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); border-radius: 0 !important; background: #fff; }
+  .contacto { background: var(--ink); color: var(--bg); text-align: left; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2rem; padding: 4rem 1.5rem; }
+  .contacto .h2 { font-size: clamp(2.2rem, 7vw, 4.4rem); line-height: .92; max-width: 30rem; }
+  .contacto .btn-inv { background: var(--brand); color: var(--ink); }
+  footer { border-top: 3px solid var(--ink); text-transform: uppercase; font-weight: 700; font-size: .78rem; color: var(--ink); }
+
+  @media (hover: hover) and (pointer: fine) {
+    .btn:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--ink); filter: none; }
+    .btn:active { transform: translate(4px, 4px); box-shadow: 2px 2px 0 var(--ink); }
+    .cal-w1:hover { color: var(--accent); }
+    .cal-w2:hover { color: var(--ink); }
+    .sv-fila:hover { color: var(--bg); }
+    .sv-fila:hover::before { clip-path: inset(0 0 0 0); }
+    .sv-fila:hover p { color: color-mix(in srgb, var(--bg) 70%, transparent); }
+    .sv-fila:hover .sv-n { color: var(--accent) !important; }
+    .gal-ph:hover { transform: translateY(-6px) rotate(-1.5deg); }
+  }
+  @media (max-width: 760px) { .sv-fila { padding: .9rem 1rem !important; } .sv-fila p { display: none; } }
+}

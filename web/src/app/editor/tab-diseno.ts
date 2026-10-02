@@ -1,9 +1,11 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { EditorStore } from '../core/editor.store';
-import { FUENTES, PALETAS, RADIOS } from '../core/esquemas';
-import { Tema } from '../core/models';
+import { defDiseno, DISENOS } from '../core/disenos';
+import { FUENTES, RADIOS } from '../core/esquemas';
+import { Diseno, Tema } from '../core/models';
 import { contraste, cargarFuentes } from '../core/tema';
+import { Confirmar } from '../shared/confirmar';
 import { Icono } from '../shared/icono';
 
 const COLORES: { k: keyof Tema['colores']; nombre: string; ayuda: string }[] = [
@@ -15,9 +17,31 @@ const COLORES: { k: keyof Tema['colores']; nombre: string; ayuda: string }[] = [
 
 @Component({
   selector: 'app-tab-diseno',
-  imports: [Icono],
+  imports: [Icono, Confirmar],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
+    <section class="mb-7">
+      <h3 class="m-0 text-base font-semibold">Diseño de la página</h3>
+      <p class="mb-3 mt-1 text-xs text-fg-subtle">Elige cómo se ve tu página. Tu contenido no cambia: solo su composición, colores y letras.</p>
+      <div class="flex flex-col gap-2.5" role="radiogroup" aria-label="Diseño de la página">
+        @for (d of disenos(); track d.id) {
+          <button type="button" role="radio" [attr.aria-checked]="store.diseno() === d.id" (click)="elegir(d.id)"
+                  class="flex items-center gap-3 rounded-xl border-2 p-2.5 text-left transition-[border-color,background-color,transform] duration-150 active:scale-[.985]"
+                  [class]="store.diseno() === d.id ? 'border-primary bg-primary-soft' : 'border-edge bg-card hover:bg-card-2'">
+            <span class="flex h-14 w-16 shrink-0 flex-col overflow-hidden rounded-lg ring-1 ring-black/10" aria-hidden="true">
+              <span class="flex-1" [style.background]="d.tema.colores.fondo"></span>
+              <span class="flex h-4"><span class="flex-1" [style.background]="d.tema.colores.primario"></span><span class="flex-1" [style.background]="d.tema.colores.acento"></span></span>
+            </span>
+            <span class="min-w-0 flex-1">
+              <span class="block text-[17px] leading-tight" [style.font-family]="'\\'' + d.tema.fuentes.titulos + '\\', serif'">{{ d.nombre }}</span>
+              <span class="block text-xs text-fg-subtle">{{ d.resumen }}</span>
+            </span>
+            @if (store.diseno() === d.id) { <span class="text-primary"><app-icono n="check" [tamanio]="18" /></span> }
+          </button>
+        }
+      </div>
+    </section>
+
     <section class="mb-7">
       <h3 class="m-0 text-base font-semibold">Paletas sugeridas</h3>
       <p class="mb-3 mt-1 text-xs text-fg-subtle">Un clic y se aplica. Luego puedes ajustar cada color.</p>
@@ -90,7 +114,11 @@ const COLORES: { k: keyof Tema['colores']; nombre: string; ayuda: string }[] = [
       </div>
     </section>
 
-    <button type="button" class="ui-btn ui-btn-outline ui-btn-sm" (click)="store.restablecerTema()">Volver al diseño original</button>`,
+    <button type="button" class="ui-btn ui-btn-outline ui-btn-sm" (click)="store.restablecerTema()">Volver a los colores originales</button>
+
+    <app-confirmar [abierto]="!!pendiente()" titulo="¿Cambiar de diseño?" boton="Cambiar diseño"
+                   mensaje="Has personalizado los colores, la tipografía o los bordes. Al cambiar de diseño se aplican los del nuevo diseño; tu contenido no se pierde."
+                   (aceptar)="confirmar()" (cancelar)="pendiente.set(null)" />`,
 })
 export class TabDiseno {
   protected readonly store = inject(EditorStore);
@@ -98,7 +126,28 @@ export class TabDiseno {
   protected readonly colores = COLORES;
   protected readonly fuentes = FUENTES;
   protected readonly radios = RADIOS;
-  protected readonly paletas = computed(() => PALETAS[this.store.rubro()]);
+  protected readonly disenos = computed(() => DISENOS[this.store.rubro()]);
+  protected readonly paletas = computed(() => defDiseno(this.store.rubro(), this.store.diseno()).paletas);
+  protected readonly pendiente = signal<Diseno | null>(null);
+
+  /** ¿El cliente cambió algo del diseño (colores, letras o bordes)? */
+  private personalizado(): boolean {
+    const t = this.tema();
+    const base = defDiseno(this.store.rubro(), this.store.diseno()).tema;
+    return JSON.stringify([t.colores, t.fuentes, t.radio]) !== JSON.stringify([base.colores, base.fuentes, base.radio]);
+  }
+
+  protected elegir(d: Diseno): void {
+    if (d === this.store.diseno()) return;
+    if (this.personalizado()) this.pendiente.set(d);
+    else this.store.setDiseno(d);
+  }
+
+  protected confirmar(): void {
+    const d = this.pendiente();
+    this.pendiente.set(null);
+    if (d) this.store.setDiseno(d);
+  }
 
   /** Avisos de legibilidad */
   protected readonly avisos = computed(() => {
@@ -113,6 +162,7 @@ export class TabDiseno {
     // las fuentes se cargan para mostrar cada nombre con su propia tipografía
     const doc = inject(DOCUMENT);
     for (const f of FUENTES) cargarFuentes({ colores: this.tema().colores, fuentes: { titulos: f.titulos, texto: f.texto }, radio: '12px' }, doc);
+    for (const d of this.disenos()) cargarFuentes(d.tema, doc, this.store.rubro());
   }
 
   protected igual = (c: Tema['colores']) => (Object.keys(c) as (keyof Tema['colores'])[]).every((k) => c[k].toLowerCase() === this.tema().colores[k].toLowerCase());

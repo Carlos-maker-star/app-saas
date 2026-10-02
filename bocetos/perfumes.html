@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perfumes — 3 diseños</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Jost:wght@300;400;500&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* =====================================================================
+   A · Marfil dorado (el que ya existe, con el movimiento afinado)
+   ===================================================================== */
+[data-t=pa]{--bg:#FAF8F5;--surface:#fff;--ink:#1F1B24;--mute:#6a6470;--line:#e4ded5;--gold:#B08D57;
+  background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;
+  h1,h2,h3,.fd{font-family:'Cormorant Garamond',serif;font-weight:500}
+  .hd{display:flex;align-items:center;justify-content:space-between;padding:1.3rem 2.5rem;border-bottom:1px solid var(--line)}
+  .logo{font:600 1.6rem 'Cormorant Garamond';letter-spacing:.3em;text-transform:uppercase}
+  nav{display:flex;gap:2rem;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+  nav a{text-decoration:none;transition:color .15s ease}
+  .btn{display:inline-flex;align-items:center;background:var(--ink);color:var(--bg);border:0;border-radius:2px;text-decoration:none;font:500 .74rem Inter;letter-spacing:.2em;text-transform:uppercase;padding:1.05rem 1.9rem;transition:transform .16s var(--ease-out),background-color .25s ease}
+  .btn:active{transform:scale(.97)}
+  .btn.o{background:none;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+  .hero{padding:5rem 2rem 4.5rem;text-align:center;max-width:56rem;margin:auto}
+  .eyebrow{font-size:.74rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+  h1{font-size:clamp(3.2rem,9cqw,6.6rem);line-height:.96;margin-top:1.2rem;font-weight:400;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--gold)}
+  .lead{max-width:28rem;margin:1.4rem auto 0;color:var(--mute);line-height:1.7}
+  .acts{display:flex;gap:.8rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+  .botl{width:7rem;margin:3.5rem auto 0;color:var(--gold)}
+  .sec{padding:4rem 3rem}
+  .sec h2{font-size:2.6rem;text-align:center;font-weight:400}
+  .sub{text-align:center;color:var(--mute);margin:.5rem 0 2.6rem;font-size:.92rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.4rem}
+  .p{background:var(--surface);border:1px solid var(--line);padding:1.2rem 1.2rem 1.5rem;text-align:center;transition:transform .3s var(--ease-out),box-shadow .3s var(--ease-out)}
+  .p .ph{aspect-ratio:4/5;background:linear-gradient(160deg,#efe9df,#d8cfc0);display:grid;place-items:center;margin-bottom:1.2rem;overflow:hidden}
+  .p .ph svg{width:42%;transition:transform .5s var(--ease-out)}
+  .p h3{font-size:1.5rem}.p small{color:var(--mute);font-size:.8rem;letter-spacing:.06em}
+  .p .pr{margin-top:.7rem;font-weight:500}
+  .notes3{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;padding:3.5rem 3rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
+  .notes3 h3{font-size:1.5rem;font-style:italic}.notes3 p{color:var(--mute);font-size:.9rem;margin-top:.5rem;line-height:1.6}
+  .cta{padding:5rem 2rem;text-align:center}
+  .cta h2{font-size:clamp(2.2rem,6cqw,3.6rem);font-weight:400}.cta h2 em{color:var(--gold)}
+  .cta .btn{margin-top:1.8rem}
+  footer{padding:1.4rem;text-align:center;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);border-top:1px solid var(--line)}
+  @media (hover:hover) and (pointer:fine){
+    nav a:hover{color:var(--ink)}.btn:hover{background:var(--gold)}.btn.o:hover{background:#1f1b240d}
+    .p:hover{transform:translateY(-5px);box-shadow:0 22px 40px #1f1b2412}.p:hover .ph svg{transform:scale(1.06) translateY(-4px)}
+  }
+  @container (max-width:760px){
+    .hd{padding:1rem 1.2rem}nav{display:none}.hero{padding:3rem 1.4rem}.sec{padding:3rem 1.4rem}
+    .notes3{grid-template-columns:1fr;padding:2.5rem 1.4rem}
+  }
+}
+
+/* =====================================================================
+   B · Noir — luz que sigue al cursor, Bodoni y oro viejo
+   ===================================================================== */
+[data-t=pb]{--bg:#0B0A0C;--ink:#EDE6DA;--mute:#a79f93;--gold:#C8A46A;--wine:#5A1424;--line:#ffffff1c;
+  background:var(--bg);color:var(--ink);font-family:Jost,sans-serif;font-weight:300;
+  h1,h2,h3,.fd{font-family:'Bodoni Moda',serif;font-weight:400}
+  .hd{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 2.5rem}
+  .logo{font:400 1.3rem 'Bodoni Moda';letter-spacing:.34em;text-transform:uppercase}
+  nav{display:flex;gap:2rem;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mute)}
+  nav a{text-decoration:none;transition:color .15s ease}
+  .btn{position:relative;display:inline-flex;align-items:center;border:1px solid var(--gold);color:var(--gold);background:none;text-decoration:none;font:400 .76rem Jost;letter-spacing:.24em;text-transform:uppercase;padding:1.05rem 2rem;isolation:isolate;overflow:hidden;transition:transform .16s var(--ease-out),color .22s ease}
+  .btn::before{content:"";position:absolute;inset:0;background:var(--gold);z-index:-1;clip-path:inset(100% 0 0 0);transition:clip-path .22s var(--ease-out)}
+  .btn:active{transform:scale(.97)}
+  .btn.f{background:var(--gold);color:#0B0A0C}
+  .btn.f::before{background:var(--ink)}
+  .hero{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;padding:3rem 3rem 5rem;min-height:36rem;overflow:hidden}
+  .spot{position:absolute;left:0;top:0;width:720px;height:720px;margin:-360px 0 0 -360px;border-radius:50%;background:radial-gradient(circle,#c8a46a30 0%,#5a142422 38%,transparent 66%);pointer-events:none;transform:translate3d(60%,40%,0)}
+  .eyebrow{font-size:.74rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold)}
+  h1{font-size:clamp(3.8rem,12cqw,9rem);line-height:.88;font-style:italic;letter-spacing:-.02em;margin-top:1.3rem}
+  h1 span{display:block;color:var(--gold);font-style:normal;font-size:.36em;letter-spacing:.34em;text-transform:uppercase;margin-top:1.4rem;font-family:Jost;font-weight:300}
+  .lead{margin-top:1.8rem;max-width:25rem;color:var(--mute);line-height:1.75}
+  .acts{display:flex;gap:1rem;margin-top:2.2rem;flex-wrap:wrap}
+  .stage2{position:relative;display:grid;place-items:center}
+  .stage2 svg{width:min(15rem,60%);--glass:#17090d;--edge:#c8a46a;--cap:#c8a46a;--label:#c8a46a22;filter:drop-shadow(0 30px 40px #000a);animation:flota 8s ease-in-out infinite}
+  
+  .vt{position:absolute;right:0;top:50%;writing-mode:vertical-rl;translate:0 -50%;font-size:.68rem;letter-spacing:.5em;text-transform:uppercase;color:var(--mute)}
+  .sec{padding:4rem 0 3rem;border-top:1px solid var(--line)}
+  .sec h2{font-size:2.4rem;padding:0 3rem;font-style:italic}
+  .sub{padding:0 3rem;color:var(--mute);margin:.5rem 0 2rem;font-size:.92rem}
+  .rail{display:flex;gap:1.2rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:.5rem 3rem 1.5rem;scrollbar-width:none}
+  .rail::-webkit-scrollbar{display:none}
+  .c{position:relative;flex:0 0 15.5rem;scroll-snap-align:start;border:1px solid var(--line);background:linear-gradient(180deg,#141116,#0d0b0e);overflow:hidden;padding:1.3rem 1.3rem 1.5rem}
+  .c .ph{height:15rem;display:grid;place-items:center}
+  .c .ph svg{height:80%;--glass:#1a0c10;--edge:#c8a46a99;--cap:#c8a46a;--label:#c8a46a22;transition:transform .5s var(--ease-out)}
+  .c h3{font-size:1.4rem;margin-top:.8rem;font-style:italic}
+  .c small{color:var(--mute);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
+  .c .pr{margin-top:.7rem;color:var(--gold)}
+  .c .nt{position:absolute;inset:0;background:var(--wine);padding:1.4rem;display:flex;flex-direction:column;justify-content:flex-end;gap:.4rem;clip-path:inset(100% 0 0 0);transition:clip-path .3s var(--ease-out)}
+  .c .nt b{font:italic 400 1.2rem 'Bodoni Moda';color:var(--gold)}
+  .c .nt span{font-size:.85rem;color:#eddfcf}
+  .piramide{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+  .piramide>div{padding:3rem 2.5rem;border-right:1px solid var(--line)}.piramide>div:last-child{border-right:0}
+  .piramide small{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+  .piramide h3{font-size:2rem;font-style:italic;margin:.7rem 0 .5rem}
+  .piramide p{color:var(--mute);line-height:1.65;font-size:.92rem}
+  .cta{padding:5rem 2rem;text-align:center;border-top:1px solid var(--line);background:radial-gradient(60% 120% at 50% 120%,#5a142466,transparent)}
+  .cta h2{font-size:clamp(2.4rem,7cqw,4.6rem);font-style:italic}.cta .btn{margin-top:2rem}
+  footer{padding:1.3rem;text-align:center;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mute);border-top:1px solid var(--line)}
+  @media (hover:hover) and (pointer:fine){
+    nav a:hover{color:var(--ink)}
+    .btn:hover{color:#0B0A0C}.btn:hover::before{clip-path:inset(0 0 0 0)}.btn.f:hover{color:#0B0A0C}
+    .c:hover .nt{clip-path:inset(0 0 0 0)}.c:hover .ph svg{transform:translateY(-6px)}
+  }
+  @container (max-width:760px){
+    .hd{padding:1rem 1.2rem}nav{display:none}.hero{grid-template-columns:1fr;padding:1.5rem 1.4rem 3rem}.vt{display:none}
+    .sec h2,.sub{padding:0 1.4rem}.rail{padding:.5rem 1.4rem 1.5rem}.piramide{grid-template-columns:1fr}
+    .piramide>div{border-right:0;border-bottom:1px solid var(--line);padding:2rem 1.4rem}
+  }
+}
+
+/* =====================================================================
+   C · Laboratorio — ficha técnica, mono y botánica
+   ===================================================================== */
+[data-t=pc]{--bg:#E8ECE0;--paper:#F3F5EC;--ink:#1E2A22;--mute:#5d6a60;--line:#1e2a2233;--ac:#B5532F;
+  background:var(--bg);color:var(--ink);font-family:'JetBrains Mono',monospace;
+  h1,h2,h3,.fd{font-family:'Instrument Serif',serif;font-weight:400}
+  .hd{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid var(--ink);background:var(--paper)}
+  .logo{font:italic 400 1.7rem 'Instrument Serif'}.logo small{font:500 .62rem 'JetBrains Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-left:.5rem}
+  nav{display:flex;gap:1.6rem;font-size:.74rem;text-transform:uppercase;letter-spacing:.08em}
+  nav a{text-decoration:none;box-shadow:inset 0 -1px 0 transparent;transition:box-shadow .2s var(--ease-out)}
+  .btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--ink);color:var(--paper);border:1px solid var(--ink);border-radius:999px;text-decoration:none;font:500 .76rem 'JetBrains Mono';text-transform:uppercase;letter-spacing:.08em;padding:.9rem 1.4rem;transition:transform .16s var(--ease-out),background-color .2s ease,color .2s ease}
+  .btn:active{transform:scale(.97)}
+  .btn.o{background:none;color:var(--ink)}
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;border-bottom:1px solid var(--ink)}
+  .hl{padding:4rem 3rem 3.5rem;border-right:1px solid var(--ink)}
+  .tag{display:inline-block;border:1px solid var(--ink);border-radius:999px;padding:.25rem .8rem;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase}
+  h1{font-size:clamp(3.2rem,9.5cqw,7rem);line-height:.92;letter-spacing:-.02em;margin-top:1.5rem}
+  h1 em{color:var(--ac)}
+  .lead{margin-top:1.5rem;max-width:28rem;font-size:.84rem;line-height:1.75;color:var(--mute)}
+  .acts{display:flex;gap:.7rem;margin-top:1.8rem;flex-wrap:wrap}
+  .hr{position:relative;display:grid;place-items:center;background:repeating-linear-gradient(0deg,transparent 0 31px,var(--line) 31px 32px),repeating-linear-gradient(90deg,transparent 0 31px,var(--line) 31px 32px);min-height:22rem}
+  .hr svg{width:78%;fill:none;stroke:var(--ink);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+  .hr svg path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s var(--ease-io);transition-delay:calc(var(--k,0)*160ms)}
+  .hr.in svg path{stroke-dashoffset:0}
+  .hr svg .ac{stroke:var(--ac)}
+  .hr .cap{position:absolute;left:1rem;bottom:.8rem;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+  .sec{padding:3.5rem 3rem;border-bottom:1px solid var(--ink)}
+  .top{display:flex;justify-content:space-between;align-items:end;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}
+  .top h2{font-size:clamp(2.2rem,5cqw,3.4rem)}
+  .chips{display:flex;gap:.4rem;flex-wrap:wrap}
+  .chip{border:1px solid var(--ink);background:none;border-radius:999px;padding:.45rem .95rem;font:500 .72rem 'JetBrains Mono';text-transform:uppercase;letter-spacing:.06em;transition:background-color .18s ease,color .18s ease,transform .16s var(--ease-out)}
+  .chip:active{transform:scale(.97)}
+  .chip[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1px;background:var(--ink);border:1px solid var(--ink)}
+  .s{background:var(--paper);padding:1.3rem;display:flex;flex-direction:column;gap:.9rem;transition:background-color .25s ease}
+  .s.pop{animation:pop .38s var(--ease-out) both;animation-delay:calc(var(--k,0)*50ms)}
+  
+  .s[hidden]{display:none}
+  .s .t{display:flex;justify-content:space-between;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mute)}
+  .s .ph{height:9rem;background:var(--bg);display:grid;place-items:center;border:1px solid var(--line)}
+  .s .ph svg{height:78%;--glass:#dfe6d2;--edge:#1e2a22;--cap:#1e2a22;--label:#f3f5ec;transition:transform .45s var(--ease-out)}
+  .s h3{font-size:1.9rem;line-height:1}
+  .m{display:grid;gap:.4rem;font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+  .m div{display:grid;grid-template-columns:5.2rem 1fr;align-items:center;gap:.6rem}
+  .m i{display:block;height:5px;background:var(--line);position:relative;overflow:hidden;border-radius:9px}
+  .m i::after{content:"";position:absolute;inset:0;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease-out);transition-delay:.25s;border-radius:9px}
+  .s.in .m i::after{transform:scaleX(var(--v))}
+  .s .f{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:.6rem;border-top:1px dashed var(--line);font-size:.78rem}
+  .s .f b{font-weight:500}
+  .band{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--ink)}
+  .band>div{padding:2.2rem 2rem;border-right:1px solid var(--ink)}.band>div:last-child{border-right:0}
+  .band b{font:400 3.2rem/1 'Instrument Serif';display:block}.band span{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mute)}
+  .cta{padding:4rem 3rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;background:var(--ink);color:var(--paper)}
+  .cta h2{font-size:clamp(2.2rem,6cqw,4rem);line-height:.95;max-width:30rem}.cta h2 em{color:#e49a7b}
+  .cta .btn{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+  footer{padding:1.2rem;text-align:center;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--mute)}
+  @media (hover:hover) and (pointer:fine){
+    nav a:hover{box-shadow:inset 0 -1px 0 var(--ink)}
+    .btn:hover{background:var(--ac);border-color:var(--ac);color:#fff}.btn.o:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+    .cta .btn:hover{background:#fff;color:var(--ink)}
+    .chip:not([aria-pressed=true]):hover{background:#1e2a2212}
+    .s:hover{background:#fff}.s:hover .ph svg{transform:translateY(-5px) rotate(-2deg)}
+  }
+  @container (max-width:760px){
+    .hd{padding:1rem 1.2rem}nav{display:none}.hero{grid-template-columns:1fr}.hl{padding:2.5rem 1.4rem;border-right:0}
+    .hr{min-height:15rem;border-top:1px solid var(--ink)}.sec{padding:2.5rem 1.4rem}
+    .band{grid-template-columns:1fr}.band>div{border-right:0;border-bottom:1px solid var(--ink)}.cta{padding:3rem 1.4rem}
+  }
+}
+/* animaciones (a nivel raíz: no pueden ir dentro de reglas anidadas) */
+@keyframes flota{50%{transform:translateY(-10px)}}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<!-- Frascos reutilizables -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="b1" viewBox="0 0 120 200"><rect x="42" y="6" width="36" height="28" rx="3" fill="var(--cap)"/><rect x="50" y="34" width="20" height="14" fill="var(--cap)"/><rect x="12" y="48" width="96" height="144" rx="14" fill="var(--glass)" stroke="var(--edge)" stroke-width="2"/><rect x="30" y="88" width="60" height="58" rx="2" fill="var(--label)"/><path d="M24 62v112" stroke="#fff" stroke-opacity=".4" stroke-width="5" stroke-linecap="round"/></symbol>
+  <symbol id="b2" viewBox="0 0 120 200"><rect x="48" y="4" width="24" height="34" rx="12" fill="var(--cap)"/><rect x="52" y="38" width="16" height="22" fill="var(--cap)"/><circle cx="60" cy="130" r="64" fill="var(--glass)" stroke="var(--edge)" stroke-width="2"/><circle cx="60" cy="130" r="26" fill="var(--label)"/><path d="M22 106a46 46 0 0 1 20-28" stroke="#fff" stroke-opacity=".4" stroke-width="5" fill="none" stroke-linecap="round"/></symbol>
+  <symbol id="b3" viewBox="0 0 120 200"><rect x="38" y="4" width="44" height="22" rx="2" fill="var(--cap)"/><rect x="52" y="26" width="16" height="16" fill="var(--cap)"/><path d="M26 44h68l8 24v112a12 12 0 0 1-12 12H30a12 12 0 0 1-12-12V68l8-24Z" fill="var(--glass)" stroke="var(--edge)" stroke-width="2"/><rect x="34" y="96" width="52" height="46" rx="2" fill="var(--label)"/><path d="M30 64v108" stroke="#fff" stroke-opacity=".4" stroke-width="5" stroke-linecap="round"/></symbol>
+</svg>
+
+<div class="bar">
+  <a class="back" href="index.html">← Bocetos</a><span class="tit">Perfumes</span>
+  <div class="tabs" role="tablist"><span class="ind"></span>
+    <button class="tab" role="tab" data-d="a">A · Marfil dorado</button>
+    <button class="tab" role="tab" data-d="b">B · Noir</button>
+    <button class="tab" role="tab" data-d="c">C · Laboratorio</button>
+  </div>
+  <span class="sp"></span>
+  <button class="alt" id="replay">Repetir animación</button>
+  <button class="alt" id="vista">Vista: escritorio</button>
+</div>
+
+<div class="stage">
+
+<!-- ================= A ================= -->
+<article class="dsg" id="a" hidden>
+<aside class="notes"><b>Movimiento aplicado (Emil)</b><ul>
+  <li>Entradas con desenfoque corto (<code>blur(6px)→0</code>) + 8 px de subida: el desenfoque «cose» el cambio de estado y se siente más fino que un fundido plano.</li>
+  <li>Tarjeta: sube 5 px y el frasco 1.06× con curva fuerte de salida, 300–500 ms (es ocasional y de lujo: se permite algo más lento que la interfaz normal).</li>
+  <li>Botón con relleno dorado en 250 ms; el hover desaparece en pantallas táctiles.</li>
+</ul></aside>
+<div class="tema" data-t="pa">
+  <header class="hd"><span class="logo">Essence</span><nav><a href="#">Colección</a><a href="#">Notas</a><a href="#">Contacto</a></nav><a class="btn" href="#">Consultar</a></header>
+  <section class="hero" data-stagger="rv-blur">
+    <p class="eyebrow">Perfumería de autor · Lima</p>
+    <h1>La fragancia que <em>te recuerda</em></h1>
+    <p class="lead">Decants y frascos originales seleccionados uno a uno. Consulta disponibilidad por WhatsApp y recibe asesoría personal.</p>
+    <div class="acts"><a class="btn" href="#">Consultar por WhatsApp</a><a class="btn o" href="#">Ver colección</a></div>
+    <svg class="botl" viewBox="0 0 120 200" style="--glass:#f1ebe0;--edge:#B08D57;--cap:#B08D57;--label:#fff"><use href="#b1"/></svg>
+  </section>
+  <section class="sec">
+    <h2 class="rv rv-blur">Colección</h2><p class="sub rv rv-blur" style="--i:1">Decants de 10 ml y frascos de 100 ml.</p>
+    <div class="grid" data-stagger="rv-blur">
+      <div class="p"><div class="ph"><svg viewBox="0 0 120 200" style="--glass:#f7f1e6;--edge:#B08D57;--cap:#1F1B24;--label:#fff"><use href="#b1"/></svg></div><h3>Oud Noble</h3><small>Amaderado · 100 ml</small><p class="pr">S/ 420</p></div>
+      <div class="p"><div class="ph"><svg viewBox="0 0 120 200" style="--glass:#f4e6e3;--edge:#B08D57;--cap:#B08D57;--label:#fff"><use href="#b2"/></svg></div><h3>Rosa Velada</h3><small>Floral · 50 ml</small><p class="pr">S/ 310</p></div>
+      <div class="p"><div class="ph"><svg viewBox="0 0 120 200" style="--glass:#e6eee9;--edge:#B08D57;--cap:#1F1B24;--label:#fff"><use href="#b3"/></svg></div><h3>Brisa Cítrica</h3><small>Fresco · 100 ml</small><p class="pr">S/ 280</p></div>
+    </div>
+  </section>
+  <section class="notes3" data-stagger="rv-blur">
+    <div><h3>Salida</h3><p>Bergamota, pimienta rosa. Lo primero que huele y lo primero que enamora.</p></div>
+    <div><h3>Corazón</h3><p>Jazmín, rosa de Damasco. El carácter que se queda mientras avanza el día.</p></div>
+    <div><h3>Fondo</h3><p>Ámbar, sándalo, almizcle. La estela que dejas cuando ya te fuiste.</p></div>
+  </section>
+  <section class="cta"><h2 class="rv rv-blur">Encuentra tu <em>aroma</em></h2><a class="btn rv rv-blur" style="--i:1" href="#">Escríbenos</a></section>
+  <footer>Essence · Instagram · WhatsApp</footer>
+</div>
+</article>
+
+<!-- ================= B ================= -->
+<article class="dsg" id="b" hidden>
+<aside class="notes"><b>Movimiento aplicado (Emil)</b><ul>
+  <li><b>La luz sigue al cursor con resorte</b> (decorativo): se mueve con <code>transform: translate3d</code> en una capa propia, no cambiando variables CSS que heredarían todos los hijos.</li>
+  <li>Botón: el relleno dorado sube desde abajo con <code>clip-path: inset()</code> en 220 ms y baja igual de rápido; con <code>scale(.97)</code> al pulsar.</li>
+  <li>Tarjetas: al pasar el cursor las notas se revelan de abajo hacia arriba con <code>clip-path</code> (sin animar altura). El carrusel usa <code>scroll-snap</code> nativo: se arrastra o se desliza.</li>
+</ul></aside>
+<div class="tema" data-t="pb">
+  <header class="hd"><span class="logo">Essence</span><nav><a href="#">Colección</a><a href="#">Notas</a><a href="#">Contacto</a></nav><a class="btn" href="#">Consultar</a></header>
+  <section class="hero" id="heroB">
+    <div class="spot" id="spot"></div>
+    <div data-stagger="rv-blur" style="position:relative">
+      <p class="eyebrow">Eau de parfum · Edición nocturna</p>
+      <h1>Noche<span>de Oud y cuero</span></h1>
+      <p class="lead">Una fragancia para cuando se apagan las luces. Disponible en frasco de 100 ml y decant de 10 ml.</p>
+      <div class="acts"><a class="btn f" href="#">Consultar por WhatsApp</a><a class="btn" href="#">Ver colección</a></div>
+    </div>
+    <div class="stage2 rv rv-blur" style="--i:3"><svg viewBox="0 0 120 200"><use href="#b1"/></svg><span class="vt">Lima · desde 2019</span></div>
+  </section>
+  <section class="sec">
+    <h2 class="rv rv-blur">La colección</h2><p class="sub rv rv-blur" style="--i:1">Desliza. Pasa el cursor para ver las notas.</p>
+    <div class="rail" data-stagger="rv-blur">
+      <div class="c"><div class="ph"><svg viewBox="0 0 120 200"><use href="#b1"/></svg></div><small>Amaderado · 100 ml</small><h3>Noche</h3><p class="pr">S/ 420</p><div class="nt"><b>Notas</b><span>Salida · Pimienta negra</span><span>Corazón · Oud, cuero</span><span>Fondo · Vainilla, ámbar</span></div></div>
+      <div class="c"><div class="ph"><svg viewBox="0 0 120 200"><use href="#b2"/></svg></div><small>Floral · 50 ml</small><h3>Rosa Negra</h3><p class="pr">S/ 340</p><div class="nt"><b>Notas</b><span>Salida · Frambuesa</span><span>Corazón · Rosa damascena</span><span>Fondo · Pachulí</span></div></div>
+      <div class="c"><div class="ph"><svg viewBox="0 0 120 200"><use href="#b3"/></svg></div><small>Ámbar · 100 ml</small><h3>Ámbar Gris</h3><p class="pr">S/ 390</p><div class="nt"><b>Notas</b><span>Salida · Cardamomo</span><span>Corazón · Ámbar gris</span><span>Fondo · Sándalo</span></div></div>
+      <div class="c"><div class="ph"><svg viewBox="0 0 120 200"><use href="#b1"/></svg></div><small>Cítrico · 100 ml</small><h3>Bergamota</h3><p class="pr">S/ 290</p><div class="nt"><b>Notas</b><span>Salida · Bergamota</span><span>Corazón · Neroli</span><span>Fondo · Vetiver</span></div></div>
+    </div>
+  </section>
+  <section class="piramide" data-stagger="rv-blur">
+    <div><small>01 · Salida</small><h3>Pimienta negra</h3><p>Chispa seca y picante que se desvanece a los quince minutos.</p></div>
+    <div><small>02 · Corazón</small><h3>Oud &amp; cuero</h3><p>El centro oscuro y cálido. Dura horas sobre la piel.</p></div>
+    <div><small>03 · Fondo</small><h3>Vainilla ahumada</h3><p>La estela que queda en la bufanda al día siguiente.</p></div>
+  </section>
+  <section class="cta"><h2 class="rv rv-blur">Deja huella</h2><a class="btn f rv rv-blur" style="--i:1" href="#">Escríbenos por WhatsApp</a></section>
+  <footer>Essence · Lima · Instagram</footer>
+</div>
+</article>
+
+<!-- ================= C ================= -->
+<article class="dsg" id="c" hidden>
+<aside class="notes"><b>Movimiento aplicado (Emil)</b><ul>
+  <li>Dibujo botánico que <b>se traza solo</b> con <code>stroke-dashoffset</code> y <code>ease-in-out</code> (movimiento en pantalla), cada trazo con un retraso distinto.</li>
+  <li>Filtros: al cambiar, solo las fichas que quedan reaparecen escalonadas 50 ms con <code>translateY(8px) scale(.98)</code> (nunca desde 0). Cambiar de filtro es una acción frecuente: animación corta de 380 ms y no bloquea nada.</li>
+  <li>Barras de familia olfativa con <code>scaleX</code> y <code>transform-origin: left</code>, solo cuando la ficha entra en pantalla.</li>
+</ul></aside>
+<div class="tema" data-t="pc">
+  <header class="hd"><span class="logo">Essence<small>Laboratorio olfativo</small></span><nav><a href="#">Catálogo</a><a href="#">Familias</a><a href="#">Contacto</a></nav><a class="btn" href="#">Consultar</a></header>
+  <section class="hero">
+    <div class="hl" data-stagger="">
+      <span class="tag">N.º 07 · Colección otoño</span>
+      <h1>Aromas con <em>nombre propio.</em></h1>
+      <p class="lead">Cada fragancia llega con su ficha: familia, concentración y notas. Elige con datos y consulta por WhatsApp.</p>
+      <div class="acts"><a class="btn" href="#">Consultar</a><a class="btn o" href="#cat">Ver catálogo</a></div>
+    </div>
+    <div class="hr rv" id="draw" style="clip-path:none">
+      <svg viewBox="0 0 200 260" aria-hidden="true">
+        <path pathLength="1" style="--k:0" d="M100 250C100 190 98 130 104 40"/>
+        <path pathLength="1" class="ac" style="--k:1" d="M104 40C128 56 142 82 138 110C112 104 102 74 104 40Z"/>
+        <path pathLength="1" style="--k:2" d="M101 130C74 128 56 108 54 80C80 82 98 100 101 130Z"/>
+        <path pathLength="1" style="--k:3" d="M100 180C128 176 148 158 150 130C124 132 104 150 100 180Z"/>
+        <path pathLength="1" style="--k:4" d="M99 215C74 212 58 196 56 172C80 174 96 190 99 215Z"/>
+        <path pathLength="1" class="ac" style="--k:5" d="M104 40c-2-12 2-24 12-30"/>
+      </svg>
+      <span class="cap">Fig. 1 — Ramita de cedro y hoja de bergamota</span>
+    </div>
+  </section>
+  <section class="sec" id="cat">
+    <div class="top"><h2 class="rv">Catálogo</h2>
+      <div class="chips" id="chips" role="group" aria-label="Filtrar por familia">
+        <button class="chip" aria-pressed="true" data-f="todos">Todos</button>
+        <button class="chip" aria-pressed="false" data-f="fresco">Frescos</button>
+        <button class="chip" aria-pressed="false" data-f="floral">Florales</button>
+        <button class="chip" aria-pressed="false" data-f="amaderado">Amaderados</button>
+      </div>
+    </div>
+    <div class="grid" id="grid">
+      <article class="s rv" data-fam="amaderado" style="--i:0"><div class="t"><span>N.º 01</span><span>100 ml · 18 %</span></div><div class="ph"><svg viewBox="0 0 120 200"><use href="#b1"/></svg></div><h3>Oud &amp; Cedro</h3>
+        <div class="m"><div>Fresco<i style="--v:.15"></i></div><div>Floral<i style="--v:.2"></i></div><div>Amaderado<i style="--v:.9"></i></div></div><div class="f"><span>Notas: oud · cedro · vainilla</span><b>S/ 420</b></div></article>
+      <article class="s rv" data-fam="floral" style="--i:1"><div class="t"><span>N.º 02</span><span>50 ml · 15 %</span></div><div class="ph"><svg viewBox="0 0 120 200"><use href="#b2"/></svg></div><h3>Rosa de Té</h3>
+        <div class="m"><div>Fresco<i style="--v:.3"></i></div><div>Floral<i style="--v:.95"></i></div><div>Amaderado<i style="--v:.25"></i></div></div><div class="f"><span>Notas: rosa · té verde · almizcle</span><b>S/ 310</b></div></article>
+      <article class="s rv" data-fam="fresco" style="--i:2"><div class="t"><span>N.º 03</span><span>100 ml · 12 %</span></div><div class="ph"><svg viewBox="0 0 120 200"><use href="#b3"/></svg></div><h3>Bergamota Sol</h3>
+        <div class="m"><div>Fresco<i style="--v:.95"></i></div><div>Floral<i style="--v:.35"></i></div><div>Amaderado<i style="--v:.15"></i></div></div><div class="f"><span>Notas: bergamota · neroli · vetiver</span><b>S/ 280</b></div></article>
+      <article class="s rv" data-fam="amaderado floral" style="--i:3"><div class="t"><span>N.º 04</span><span>50 ml · 20 %</span></div><div class="ph"><svg viewBox="0 0 120 200"><use href="#b2"/></svg></div><h3>Iris &amp; Sándalo</h3>
+        <div class="m"><div>Fresco<i style="--v:.2"></i></div><div>Floral<i style="--v:.6"></i></div><div>Amaderado<i style="--v:.7"></i></div></div><div class="f"><span>Notas: iris · sándalo · cuero</span><b>S/ 350</b></div></article>
+    </div>
+  </section>
+  <section class="band" data-stagger="">
+    <div><b>100 %</b><span>Frascos originales</span></div>
+    <div><b>10 ml</b><span>Decants disponibles</span></div>
+    <div><b>24 h</b><span>Entrega en Lima</span></div>
+  </section>
+  <section class="cta"><h2 class="rv">¿No sabes por <em>cuál</em> empezar?</h2><a class="btn rv" style="--i:1" href="#">Pídenos una recomendación</a></section>
+  <footer>Essence · Laboratorio olfativo · Lima</footer>
+</div>
+</article>
+
+</div>
+
+<a class="wa" href="#">WhatsApp</a>
+<script src="base.js"></script>
+<script>
+(() => {
+  const V = window.V, { $, $$ } = V;
+
+  /* C · el dibujo se traza al entrar (un trazo recortado no dispara el observador; se observa el contenedor) */
+  const draw = $('#draw');
+  $('#c').addEventListener('armed', () => { draw.classList.remove('in'); void draw.offsetWidth; });
+  const dio = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle('in', e.isIntersecting)), { threshold: 0.3 });
+  dio.observe(draw);
+
+  /* C · filtros: solo reaparecen las fichas que se quedan, escalonadas */
+  const chips = $$('#chips .chip'), fichas = $$('#grid .s');
+  chips.forEach((c) => c.addEventListener('click', () => {
+    chips.forEach((x) => x.setAttribute('aria-pressed', x === c));
+    let k = 0;
+    fichas.forEach((f) => {
+      const ok = c.dataset.f === 'todos' || f.dataset.fam.includes(c.dataset.f);
+      f.hidden = !ok;
+      f.classList.remove('pop', 'rv');
+      f.classList.add('in');
+      if (ok) { void f.offsetWidth; f.style.setProperty('--k', k++); f.classList.add('pop'); }
+    });
+  }));
+
+  /* B · luz que sigue al cursor con resorte (solo puntero fino y sin reducir movimiento) */
+  if (!V.fino || V.reducido) return;
+  const hero = $('#heroB'), spot = $('#spot');
+  const mover = V.resorte((x, y) => { spot.style.transform = `translate3d(${x}px,${y}px,0)`; }, 0.07);
+  hero.addEventListener('pointermove', (e) => { const r = hero.getBoundingClientRect(); mover(e.clientX - r.left, e.clientY - r.top); });
+})();
+</script>
+</body>
+</html>

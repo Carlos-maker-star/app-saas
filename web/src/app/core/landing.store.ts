@@ -1,9 +1,10 @@
 import { DOCUMENT } from '@angular/common';
 import { computed, inject, Injectable, makeStateKey, PendingTasks, RESPONSE_INIT, signal, TransferState } from '@angular/core';
 import { datosDemo, RUBROS } from './demo-data';
+import { disenoDe, esDiseno, estiloDe } from './disenos';
 import { Entorno } from './entorno';
 import { env } from './env';
-import { Item, LandingPublica, Redes, Rubro, Seccion } from './models';
+import { Diseno, Item, LandingPublica, Redes, Rubro, Seccion, TipoSeccion } from './models';
 import { SeoService } from './seo.service';
 import { urlSegura } from './seguridad';
 import { supabase } from './supabase.client';
@@ -30,6 +31,9 @@ export class LandingStore {
   readonly edicion = signal(false);
 
   readonly rubro = computed<Rubro>(() => this.datos()?.rubro ?? 'cafeteria');
+  /** Diseño elegido ('a' si el negocio no eligió) y clave de estilo: cafeteria-b */
+  readonly diseno = computed<Diseno>(() => disenoDe(this.datos()?.tema));
+  readonly estilo = computed(() => estiloDe(this.rubro(), this.diseno()));
   readonly secciones = computed<Seccion[]>(() => (this.datos()?.contenido ?? []).filter((s) => s.visible));
   readonly nombre = computed(() => this.datos()?.nombre ?? '');
   readonly direccion = computed(() => this.datos()?.direccion ?? '');
@@ -41,6 +45,12 @@ export class LandingStore {
       .filter((x): x is { red: keyof Redes; url: string } => !!x.url);
   });
 
+  /** Enlace interno (#id) a la primera sección de ese tipo; vacío si el negocio no la tiene */
+  enlaceA(tipo: TipoSeccion): string {
+    const s = this.secciones().find((x) => x.tipo === tipo);
+    return s ? '#' + s.id : '';
+  }
+
   itemsDe(tipo: Item['tipo']): Item[] {
     return (this.datos()?.items ?? []).filter((i) => i.tipo === tipo);
   }
@@ -49,11 +59,11 @@ export class LandingStore {
     return buildWhatsAppUrl(this.datos()?.whatsapp, mensaje, nombre);
   }
 
-  cargarDemo(rubro: string): void {
+  cargarDemo(rubro: string, diseno?: string): void {
     const r = RUBROS.find((x) => x === rubro) ?? 'cafeteria';
     this.demo.set(true);
     this.edicion.set(false);
-    const d = datosDemo(r);
+    const d = datosDemo(r, esDiseno(diseno) ? diseno : 'a');
     this.poner(d);
     this.seo.noIndexar(`Demo · ${d.nombre}`); // las demos no se indexan
     this.seo.iconoNegocio(d);
@@ -125,6 +135,6 @@ export class LandingStore {
   private poner(d: LandingPublica): void {
     this.datos.set(d);
     this.estado.set('ok');
-    cargarFuentes(d.tema, this.doc);
+    cargarFuentes(d.tema, this.doc, d.rubro);
   }
 }

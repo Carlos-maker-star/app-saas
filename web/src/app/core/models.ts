@@ -1,5 +1,8 @@
 export type Rubro = 'cafeteria' | 'barberia' | 'perfumes' | 'salud';
 
+/** Cada rubro tiene 3 diseños (a, b, c); el cliente elige uno y puede cambiarlo cuando quiera */
+export type Diseno = 'a' | 'b' | 'c';
+
 export type TipoSeccion =
   | 'hero' | 'catalogo' | 'servicios' | 'equipo' | 'galeria' | 'horarios'
   | 'contacto' | 'beneficios' | 'testimonios' | 'faq';
@@ -19,6 +22,8 @@ export interface Tema {
   colores: { primario: string; acento: string; fondo: string; texto: string };
   fuentes: { titulos: string; texto: string };
   radio: string;
+  /** Diseño elegido dentro del rubro. Si falta (negocios anteriores), es el 'a'. */
+  diseno?: Diseno;
 }
 
 export interface Item {

@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { abiertoAhora } from '../core/abierto';
 import { LandingStore } from '../core/landing.store';
 import { urlSegura } from '../core/seguridad';
 import { TipoSeccion } from '../core/models';
@@ -22,6 +23,7 @@ const ETIQUETAS: Partial<Record<TipoSeccion, string>> = {
         <nav class="ml-auto hidden gap-6 text-sm text-mute md:flex" aria-label="Secciones">
           @for (l of enlaces(); track l.id) { <a class="nav-link u-link hover:text-ink" [href]="'#' + l.id">{{ l.texto }}</a> }
         </nav>
+        @if (apertura(); as a) { <span class="pill-abierto" [class.cerrado]="!a.abierto" role="status"><i></i>{{ a.texto }}</span> }
         <a class="btn btn-sm ml-auto shrink-0 md:ml-0" [href]="store.wa(mensaje())" target="_blank" rel="noopener">{{ boton() }}</a>
       </div>
     </header>`,
@@ -39,6 +41,19 @@ export class Header {
   protected readonly enlaces = computed(() =>
     this.store.secciones().filter((s) => ETIQUETAS[s.tipo]).slice(0, 5)
       .map((s) => ({ id: s.id, texto: ETIQUETAS[s.tipo]! })));
+  /** Solo en la cafetería Matutino: «Abierto ahora», deducido de los horarios. Depende de la hora del visitante, por eso se calcula en el navegador. */
+  private readonly ahora = signal<Date | null>(null);
+  protected readonly apertura = computed(() => {
+    const ahora = this.ahora();
+    if (!ahora || this.store.estilo() !== 'cafeteria-c') return null;
+    const dias = this.store.secciones().find((s) => s.tipo === 'horarios')?.datos['dias'] ?? [];
+    return abiertoAhora(dias, ahora);
+  });
+
+  constructor() {
+    afterNextRender(() => this.ahora.set(new Date()));
+  }
+
   private readonly cta = computed(() => this.store.secciones().find((s) => s.tipo === 'hero')?.datos['boton']);
   protected readonly mensaje = computed(() => this.cta()?.mensaje ?? 'Hola, quisiera más información.');
   protected readonly boton = computed(() => {
