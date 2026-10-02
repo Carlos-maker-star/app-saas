@@ -4,9 +4,11 @@ import { Auth } from './auth.service';
 
 /** Páginas de login / registro: si ya hay sesión, va a su destino */
 export const soloInvitados: CanActivateFn = async () => {
+  // inject() solo funciona antes del primer await: por eso el Router se toma aquí y no después
   const auth = inject(Auth);
+  const router = inject(Router);
   await auth.listo;
-  return auth.usuario() ? inject(Router).parseUrl(auth.destino()) : true;
+  return auth.usuario() ? router.parseUrl(auth.destino()) : true;
 };
 
 /** Crear negocio: requiere sesión y no tener negocio todavía */
