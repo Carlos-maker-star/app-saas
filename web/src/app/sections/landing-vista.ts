@@ -23,6 +23,7 @@ import { WaFlotante } from './wa-flotante';
   selector: 'app-landing-vista',
   imports: [Reveal, Header, Hero, Catalogo, Servicios, Equipo, Galeria, Horarios, Contacto, Beneficios, Testimonios, Faq, Footer, WaFlotante],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '(click)': 'alClic($event)' },
   template: `
     <div class="landing" [attr.data-rubro]="store.rubro()" [attr.data-estilo]="store.estilo()" [style]="estilo()">
       <app-header />
@@ -64,6 +65,24 @@ export class LandingVista {
     const t = this.store.datos()?.tema;
     return t ? estiloTema(t, this.store.rubro()) : {};
   });
+
+  /**
+   * Los enlaces internos (#servicios) se resuelven contra el <base href="/"> de la app y llevarían a
+   * «/#servicios» en vez de a la página del negocio (/n/su-slug#servicios). Se atienden aquí:
+   * se desplaza hasta la sección y se deja la dirección de la página como está.
+   */
+  protected alClic(e: MouseEvent): void {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = (e.target as Element).closest?.('a');
+    const href = a?.getAttribute('href');
+    if (!a || !href?.startsWith('#')) return;
+    e.preventDefault();
+    const id = decodeURIComponent(href.slice(1));
+    const destino = id ? document.getElementById(id) : null;
+    if (id && !destino) return;
+    (destino ?? document.documentElement).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.replaceState(history.state, '', location.pathname + location.search + (id ? '#' + id : ''));
+  }
 
   protected nombre = (s: Seccion) => nombreSeccion(s.tipo, this.store.rubro());
 
