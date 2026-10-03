@@ -25,10 +25,10 @@ describe('textos legales', () => {
   }
 });
 
-describe('urlSoporte', () => {
-  it('sin WhatsApp configurado usa el correo con el nombre del negocio', () => {
-    const u = urlSoporte('Barber Michel');
-    expect(u.startsWith(`mailto:${MARCA.soporte.email}`)).toBe(true);
+describe('urlSoporte con WhatsApp', () => {
+  it('abre WhatsApp con el mensaje y el nombre del negocio', () => {
+    const u = urlSoporte('Barber Michel', 'a@b.com');
+    expect(u.startsWith(`https://wa.me/${MARCA.soporte.whatsapp}?text=`)).toBe(true);
     expect(decodeURIComponent(u)).toContain('Barber Michel');
   });
 });

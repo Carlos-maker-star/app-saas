@@ -69,7 +69,7 @@ const NAV: Record<'admin' | 'cliente', SeccionNav[]> = {
         @if (modo() === 'cliente') {
           <a [href]="ayuda()" target="_blank" rel="noopener"
              class="flex h-10 items-center gap-3 rounded-lg px-3 text-sm font-medium text-fg-muted no-underline transition-colors hover:bg-card-2">
-            <app-icono n="mail" [tamanio]="18" />Ayuda y soporte
+            <app-icono n="chat" [tamanio]="18" />Ayuda y soporte
           </a>
         }
 
