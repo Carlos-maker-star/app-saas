@@ -56,13 +56,19 @@ import { Icono } from '../shared/icono';
           </div>
           <app-campo-contrasena [(valor)]="password" autocomplete="new-password" [minimo]="8" ayuda="Mínimo 8 caracteres." />
 
+          <label class="flex cursor-pointer items-start gap-3 text-sm leading-6 text-fg-muted">
+            <input type="checkbox" name="terminos" class="mt-1 size-4 shrink-0 accent-[var(--app-primary)]" [checked]="acepto()" (change)="acepto.set($any($event.target).checked)">
+            <span>Acepto los <a routerLink="/terminos" target="_blank" class="font-semibold text-primary no-underline hover:underline">Términos de uso</a>
+              y la <a routerLink="/privacidad" target="_blank" class="font-semibold text-primary no-underline hover:underline">Política de privacidad</a>.</span>
+          </label>
+
           @if (error()) {
             <p class="m-0 flex items-start gap-2 rounded-[10px] bg-bad-bg px-3.5 py-2.5 text-sm text-bad-fg" role="alert">
               <app-icono n="alert" [tamanio]="18" />{{ error() }}
             </p>
           }
 
-          <button type="submit" class="ui-btn ui-btn-primary w-full" [disabled]="cargando()">
+          <button type="submit" class="ui-btn ui-btn-primary w-full" [disabled]="cargando() || !acepto()">
             @if (cargando()) { <span class="ui-spinner"></span>Creando cuenta… } @else { Crear cuenta }
           </button>
         </form>
@@ -82,6 +88,7 @@ export class RegistroPage {
   protected readonly error = signal('');
   protected readonly cargando = signal(false);
   protected readonly confirmar = signal(false);
+  protected readonly acepto = signal(false);
   protected readonly codigo = signal('');
   protected readonly aviso = signal('');
   /** Segundos que faltan para poder pedir otro código */
@@ -145,6 +152,10 @@ export class RegistroPage {
   protected async enviar(e: Event): Promise<void> {
     e.preventDefault();
     this.error.set('');
+    if (!this.acepto()) {
+      this.error.set('Para crear tu cuenta debes aceptar los términos y la política de privacidad.');
+      return;
+    }
     if (this.password().length < 8) {
       this.error.set('La contraseña debe tener al menos 8 caracteres.');
       return;

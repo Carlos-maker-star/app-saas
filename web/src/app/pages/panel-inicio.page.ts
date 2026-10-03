@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Auth } from '../core/auth.service';
 import { AvisoService } from '../core/aviso.service';
 import { hace } from '../core/format';
+import { urlSoporte } from '../core/soporte';
 import { NegocioService } from '../core/negocio.service';
 import { Icono } from '../shared/icono';
 
@@ -79,6 +81,8 @@ import { Icono } from '../shared/icono';
             </ol>
           </section>
         </div>
+
+        <p class="m-0 text-sm text-fg-muted">¿Dudas o algo no funciona? <a [href]="ayuda()" target="_blank" rel="noopener" class="font-semibold text-primary no-underline hover:underline">Escríbenos</a>.</p>
       </div>
     } @else {
       <p class="text-fg-muted">No pudimos cargar tu negocio.</p>
@@ -87,7 +91,9 @@ import { Icono } from '../shared/icono';
 export class PanelInicioPage {
   protected readonly svc = inject(NegocioService);
   private readonly avisos = inject(AvisoService);
+  private readonly auth = inject(Auth);
   protected readonly hace = hace;
+  protected readonly ayuda = computed(() => urlSoporte(this.svc.negocio()?.nombre, this.auth.usuario()?.email));
   protected readonly ocupado = signal(false);
   protected readonly copiado = signal(false);
   protected readonly publicada = computed(() => !!this.svc.estado()?.publicada);

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MARCA } from '../core/marca';
 import { LandingStore } from '../core/landing.store';
 import { RedIcon } from '../shared/red-icon';
 
@@ -25,10 +26,12 @@ const NOMBRES: Record<string, string> = {
         @if (d.telefono || d.email) { <p class="mb-1">{{ d.telefono }}@if (d.telefono && d.email) { · }{{ d.email }}</p> }
       }
       <p>© {{ anio }} {{ store.nombre() }}</p>
+      <p class="mt-2 text-xs opacity-70">Página creada con <a href="/" class="underline-offset-2 hover:underline">{{ marca }}</a> · <a href="/terminos" class="underline-offset-2 hover:underline">Términos</a> · <a href="/privacidad" class="underline-offset-2 hover:underline">Privacidad</a></p>
     </footer>`,
 })
 export class Footer {
   protected readonly store = inject(LandingStore);
+  protected readonly marca = MARCA.nombre;
   protected readonly anio = new Date().getFullYear();
   protected nombre = (r: string) => NOMBRES[r] ?? r;
 }

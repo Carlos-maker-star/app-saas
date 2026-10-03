@@ -3,6 +3,7 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
 import { Auth } from '../core/auth.service';
 import { AvisoService } from '../core/aviso.service';
 import { NegocioService } from '../core/negocio.service';
+import { urlSoporte } from '../core/soporte';
 import { TemaApp } from '../core/tema-app';
 import { Icono } from '../shared/icono';
 import { Toasts } from '../shared/toasts';
@@ -65,6 +66,13 @@ const NAV: Record<'admin' | 'cliente', SeccionNav[]> = {
 
         <div class="flex-1"></div>
 
+        @if (modo() === 'cliente') {
+          <a [href]="ayuda()" target="_blank" rel="noopener"
+             class="flex h-10 items-center gap-3 rounded-lg px-3 text-sm font-medium text-fg-muted no-underline transition-colors hover:bg-card-2">
+            <app-icono n="mail" [tamanio]="18" />Ayuda y soporte
+          </a>
+        }
+
         <div class="flex items-center gap-3 rounded-xl border border-edge bg-card-2 p-3">
           <span class="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary-soft text-sm font-bold text-primary" aria-hidden="true">{{ inicial() }}</span>
           <div class="flex min-w-0 flex-1 flex-col">
@@ -73,6 +81,10 @@ const NAV: Record<'admin' | 'cliente', SeccionNav[]> = {
           </div>
           <button type="button" class="ui-icon-btn size-9" (click)="salir()" aria-label="Cerrar sesión" title="Cerrar sesión"><app-icono n="logout" [tamanio]="18" /></button>
         </div>
+        <p class="m-0 flex justify-center gap-4 text-xs text-fg-subtle">
+          <a routerLink="/terminos" target="_blank" class="text-inherit no-underline hover:underline">Términos</a>
+          <a routerLink="/privacidad" target="_blank" class="text-inherit no-underline hover:underline">Privacidad</a>
+        </p>
       </aside>
 
       <div class="flex min-w-0 flex-1 flex-col">
@@ -106,6 +118,7 @@ export class Shell {
   readonly modo = input<'admin' | 'cliente'>('cliente');
   protected readonly menuAbierto = signal(false);
   protected readonly secciones = computed(() => NAV[this.modo()]);
+  protected readonly ayuda = computed(() => urlSoporte(this.negocio.negocio()?.nombre, this.auth.usuario()?.email));
   protected readonly inicial = computed(() => (this.auth.usuario()?.email ?? '?').charAt(0).toUpperCase());
 
   constructor() {

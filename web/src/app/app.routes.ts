@@ -13,6 +13,10 @@ export const routes: Routes = [
   { path: 'vista-previa', loadComponent: () => import('./pages/vista-previa.page').then((m) => m.VistaPreviaPage) }, // iframe del editor
   { path: 'editor', canActivate: [soloCliente], loadComponent: () => import('./pages/editor.page').then((m) => m.EditorPage) },
 
+  // Textos legales
+  { path: 'terminos', data: { doc: 'terminos' }, loadComponent: () => import('./pages/legal.page').then((m) => m.LegalPage) },
+  { path: 'privacidad', data: { doc: 'privacidad' }, loadComponent: () => import('./pages/legal.page').then((m) => m.LegalPage) },
+
   // Cuentas y paneles (se cargan bajo demanda para no inflar la landing pública)
   { path: 'login', canActivate: [soloInvitados], loadComponent: () => import('./pages/login.page').then((m) => m.LoginPage) },
   { path: 'registro', canActivate: [soloInvitados], loadComponent: () => import('./pages/registro.page').then((m) => m.RegistroPage) },

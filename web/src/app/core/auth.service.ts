@@ -1,5 +1,6 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { Session, User } from '@supabase/supabase-js';
+import { MARCA } from './marca';
 import { supabase } from './supabase.client';
 
 export interface Perfil {
@@ -72,7 +73,11 @@ export class Auth {
 
   async registrar(email: string, password: string): Promise<{ error: string | null; confirmar: boolean }> {
     if (!supabase) return { error: 'Supabase no está configurado.', confirmar: false };
-    const { data, error } = await supabase.auth.signUp({ email: email.trim(), password });
+    const { data, error } = await supabase.auth.signUp({
+      email: email.trim(), password,
+      // queda guardado en la cuenta: qué versión de los textos legales aceptó y cuándo
+      options: { data: { terminos_version: MARCA.legal.version, terminos_aceptados_en: new Date().toISOString() } },
+    });
     if (error) return { error: traducir(error.message), confirmar: false };
     // Correo ya registrado: Supabase devuelve un usuario sin identidades
     if (data.user && data.user.identities?.length === 0) {
