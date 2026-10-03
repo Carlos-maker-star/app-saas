@@ -42,7 +42,9 @@ export const LEGAL: Record<'terminos' | 'privacidad', DocLegal> = {
         'Puedes dejar de usar el servicio cuando quieras y pedirnos que borremos tu cuenta (ver Política de privacidad).',
       ] },
       { titulo: '6. Precio y pagos', parrafos: [
-        'Si el servicio tiene un costo, se te informará el precio y la forma de pago antes de cobrarte, y no se hará ningún cobro sin tu aceptación. Mientras no se indique un precio, el uso es sin costo. Podemos introducir o cambiar precios avisando con anticipación razonable.',
+        `El precio, la forma y la fecha de pago se acuerdan directamente con el administrador de ${N}, por WhatsApp o por correo (${C}). El pago no se hace dentro de la plataforma y no se cobra nada sin tu acuerdo previo.`,
+        'Antes de que pagues te confirmaremos por escrito qué incluye el servicio, cuánto cuesta y cada cuánto se paga. Si hay reembolsos o plazos de cancelación, también se te dirán en ese acuerdo. Podemos cambiar los precios avisándote con anticipación razonable, y el cambio solo aplica si lo aceptas.',
+        'Si no cumples con el pago acordado, podemos despublicar tu página después de avisarte. Tus datos se conservan según la Política de privacidad.',
       ] },
       { titulo: '7. Disponibilidad del servicio', parrafos: [
         `Trabajamos para que ${N} esté siempre disponible, pero se ofrece «tal cual»: puede haber interrupciones por mantenimiento, fallos o causas ajenas (por ejemplo, de proveedores de internet o de alojamiento). No garantizamos resultados concretos, como un número de visitas o de clientes.`,

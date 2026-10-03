@@ -12,5 +12,5 @@ export const MARCA = {
   /** Soporte: si hay WhatsApp (solo dígitos, con código de país) el botón «Ayuda» abre WhatsApp; si no, el correo. */
   soporte: { email: 'rivadeneyracarlos379@gmail.com', whatsapp: '' },
   /** Datos de los textos legales (/terminos y /privacidad). Cambia `version` cada vez que modifiques el texto. */
-  legal: { titular: 'Carlos Rivadeneyra', version: '2026-10-03', actualizado: '3 de octubre de 2026' },
+  legal: { titular: 'Carlos Rivadeneyra', version: '2026-10-04', actualizado: '4 de octubre de 2026' },
 };
